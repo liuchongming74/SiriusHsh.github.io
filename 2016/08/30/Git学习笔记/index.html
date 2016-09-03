@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习笔记," />
 
 
 
@@ -108,7 +108,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/30/Git学习笔记/index.html">
 <meta property="og:site_name" content="nEver Enough">
 <meta property="og:description" content="一、创建版本库1.初始化Git仓库，使用 git init命令2.添加文件到Git仓库，分两步：    第一步,使用命令git add &amp;lt;file&amp;gt;，注意，可反复多次使用，添加多个文件    第二步,使用命令git commit,完成    //两步合一步，git commit -am &amp;quot;&amp;quot;….. 仅适用于修改文件，如果有新文件添加，还是需要两步3.要随时掌握工作区">
-<meta property="og:updated_time" content="2016-09-02T13:31:05.374Z">
+<meta property="og:updated_time" content="2016-09-03T02:12:09.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记">
 <meta name="twitter:description" content="一、创建版本库1.初始化Git仓库，使用 git init命令2.添加文件到Git仓库，分两步：    第一步,使用命令git add &amp;lt;file&amp;gt;，注意，可反复多次使用，添加多个文件    第二步,使用命令git commit,完成    //两步合一步，git commit -am &amp;quot;&amp;quot;….. 仅适用于修改文件，如果有新文件添加，还是需要两步3.要随时掌握工作区">
@@ -190,7 +190,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home fa-2x"></i> <br />
             
             首页
           </a>
@@ -207,26 +207,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
@@ -237,12 +217,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-something">
-          <a href="/something" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-gamepad"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            有料
+            归档
           </a>
         </li>
       
@@ -302,6 +282,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -324,7 +323,7 @@
       
 
       
-        <h1 id="一、创建版本库"><a href="#一、创建版本库" class="headerlink" title="一、创建版本库"></a>一、创建版本库</h1><p>1.初始化Git仓库，使用 <code>git init</code>命令<br>2.添加文件到Git仓库，分两步：<br>    第一步,使用命令<code>git add &lt;file&gt;</code>，注意，可反复多次使用，添加多个文件<br>    第二步,使用命令<code>git commit</code>,完成<br>    //两步合一步，<code>git commit -am &quot;&quot;</code>….. 仅适用于修改文件，如果有新文件添加，还是需要两步<br>3.要随时掌握工作区的状态，使用 <code>git status</code>命令</p>
+        <h1 id="一、创建版本库"><a href="#一、创建版本库" class="headerlink" title="一、创建版本库"></a>一、创建版本库</h1><p>1.初始化Git仓库，使用 <code>git init</code>命令<br>2.添加文件到Git仓库，分两步：<br>    第一步,使用命令<code>git add &lt;file&gt;</code>，注意，可反复多次使用，添加多个文件<br>    第二步,使用命令<code>git commit</code>,完成<br>    //两步合一步，<code>git commit -am &quot;&quot;</code>….. 仅适用于修改文件，如果有新文件添加，还是需要两步<br>3.要随时掌握工作区的状态，使用 <code>git status</code>命令<br><a id="more"></a></p>
 <h1 id="二、本地仓库管理"><a href="#二、本地仓库管理" class="headerlink" title="二、本地仓库管理"></a>二、本地仓库管理</h1><p>4.如果 <code>git status</code>告诉你有文件被修改过，用<code>git diff</code>可以查看修改内容<br>5.HEAD指向的版本就是当前的版本，因此，Git允许我们在版本的历史之间穿梭，使用命令 <code>git reset --hard commit_id</code><br>    git reset –hard HEAD^<br>    git reset –hard HEAD^^…<br>    git reset –hard HEAD~100<br>6.穿梭前，使用 <code>git log</code>    (git log –pretty=oneline –abbrev-commmit)<br>7.要重返未来，用 <code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本<br>8.工作区(Working Directory)就是在电脑里能看到的目录<br>   版本库(Repository) 工作区有一个隐藏目录 .git，这就是Git的版本库<br>        版本库里存了很多东西，其中最重要的就是stage的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针HEAD<br>9.Git跟踪并管理的是修改，而非文件，每次修改，如果不add到暂存区，那就不会加入到commit中<br>10.撤销修改<br>   场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- fileName</code><br>   场景2：当你不仅改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃，分两步<br>          第一步，用命令<code>git reset HEAD fileName</code>，就回到了场景1<br>          第二步，按场景1操作<br>   场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退<br>11.对应的，删除文件<br>    场景1,仅删除了工作区里的文件,rm fileName,那么用命令 <code>git checkout -- fileName</code>来恢复 (实际就是stage  –&gt; Wording Directory)<br>    场景2，删除了文件又提交到了stage, <code>git rm fileName</code>, 那么也是分两步<br>         第一步，用命令<code>git reset HEAD fileName</code>，回到场景1<br>         第二步，按场景1操作<br>    场景3：已经提交了删除操作到版本库，想要撤销本次删除，参考版本回退</p>
 <h1 id="三、远程仓库"><a href="#三、远程仓库" class="headerlink" title="三、远程仓库"></a>三、远程仓库</h1><p>12.github相关,git如何将github作为远程仓库呢<br>     (1) of course,注册一个Github账号<br>     (2) 创建SSH Key   中文测试<br>        <code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br>        地址：用户主目录, .ssh目录， id_rsa是私钥，id_rsa.pub是公钥<br>     (3)登录Github，打开 “Account settings”,”SSH Keys”页面，点“Add SSH Key“，<br>    填上title，在key文本中粘贴id_rssa.pub文件的内容<br>13.要克隆一个仓库，首先必须知道仓库的地址，然后使用 git clone命令克隆<br>    Git支持多种协议，包括https，但是ssh支持的原生git协议速度最快<br>        <code>git clone https://github.com/SiriusHsh/gitskills.git</code><br>        <code>git clone git@github:SiriusHsh/gitskills.git</code></p>
 <h1 id="四、分支管理"><a href="#四、分支管理" class="headerlink" title="四、分支管理"></a>四、分支管理</h1><p>14.分支操作：<br>    查看分支：<code>git branch</code><br>    创建分支：<code>git branch branchName</code><br>    切换分支：<code>git checkout branchName</code><br>    创建+切换分支: <code>git checkout -b branchName</code><br>    合并某分支到当前分支：<code>git merge branchName</code><br>    删除分支：<code>git branch -d branchName</code><br>15.当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，在提交，合并完后才能<br>     使用 <code>git log --graph --pretty=oneline --abbrev-commit</code>命令可以看到分支合并图<br>16.合并分支时，加上 –no-ff 参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并<br>     而fast forward合并就看不出曾经做过合并.<br>      <code>git merge --no-ff -m &quot;XXX&quot;</code><br>17.BUG分支与保存现场<br>    修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除<br>    当手头工作没有完成时，先把工作现场 <code>git stash</code>一下，然后去修复bug，修复后，再<code>git stash pop</code>,回到现场<br>        -<code>git stash list</code>，可以查看有哪些工作现场<br>        -修复现场有两种方法<br>                一是用<code>git stash apply</code>修复，但是恢复后，stash内容并不删除，需用<code>git stash drop</code>来删除<br>                二是用<code>git stash pop</code>，恢复的同时把stash的内容也删除了。<br>18.feature分支<br>    开发一个新feature，最好新建一个分支<br>    如果要丢弃一个没有被合并过的分支，可以通过<code>git checkout -D branchName</code><br>19.查看远程库信息,使用<code>git remote -v</code></p>
@@ -351,12 +350,18 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/30/hello-world/" rel="next" title="Hello World">
+              <a href="/2016/08/29/hello-world/" rel="next" title="Hello World">
                 <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
@@ -436,7 +441,21 @@
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -449,18 +468,9 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/SiriusHsh" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-fw fa-github fa-2x"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://codepen.io/SiriusHsh" target="_blank" title="Codepen">
-                  
-                    <i class="fa fa-fw fa-codepen fa-2x"></i>
-                  
-                  Codepen
                 </a>
               </span>
             
@@ -470,6 +480,15 @@
                     <i class="fa fa-fw fa-bold fa-2x"></i>
                   
                   知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://codepen.io/SiriusHsh" target="_blank" title="Codepen">
+                  
+                    <i class="fa fa-fw fa-codepen"></i>
+                  
+                  Codepen
                 </a>
               </span>
             
