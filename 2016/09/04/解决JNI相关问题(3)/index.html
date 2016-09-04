@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JNI,Java," />
 
 
 
@@ -108,15 +108,16 @@
 
 
 
-<meta name="description" content="记录思考，整理人生">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nEver Enough">
-<meta property="og:url" content="http://yoursite.com/categories/博客搭建/index.html">
+<meta name="description" content="解决问题：Can’t find dependent libraries报错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决JNI相关问题(3)">
+<meta property="og:url" content="http://yoursite.com/2016/09/04/解决JNI相关问题(3)/index.html">
 <meta property="og:site_name" content="nEver Enough">
-<meta property="og:description" content="记录思考，整理人生">
+<meta property="og:description" content="解决问题：Can’t find dependent libraries报错">
+<meta property="og:updated_time" content="2016-09-04T10:25:00.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nEver Enough">
-<meta name="twitter:description" content="记录思考，整理人生">
+<meta name="twitter:title" content="解决JNI相关问题(3)">
+<meta name="twitter:description" content="解决问题：Can’t find dependent libraries报错">
 
 
 
@@ -137,9 +138,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/博客搭建/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/04/解决JNI相关问题(3)/"/>
 
-  <title> 分类: 博客搭建 | nEver Enough </title>
+  <title> 解决JNI相关问题(3) | nEver Enough </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,7 +161,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,47 +249,146 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        博客搭建
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                解决JNI相关问题(3)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-04T18:17:30+08:00" content="2016-09-04">
+              2016-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/问题解决/" itemprop="url" rel="index">
+                    <span itemprop="name">问题解决</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="解决问题：Can’t-find-dependent-libraries报错"><a href="#解决问题：Can’t-find-dependent-libraries报错" class="headerlink" title="解决问题：Can’t find dependent libraries报错"></a>解决问题：Can’t find dependent libraries报错</h3><a id="more"></a>
+<p>今天将项目移植到另外一台电脑上，结果JNI又出错了，<del>真是一个柔弱的女子啊</del></p>
+<p>解决思路：无法找到依赖的库,应该是.dll出的问题</p>
+<p>解决方案：将编译方案由Debug改为Release，解决！</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/29/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-29T00:00:00+08:00"
-              content="2016-08-29" >
-          08-29
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JNI/" rel="tag">#JNI</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/04/解决JNI相关问题(2)/" rel="next" title="解决JNI相关问题(2)">
+                <i class="fa fa-chevron-left"></i> 解决JNI相关问题(2)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +396,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +419,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar1.jpg"
@@ -395,6 +508,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题：Can’t-find-dependent-libraries报错"><span class="nav-number">1.</span> <span class="nav-text">解决问题：Can’t find dependent libraries报错</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -491,6 +615,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

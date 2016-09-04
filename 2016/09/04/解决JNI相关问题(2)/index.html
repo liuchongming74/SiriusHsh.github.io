@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JNI,Java," />
 
 
 
@@ -108,15 +108,16 @@
 
 
 
-<meta name="description" content="记录思考，整理人生">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nEver Enough">
-<meta property="og:url" content="http://yoursite.com/categories/博客搭建/index.html">
+<meta name="description" content="本篇主要讲述JNI中GetStringUTFChars()方法的用法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决JNI相关问题(2)">
+<meta property="og:url" content="http://yoursite.com/2016/09/04/解决JNI相关问题(2)/index.html">
 <meta property="og:site_name" content="nEver Enough">
-<meta property="og:description" content="记录思考，整理人生">
+<meta property="og:description" content="本篇主要讲述JNI中GetStringUTFChars()方法的用法。">
+<meta property="og:updated_time" content="2016-09-04T10:25:11.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nEver Enough">
-<meta name="twitter:description" content="记录思考，整理人生">
+<meta name="twitter:title" content="解决JNI相关问题(2)">
+<meta name="twitter:description" content="本篇主要讲述JNI中GetStringUTFChars()方法的用法。">
 
 
 
@@ -137,9 +138,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/博客搭建/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/04/解决JNI相关问题(2)/"/>
 
-  <title> 分类: 博客搭建 | nEver Enough </title>
+  <title> 解决JNI相关问题(2) | nEver Enough </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,7 +161,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,47 +249,153 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        博客搭建
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                解决JNI相关问题(2)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-04T17:20:40+08:00" content="2016-09-04">
+              2016-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/问题解决/" itemprop="url" rel="index">
+                    <span itemprop="name">问题解决</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="本篇主要讲述JNI中GetStringUTFChars-方法的用法。"><a href="#本篇主要讲述JNI中GetStringUTFChars-方法的用法。" class="headerlink" title="本篇主要讲述JNI中GetStringUTFChars()方法的用法。"></a>本篇主要讲述JNI中GetStringUTFChars()方法的用法。</h3><a id="more"></a>
+<p>Java中有String类型，对应JNI中的JString，而C语言中没有这种类型，GetStringUTFChars()这个方法就是用来将JString转换成C语言中的char *类型的。</p>
+<p>该函数有两种形式：</p>
+<ol>
+<li><strong>C中的形式</strong><br>C代码：<code>const char *str = (*env)-&gt;GetStringUTFChars(env,string,0)</code></li>
+<li><strong>C++中的形式</strong><br>C++代码:<code>const char *str = env-&gt;GetStringUTFChars(string,0)</code></li>
+</ol>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/29/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-29T00:00:00+08:00"
-              content="2016-08-29" >
-          08-29
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JNI/" rel="tag">#JNI</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/04/解决JNI相关问题(1)/" rel="next" title="解决JNI相关问题(1)">
+                <i class="fa fa-chevron-left"></i> 解决JNI相关问题(1)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/04/解决JNI相关问题(3)/" rel="prev" title="解决JNI相关问题(3)">
+                解决JNI相关问题(3) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +403,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +426,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar1.jpg"
@@ -395,6 +515,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本篇主要讲述JNI中GetStringUTFChars-方法的用法。"><span class="nav-number">1.</span> <span class="nav-text">本篇主要讲述JNI中GetStringUTFChars()方法的用法。</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -491,6 +622,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png">
 <meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png">
 <meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png">
-<meta property="og:updated_time" content="2016-09-04T09:13:36.322Z">
+<meta property="og:updated_time" content="2016-09-04T10:25:39.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决JNI相关问题(1)">
 <meta name="twitter:description" content="本篇主要讲述：
@@ -344,7 +344,7 @@
       
 
       
-        <h1 id="本篇主要讲述："><a href="#本篇主要讲述：" class="headerlink" title="本篇主要讲述："></a>本篇主要讲述：</h1><ul>
+        <h2 id="本篇主要讲述："><a href="#本篇主要讲述：" class="headerlink" title="本篇主要讲述："></a>本篇主要讲述：</h2><ul>
 <li>生成.h文件的正确姿势</li>
 <li>生成和使用.dll文件的正确姿势</li>
 </ul>
@@ -352,16 +352,17 @@
 <blockquote>
 <p>最近着手的项目用到了JNI，照着文档边学边做，遇到了很多坑，我打算一一写出来，来帮助也遇到JNI相关问题的童鞋。<br><del>国内资料实在是太渣了，让我绕了好多弯路</del></p>
 </blockquote>
-<h2 id="如何生成-h文件"><a href="#如何生成-h文件" class="headerlink" title="如何生成.h文件"></a>如何生成.h文件</h2><p>首先编写好Java程序(关于JNI相关的Java程序的写法不详述了)<img src="http://octtw77pk.bkt.clouddn.com/9/4JNI.png" alt="图片">在该文件所在的目录下按<code>shift+右键</code>,打开命令行，输入<code>javac your_file_name.java</code>编译成.class文件。</p>
+<h3 id="如何生成-h文件"><a href="#如何生成-h文件" class="headerlink" title="如何生成.h文件"></a>如何生成.h文件</h3><p>首先编写好Java程序(有关JNI的Java程序写法不详述了)<img src="http://octtw77pk.bkt.clouddn.com/9/4JNI.png" alt="图片">在该文件所在的目录下按<code>shift+右键</code>,打开命令行，输入<code>javac your_file_name.java</code>编译成.class文件。</p>
 <hr>
 <p>上面都是小儿科，关键来了，退出到<strong>该Java文件的包的同一级</strong>，为什么意思呢，拿我这个Java文件来说，它有包名<code>com.jg.model.Image</code>所以应该退出到<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE06.png" alt="图片">这一级，能看到com包，打开命令行输入<code>javah your_file_name</code>来生成.h文件，格式为： javah 包名.文件名，这里有两点要提：1.包名一定要写全 2.文件名后没有后缀!参考我这个写法：<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE07.png" alt="图片">前面都操作正确，就能见到这个.h文件了<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE08.png" alt="图片"></p>
 <hr>
-<h2 id="如何生成和使用-dll文件"><a href="#如何生成和使用-dll文件" class="headerlink" title="如何生成和使用.dll文件"></a>如何生成和使用.dll文件</h2><p>之后就是打开C/C++的IDE来编写C/C++程序，这里我使用的是VS2013。<br>这里我也遇到了好多问题，我来写一下我的解决方案吧。<br>打开VS2013，文件–&gt;新建–&gt;项目–&gt;Win32控制台应用程序（<strong>项目名字要注意，是你在Java程序里写的要加载的库名,即System.loadLibrary(“”)里写的库名</strong>）–&gt;确定–&gt;下一步–&gt;<strong>应用程序类型</strong>选择DLL，点上空项目–&gt;完成–&gt;源程序里创建一个cpp开始编写，之后我不着重讲怎么写C程序)(因为很简单)，而是来讲下你们可能会出现的一些问题：</p>
+<h3 id="如何生成和使用-dll文件"><a href="#如何生成和使用-dll文件" class="headerlink" title="如何生成和使用.dll文件"></a>如何生成和使用.dll文件</h3><p>之后就是打开C/C++的IDE来编写C/C++程序，这里我使用的是VS2013。<br>这里我也遇到了好多问题，我来写一下我的解决方案吧。<br>打开VS2013，文件–&gt;新建–&gt;项目–&gt;Win32控制台应用程序（<strong>项目名字要注意，是你在Java程序里写的要加载的库名,即System.loadLibrary(“”)里写的库名</strong>）–&gt;确定–&gt;下一步–&gt;<strong>应用程序类型</strong>选择DLL，点上空项目–&gt;完成–&gt;源程序里创建一个cpp开始编写，之后我不着重讲怎么写C程序)(因为很简单)，而是来讲下你们可能会出现的一些问题：</p>
 <ul>
 <li><strong>头文件引入问题</strong><br>如果头文件引入不当，会出现五花八门的错误，我来讲下我的做法：将上面编译出的.h文件放到和源程序（上一步创建用来编写程序的那个cpp）一起，之后还有两个.h文件，分别是jni.h，位于<code>%HOME%\Java\jdk1.8.0_71\include</code>, jni-md.h，位于<code>%HOME%\Java\jdk1.8.0_71\include\win32</code>，把这两也放到和源程序一起，<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE09.png" alt="图片">然后在VS里点头文件-&gt;添加现有项，将那三个头文件加进去，这时你会发现你自个儿的那个头文件报错了，没事，将<code>#include &lt;jni.h&gt;</code> 改成 <code>#include &quot;jni.h&quot;</code>，现在去看看，应该没有报错了~~</li>
 <li><strong>dll应该放哪儿？</strong><br>好不容易生成了.dll，应该放哪儿了呢？它应该被放在两个地方，一个是项目的根目录，一个是eclipse的根目录(我用的是eclipse，intelliJ不清楚)。<del>可能需要把eclipse重启下</del></li>
-<li><strong>用win32编译问题</strong><br>你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~<br>打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片"><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片">重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code>/项目根目录/x64/debug</code>中）<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>到这里你应该看到你的JNI跑起来了，尽情去玩耍她吧！！<br><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png" alt="图片"></li>
+<li><strong>用win32编译问题</strong><br>你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~<br>打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片"><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片">重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code>/项目根目录/x64/debug</code>中）</li>
 </ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里你应该看到你的JNI跑起来了，尽情去玩耍她吧！！<br><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png" alt="图片"></p>
 <hr>
 <p>最后附上我此前没讲的C++程序的写法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"com_jg_model_Image_TestJNI.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function">JNIEXPORT <span class="keyword">void</span> JNICALL <span class="title">Java_com_jg_model_Image_TestJNI_sayHello</span></span></div><div class="line"><span class="params">(JNIEnv *, jclass)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
@@ -404,6 +405,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/04/解决JNI相关问题(2)/" rel="prev" title="解决JNI相关问题(2)">
+                解决JNI相关问题(2) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,7 +476,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -488,7 +493,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -546,7 +551,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本篇主要讲述："><span class="nav-number">1.</span> <span class="nav-text">本篇主要讲述：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何生成-h文件"><span class="nav-number">1.1.</span> <span class="nav-text">如何生成.h文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何生成和使用-dll文件"><span class="nav-number">1.2.</span> <span class="nav-text">如何生成和使用.dll文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇主要讲述："><span class="nav-number">1.</span> <span class="nav-text">本篇主要讲述：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成-h文件"><span class="nav-number">1.1.</span> <span class="nav-text">如何生成.h文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成和使用-dll文件"><span class="nav-number">1.2.</span> <span class="nav-text">如何生成和使用.dll文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
