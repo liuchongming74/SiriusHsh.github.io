@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png">
 <meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png">
 <meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png">
-<meta property="og:updated_time" content="2016-09-04T10:25:39.012Z">
+<meta property="og:updated_time" content="2016-09-04T13:34:41.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决JNI相关问题(1)">
 <meta name="twitter:description" content="本篇主要讲述：
@@ -360,7 +360,7 @@
 <ul>
 <li><strong>头文件引入问题</strong><br>如果头文件引入不当，会出现五花八门的错误，我来讲下我的做法：将上面编译出的.h文件放到和源程序（上一步创建用来编写程序的那个cpp）一起，之后还有两个.h文件，分别是jni.h，位于<code>%HOME%\Java\jdk1.8.0_71\include</code>, jni-md.h，位于<code>%HOME%\Java\jdk1.8.0_71\include\win32</code>，把这两也放到和源程序一起，<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE09.png" alt="图片">然后在VS里点头文件-&gt;添加现有项，将那三个头文件加进去，这时你会发现你自个儿的那个头文件报错了，没事，将<code>#include &lt;jni.h&gt;</code> 改成 <code>#include &quot;jni.h&quot;</code>，现在去看看，应该没有报错了~~</li>
 <li><strong>dll应该放哪儿？</strong><br>好不容易生成了.dll，应该放哪儿了呢？它应该被放在两个地方，一个是项目的根目录，一个是eclipse的根目录(我用的是eclipse，intelliJ不清楚)。<del>可能需要把eclipse重启下</del></li>
-<li><strong>用win32编译问题</strong><br>你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~<br>打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片"><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片">重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code>/项目根目录/x64/debug</code>中）</li>
+<li><strong>用win32编译问题</strong><br>你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~<br>打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片"><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片">重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code>/项目根目录/x64/debug</code>中）<br>如果出现<code>error LNK1561: 必须定义入口点</code>,那么这样来：右键项目–&gt;属性–&gt;常规–&gt;配置类型–&gt;动态库(.dll) </li>
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里你应该看到你的JNI跑起来了，尽情去玩耍她吧！！<br><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png" alt="图片"></p>
 <hr>
@@ -476,7 +476,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -484,7 +484,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -493,7 +493,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

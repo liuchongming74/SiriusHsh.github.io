@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,JNI," />
+  <meta name="keywords" content="JavaScript,FCC," />
 
 
 
@@ -108,16 +108,22 @@
 
 
 
-<meta name="description" content="本篇主要讲述JNI中GetStringUTFChars()方法的用法。">
+<meta name="description" content="标题：Title Case a Sentence正文：
+
+确保字符串的每个单词首字母都大写，其余部分小写。像’the’和’of’这样的连接符同理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决JNI相关问题(2)">
-<meta property="og:url" content="http://yoursite.com/2016/09/04/解决JNI相关问题(2)/index.html">
+<meta property="og:title" content="Title Case a Sentence">
+<meta property="og:url" content="http://yoursite.com/2016/09/05/Title-Case-a-Sentence/index.html">
 <meta property="og:site_name" content="nEver Enough">
-<meta property="og:description" content="本篇主要讲述JNI中GetStringUTFChars()方法的用法。">
-<meta property="og:updated_time" content="2016-09-04T10:25:11.222Z">
+<meta property="og:description" content="标题：Title Case a Sentence正文：
+
+确保字符串的每个单词首字母都大写，其余部分小写。像’the’和’of’这样的连接符同理。">
+<meta property="og:updated_time" content="2016-09-05T13:35:21.828Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决JNI相关问题(2)">
-<meta name="twitter:description" content="本篇主要讲述JNI中GetStringUTFChars()方法的用法。">
+<meta name="twitter:title" content="Title Case a Sentence">
+<meta name="twitter:description" content="标题：Title Case a Sentence正文：
+
+确保字符串的每个单词首字母都大写，其余部分小写。像’the’和’of’这样的连接符同理。">
 
 
 
@@ -138,9 +144,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/04/解决JNI相关问题(2)/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/05/Title-Case-a-Sentence/"/>
 
-  <title> 解决JNI相关问题(2) | nEver Enough </title>
+  <title> Title Case a Sentence | nEver Enough </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +276,7 @@
             
             
               
-                解决JNI相关问题(2)
+                Title Case a Sentence
               
             
           </h1>
@@ -282,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T17:20:40+08:00" content="2016-09-04">
-              2016-09-04
+            <time itemprop="dateCreated" datetime="2016-09-05T20:50:46+08:00" content="2016-09-05">
+              2016-09-05
             </time>
           </span>
 
@@ -296,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/问题解决/" itemprop="url" rel="index">
-                    <span itemprop="name">问题解决</span>
+                  <a href="/categories/Title-Case-a-Sentence/" itemprop="url" rel="index">
+                    <span itemprop="name">Title Case a Sentence</span>
                   </a>
                 </span>
 
@@ -329,13 +335,21 @@
       
 
       
-        <h3 id="本篇主要讲述JNI中GetStringUTFChars-方法的用法。"><a href="#本篇主要讲述JNI中GetStringUTFChars-方法的用法。" class="headerlink" title="本篇主要讲述JNI中GetStringUTFChars()方法的用法。"></a>本篇主要讲述JNI中GetStringUTFChars()方法的用法。</h3><a id="more"></a>
-<p>Java中有String类型，对应JNI中的JString，而C语言中没有这种类型，GetStringUTFChars()这个方法就是用来将JString转换成C语言中的char *类型的。</p>
-<p>该函数有两种形式：</p>
+        <h4 id="标题：Title-Case-a-Sentence"><a href="#标题：Title-Case-a-Sentence" class="headerlink" title="标题：Title Case a Sentence"></a>标题：Title Case a Sentence</h4><p>正文：</p>
+<blockquote>
+<p>确保字符串的每个单词首字母都大写，其余部分小写。<br>像’the’和’of’这样的连接符同理。</p>
+</blockquote>
+<a id="more"></a>
+<p>感觉这题有很多解法，按照思路来吧，慢慢修改</p>
+<p><strong>answerV1.0</strong><br>思路：</p>
 <ol>
-<li><strong>C中的形式</strong><br>C代码：<code>const char *str = (*env)-&gt;GetStringUTFChars(env,string,0)</code></li>
-<li><strong>C++中的形式</strong><br>C++代码:<code>const char *str = env-&gt;GetStringUTFChars(string,0)</code></li>
+<li>先用split()方法将一段话拆成单个单词。</li>
+<li>用一个for循环，将每个单词进行处理：先用toLowerCase()方法将单词变为全小写，然后用replace()方法将单词的第一个字母变为大写(用到正则表达式，<del>做这题时正则表达式还是没去学，也是现查现用的2333</del>)<br>3.用join()方法组合成新的字符串。</li>
 </ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> array = str.split(<span class="string">" "</span>);</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</div><div class="line">     array[i] = array[i].toLowerCase().replace(<span class="regexp">/^\S/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;<span class="keyword">return</span> s.toUpperCase();&#125;);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> array.join(<span class="string">" "</span>);</div><div class="line">&#125;</div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure>
+<p><strong>answerV1.1</strong><br>发现toLowerCase()可以再for循环前使用，减少了时间复杂度，<code>var array = str.toLowerCase().split(&quot; &quot;)</code></p>
+<p><strong>answerV2.0</strong><br>对数组的遍历可以使用map()方法，将正则表达式取第一个字母的方法改为charAt()方法取。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> array = str.toLowerCase().split(<span class="string">" "</span>);</div><div class="line">   <span class="keyword">var</span> answer = array.map(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> val.replace(val.charAt(<span class="number">0</span>),val.charAt(<span class="number">0</span>).toUpperCase());</div><div class="line">  &#125;);</div><div class="line">   <span class="keyword">return</span> answer.join(<span class="string">" "</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>answerV4.0</strong><br>看了网上大牛的解答，可谓终极版,贴代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> str.toLowerCase().replace(<span class="regexp">/( |^)[a-z]/g</span>, (L) =&gt; L.toUpperCase());&#125;</div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -358,9 +372,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
           
-            <a href="/tags/JNI/" rel="tag">#JNI</a>
+            <a href="/tags/FCC/" rel="tag">#FCC</a>
           
         </div>
       
@@ -369,17 +383,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/04/解决JNI相关问题(1)/" rel="next" title="解决JNI相关问题(1)">
-                <i class="fa fa-chevron-left"></i> 解决JNI相关问题(1)
+              <a href="/2016/09/05/Check-for-Palindromes/" rel="next" title="Check for Palindromes">
+                <i class="fa fa-chevron-left"></i> Check for Palindromes
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/04/解决JNI相关问题(3)/" rel="prev" title="解决JNI相关问题(3)">
-                解决JNI相关问题(3) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,7 +532,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本篇主要讲述JNI中GetStringUTFChars-方法的用法。"><span class="nav-number">1.</span> <span class="nav-text">本篇主要讲述JNI中GetStringUTFChars()方法的用法。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#标题：Title-Case-a-Sentence"><span class="nav-number">1.</span> <span class="nav-text">标题：Title Case a Sentence</span></a></li></ol></div>
             
           </div>
         </section>
