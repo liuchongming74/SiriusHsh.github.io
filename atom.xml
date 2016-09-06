@@ -275,9 +275,9 @@
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
-      <category term="正则表达式" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
       <category term="FCC" scheme="http://yoursite.com/tags/FCC/"/>
+    
+      <category term="正则表达式" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
   </entry>
   
@@ -303,9 +303,9 @@
       <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     
     
-      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
-    
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
     
   </entry>
   
@@ -334,9 +334,9 @@
       <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     
     
-      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
-    
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
     
   </entry>
   
