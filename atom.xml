@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>nEver Enough</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-09-06T05:56:11.305Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>SiriusHsh</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1003. 我要通过！</title>
+    <link href="http://yoursite.com/2016/09/06/1003-%E6%88%91%E8%A6%81%E9%80%9A%E8%BF%87%EF%BC%81/"/>
+    <id>http://yoursite.com/2016/09/06/1003-我要通过！/</id>
+    <published>2016-09-06T05:44:21.000Z</published>
+    <updated>2016-09-06T05:56:11.305Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 ——<br>只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。</p>
+<p>得到“答案正确”的条件是：</p>
+<ol>
+<li>字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；</li>
+<li>任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；</li>
+<li>如果 aPbTc 是正确的，那么 aPbATca 也是正确的，其中 a, b, c 均或者是空字符串，或者是仅由字母 A 组成的字符串。</li>
+</ol>
+<p>现在就请你为PAT写一个自动裁判程序，判定哪些字符串是可以获得“答案正确”的。<br><strong>输入格式</strong>：每个测试输入包含1个测试用例。第1行给出一个自然数n(&lt;10)，是需要检测的字符串个数。接下来每个字符串占一行，字符串长度不超过100，且不包含空格。<br><strong>输出格式</strong>：每个字符串的检测结果占一行，如果该字符串可以获得“答案正确”，则输出YES，否则输出NO。<br><strong>输入样例</strong>：<br>8<br>PAT<br>PAAT<br>AAPATAA<br>AAPAATAAAA<br>xPATx<br>PT<br>Whatever<br>APAAATAA<br><strong>输出样例</strong>：<br>YES<br>YES<br>YES<br>YES<br>NO<br>NO<br>NO<br>NO</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">string</span> str;</div><div class="line">	<span class="keyword">int</span> n;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;n;</div><div class="line">	<span class="keyword">while</span>(n--)&#123;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;str;</div><div class="line">		<span class="built_in">string</span>::size_type p=str.find_first_not_of(<span class="string">'A'</span>);</div><div class="line">		<span class="keyword">if</span>(p==<span class="built_in">string</span>::npos||str[p]!=<span class="string">'P'</span>)</div><div class="line">		   &#123;</div><div class="line">		   <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		   <span class="keyword">continue</span>;</div><div class="line">		   &#125;</div><div class="line">		<span class="built_in">string</span>::size_type q=str.find_first_not_of(<span class="string">'A'</span>,p+<span class="number">1</span>);</div><div class="line">		<span class="keyword">if</span>(q==p+<span class="number">1</span>||str[q]!=<span class="string">'T'</span>||q==<span class="built_in">string</span>::npos)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		   	<span class="keyword">continue</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">string</span>::size_type s=str.find_first_not_of(<span class="string">'A'</span>,q+<span class="number">1</span>);</div><div class="line">		<span class="keyword">if</span>(s!=<span class="built_in">string</span>::npos)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		   	<span class="keyword">continue</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(p*(q-p<span class="number">-1</span>)==(str.size()-q<span class="number">-1</span>))</div><div class="line">		  &#123;</div><div class="line">		  	<span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		   	<span class="keyword">continue</span>;</div><div class="line">		  &#125;<span class="keyword">else</span> &#123;</div><div class="line">		  	<span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">		   	<span class="keyword">continue</span>;</div><div class="line">		  &#125;</div><div class="line">	&#125; </div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1003" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 ——&lt;br&gt;只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。&lt;/p&gt;
+&lt;p&gt;得到“答案正确”的条件是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；&lt;/li&gt;
+&lt;li&gt;任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；&lt;/li&gt;
+&lt;li&gt;如果 aPbTc 是正确的，那么 aPbATca 也是正确的，其中 a, b, c 均或者是空字符串，或者是仅由字母 A 组成的字符串。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;现在就请你为PAT写一个自动裁判程序，判定哪些字符串是可以获得“答案正确”的。&lt;br&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例。第1行给出一个自然数n(&amp;lt;10)，是需要检测的字符串个数。接下来每个字符串占一行，字符串长度不超过100，且不包含空格。&lt;br&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：每个字符串的检测结果占一行，如果该字符串可以获得“答案正确”，则输出YES，否则输出NO。&lt;br&gt;&lt;strong&gt;输入样例&lt;/strong&gt;：&lt;br&gt;8&lt;br&gt;PAT&lt;br&gt;PAAT&lt;br&gt;AAPATAA&lt;br&gt;AAPAATAAAA&lt;br&gt;xPATx&lt;br&gt;PT&lt;br&gt;Whatever&lt;br&gt;APAAATAA&lt;br&gt;&lt;strong&gt;输出样例&lt;/strong&gt;：&lt;br&gt;YES&lt;br&gt;YES&lt;br&gt;YES&lt;br&gt;YES&lt;br&gt;NO&lt;br&gt;NO&lt;br&gt;NO&lt;br&gt;NO&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1002. 写出这个数</title>
+    <link href="http://yoursite.com/2016/09/06/1002-%E5%86%99%E5%87%BA%E8%BF%99%E4%B8%AA%E6%95%B0/"/>
+    <id>http://yoursite.com/2016/09/06/1002-写出这个数/</id>
+    <published>2016-09-06T05:44:08.000Z</published>
+    <updated>2016-09-06T05:51:04.910Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。<br><strong>输入格式</strong>：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。<br><strong>输出格式</strong>：在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。<br><strong>输入样例</strong>： 1234567890987654321123456789<br><strong>输出样例</strong>： yi san wu</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> num[<span class="number">101</span>];</div><div class="line">	<span class="keyword">char</span> dig[<span class="number">4</span>];</div><div class="line">	<span class="keyword">char</span> *p=num;</div><div class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num;</div><div class="line">	<span class="keyword">while</span>(*p!=<span class="string">'\0'</span>)</div><div class="line">	&#123;</div><div class="line">		sum+=(*p-<span class="string">'0'</span>);</div><div class="line">		p++;</div><div class="line">	&#125; </div><div class="line">	<span class="built_in">sprintf</span>(dig,<span class="string">"%d"</span>,sum);</div><div class="line">	<span class="comment">//itoa(sum,dig,10);</span></div><div class="line">    p=dig;</div><div class="line">    <span class="keyword">while</span>(*p!=<span class="string">'\0'</span>)</div><div class="line">    &#123;</div><div class="line">    	<span class="keyword">switch</span>(*p)&#123;</div><div class="line">		<span class="keyword">case</span> <span class="string">'0'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"ling"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'1'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"yi"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'2'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"er"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'3'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"san"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'4'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"si"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'5'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"wu"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'6'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"liu"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'7'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"qi"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'8'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"ba"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="string">'9'</span>:</div><div class="line">		    <span class="built_in">printf</span>(<span class="string">"jiu"</span>);</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">default</span>:</div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		p++;</div><div class="line">		<span class="keyword">if</span>(*p!=<span class="string">'\0'</span>)</div><div class="line">		  <span class="built_in">cout</span>&lt;&lt;<span class="string">" "</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1002" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。&lt;br&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。&lt;br&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。&lt;br&gt;&lt;strong&gt;输入样例&lt;/strong&gt;： 1234567890987654321123456789&lt;br&gt;&lt;strong&gt;输出样例&lt;/strong&gt;： yi san wu&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1001. 害死人不偿命的(3n+1)猜想</title>
+    <link href="http://yoursite.com/2016/09/06/1001-%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%84-3n-1-%E7%8C%9C%E6%83%B3/"/>
+    <id>http://yoursite.com/2016/09/06/1001-害死人不偿命的-3n-1-猜想/</id>
+    <published>2016-09-06T05:43:51.000Z</published>
+    <updated>2016-09-06T05:50:46.561Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>卡拉兹(Callatz)猜想：<br>对任何一个自然数n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把(3n+1)砍掉一半。这样一直反复砍下去，最后一定在某一步得到n=1。卡拉兹在1950年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证(3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展……<br>我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过1000的正整数n，简单地数一下，需要多少步（砍几下）才能得到n=1？<br><strong>输入格式</strong>：每个测试输入包含1个测试用例，即给出自然数n的值。<br><strong>输出格式</strong>：输出从n计算到1需要的步数。<br><strong>输入样例</strong>：<br>3<br><strong>输出样例</strong>：<br>5</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num;</div><div class="line">	<span class="keyword">while</span>(num!=<span class="number">1</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(num%<span class="number">2</span>==<span class="number">0</span>)&#123;     </div><div class="line">			num=num/<span class="number">2</span>;</div><div class="line">			count++;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			num=(<span class="number">3</span>*num+<span class="number">1</span>)/<span class="number">2</span>;</div><div class="line">			count++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;count;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1001" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;卡拉兹(Callatz)猜想：&lt;br&gt;对任何一个自然数n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把(3n+1)砍掉一半。这样一直反复砍下去，最后一定在某一步得到n=1。卡拉兹在1950年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证(3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展……&lt;br&gt;我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过1000的正整数n，简单地数一下，需要多少步（砍几下）才能得到n=1？&lt;br&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例，即给出自然数n的值。&lt;br&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：输出从n计算到1需要的步数。&lt;br&gt;&lt;strong&gt;输入样例&lt;/strong&gt;：&lt;br&gt;3&lt;br&gt;&lt;strong&gt;输出样例&lt;/strong&gt;：&lt;br&gt;5&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1002. A+B for Polynomials</title>
+    <link href="http://yoursite.com/2016/09/06/1002-A-B-for-Polynomials/"/>
+    <id>http://yoursite.com/2016/09/06/1002-A-B-for-Polynomials/</id>
+    <published>2016-09-06T05:22:27.000Z</published>
+    <updated>2016-09-06T05:32:57.175Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>This time, you are supposed to find A+B where A and B are two polynomials.<br><strong>Input</strong><br>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial: K N1 aN1 N2 aN2 … NK aNK, where K is the number of nonzero terms in the polynomial, Ni and aNi (i=1, 2, …, K) are the exponents and coefficients, respectively. It is given that 1 &lt;= K &lt;= 10，0 &lt;= NK &lt; … &lt; N2 &lt; N1 &lt;=1000.<br><strong>Output</strong><br>For each test case you should output the sum of A and B in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.<br><strong>Sample Input</strong><br>2 1 2.4 0 3.2<br>2 2 1.5 1 0.5<br><strong>Sample Output</strong><br>3 2 1.5 1 2.9 0 3.2</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> array_1[<span class="number">30</span>];</div><div class="line">	<span class="keyword">double</span> array_2[<span class="number">30</span>];</div><div class="line">	<span class="keyword">double</span> array_3[<span class="number">60</span>];</div><div class="line">	<span class="comment">//freopen("input.txt","r",stdin);</span></div><div class="line">	<span class="comment">//freopen("output.txt","w",stdout);</span></div><div class="line">	<span class="built_in">memset</span>(array_1,<span class="number">0</span>,<span class="keyword">sizeof</span>(array_1));</div><div class="line">	<span class="built_in">memset</span>(array_2,<span class="number">0</span>,<span class="keyword">sizeof</span>(array_2));</div><div class="line">	<span class="keyword">int</span> num1=<span class="number">0</span>;<span class="comment">//记录数组1中的元素个数</span></div><div class="line">	<span class="keyword">int</span> num2=<span class="number">0</span>;<span class="comment">//记录数组2中的元素个数</span></div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num1;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>*num1;i++)</div><div class="line">	 <span class="built_in">cin</span>&gt;&gt;array_1[i];</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;num2;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>*num2;i++)</div><div class="line">	 <span class="built_in">cin</span>&gt;&gt;array_2[i];</div><div class="line">	<span class="comment">//数组赋值完成</span></div><div class="line">	 <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,k=<span class="number">0</span>;</div><div class="line">	<span class="keyword">double</span> *p=array_1;</div><div class="line">	 <span class="keyword">double</span> *q=array_2;</div><div class="line">	<span class="keyword">while</span>(i&lt;=(num1<span class="number">-1</span>) &amp;&amp; j&lt;=(num2<span class="number">-1</span>))</div><div class="line">	 &#123;</div><div class="line">	 	<span class="keyword">if</span>(*p&gt;*q)&#123;</div><div class="line">	 		<span class="keyword">if</span>(array_1[<span class="number">2</span>*i+<span class="number">1</span>]!=<span class="number">0</span>)</div><div class="line">	 		&#123;array_3[k]=array_1[<span class="number">2</span>*i];</div><div class="line">	 		k++;</div><div class="line">	 		array_3[k]=array_1[<span class="number">2</span>*i+<span class="number">1</span>];</div><div class="line">	 		k++;</div><div class="line">	 		p=p+<span class="number">2</span>;</div><div class="line">	 		i++;</div><div class="line">			 &#125;</div><div class="line">			<span class="keyword">else</span> i++;</div><div class="line">	 	 &#125;</div><div class="line">		 <span class="keyword">else</span> <span class="keyword">if</span>(*p==*q)&#123;</div><div class="line">		 	<span class="keyword">if</span>(array_1[<span class="number">2</span>*i+<span class="number">1</span>]+array_2[<span class="number">2</span>*j+<span class="number">1</span>]!=<span class="number">0</span>)</div><div class="line">		 	&#123;array_3[k]=array_1[<span class="number">2</span>*i];</div><div class="line">	 		k++;</div><div class="line">	 		array_3[k]=array_1[<span class="number">2</span>*i+<span class="number">1</span>]+array_2[<span class="number">2</span>*j+<span class="number">1</span>];</div><div class="line">	 		k++;</div><div class="line">	 		p=p+<span class="number">2</span>;		 </div><div class="line">		    q=q+<span class="number">2</span>;</div><div class="line">		    i++;</div><div class="line">		    j++;</div><div class="line">			 &#125;</div><div class="line">			 <span class="keyword">else</span> &#123;</div><div class="line">			 	i++;</div><div class="line">			 	j++;</div><div class="line">			 &#125;</div><div class="line">		 &#125;</div><div class="line">		    <span class="keyword">else</span> &#123;</div><div class="line">		    	 <span class="keyword">if</span>(array_2[<span class="number">2</span>*j+<span class="number">1</span>]!=<span class="number">0</span>)</div><div class="line">		    		 &#123;</div><div class="line">						array_3[k]=array_2[<span class="number">2</span>*j];</div><div class="line">				 		k++;</div><div class="line">				 		array_3[k]=array_2[<span class="number">2</span>*j+<span class="number">1</span>];</div><div class="line">						k++; </div><div class="line">					    q=q+<span class="number">2</span>;</div><div class="line">					    j++;</div><div class="line">					&#125;</div><div class="line">					<span class="keyword">else</span> j++;</div><div class="line">		 		&#125;	</div><div class="line">	 &#125;</div><div class="line">	 <span class="keyword">if</span>(i&lt;=num1<span class="number">-1</span>)</div><div class="line">	 &#123;</div><div class="line">	 	<span class="keyword">for</span>(<span class="keyword">int</span> ii=<span class="number">0</span>;ii&lt;num1-i;ii++)</div><div class="line">	 	 &#123;</div><div class="line">	 	 	<span class="keyword">if</span>(array_1[<span class="number">2</span>*i+<span class="number">1</span>]!=<span class="number">0</span>)&#123;</div><div class="line">			array_3[k]=array_1[<span class="number">2</span>*i];</div><div class="line">	 		k++;</div><div class="line">	 		array_3[k]=array_1[<span class="number">2</span>*i+<span class="number">1</span>];</div><div class="line">	 		k++;</div><div class="line">	 		i++;</div><div class="line">	 		&#125;  </div><div class="line">	 		<span class="keyword">else</span> i++;</div><div class="line">		  &#125;</div><div class="line">	  &#125; </div><div class="line">	<span class="keyword">else</span> </div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> ii=<span class="number">0</span>;ii&lt;num2-j;ii++)</div><div class="line">	 	 &#123;</div><div class="line">		    <span class="keyword">if</span>(array_2[<span class="number">2</span>*j+<span class="number">1</span>]!=<span class="number">0</span>)</div><div class="line">		 &#123;</div><div class="line">			array_3[k]=array_2[<span class="number">2</span>*j];</div><div class="line">	 		k++;</div><div class="line">	 		array_3[k]=array_2[<span class="number">2</span>*j+<span class="number">1</span>];</div><div class="line">			k++; </div><div class="line">		    j++;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> j++;</div><div class="line">		  &#125;</div><div class="line">	&#125;</div><div class="line">	 <span class="keyword">if</span>(k==<span class="number">0</span>)</div><div class="line">	   <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;<span class="built_in">cout</span>&lt;&lt;k/<span class="number">2</span>;</div><div class="line">	  <span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">	 <span class="keyword">for</span>(<span class="keyword">int</span> ii=<span class="number">0</span>;ii&lt;k/<span class="number">2</span>;ii++)</div><div class="line">	   &#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">" "</span>&lt;&lt;setprecision(<span class="number">0</span>)&lt;&lt;array_3[i];</div><div class="line">	    <span class="built_in">cout</span>&lt;&lt;<span class="string">" "</span>&lt;&lt;setiosflags(ios::fixed)&lt;&lt;setprecision(<span class="number">1</span>)&lt;&lt;array_3[i+<span class="number">1</span>];</div><div class="line">	    i+=<span class="number">2</span>;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//fclose(stdin);</span></div><div class="line">	<span class="comment">//fclose(stdout);</span></div><div class="line">	 <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.patest.cn/contests/pat-a-practise/1002" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This time, you are supposed to find A+B where A and B are two polynomials.&lt;br&gt;&lt;strong&gt;Input&lt;/strong&gt;&lt;br&gt;Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial: K N1 aN1 N2 aN2 … NK aNK, where K is the number of nonzero terms in the polynomial, Ni and aNi (i=1, 2, …, K) are the exponents and coefficients, respectively. It is given that 1 &amp;lt;= K &amp;lt;= 10，0 &amp;lt;= NK &amp;lt; … &amp;lt; N2 &amp;lt; N1 &amp;lt;=1000.&lt;br&gt;&lt;strong&gt;Output&lt;/strong&gt;&lt;br&gt;For each test case you should output the sum of A and B in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.&lt;br&gt;&lt;strong&gt;Sample Input&lt;/strong&gt;&lt;br&gt;2 1 2.4 0 3.2&lt;br&gt;2 2 1.5 1 0.5&lt;br&gt;&lt;strong&gt;Sample Output&lt;/strong&gt;&lt;br&gt;3 2 1.5 1 2.9 0 3.2&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Advanced Level) Practise" scheme="http://yoursite.com/categories/PAT-Advanced-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1001. A+B Format</title>
+    <link href="http://yoursite.com/2016/09/06/1001-A-B-Format/"/>
+    <id>http://yoursite.com/2016/09/06/1001-A-B-Format/</id>
+    <published>2016-09-06T05:15:19.000Z</published>
+    <updated>2016-09-06T05:33:54.506Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).<br><strong>Input</strong><br>Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 &lt;= a, b &lt;= 1000000. The numbers are separated by a space.<br><strong>Output</strong><br>For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.<br><strong>Sample Input</strong><br>-1000000 9<br><strong>Sample Output</strong><br>-999,991</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">long</span> num1,num2;</div><div class="line">	<span class="keyword">long</span> <span class="built_in">array</span>[<span class="number">8</span>];</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num1;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num2;</div><div class="line">	<span class="keyword">long</span> num3=num1+num2;</div><div class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>(num3&lt;<span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"-"</span>;</div><div class="line">		num3=-num3;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(num3 == <span class="number">0</span>)</div><div class="line">	  <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(num3 &gt; <span class="number">0</span>)</div><div class="line">	&#123;   </div><div class="line">		<span class="built_in">array</span>[i]=num3%<span class="number">10</span>;</div><div class="line">		num3=num3/<span class="number">10</span>;</div><div class="line">		i++;  </div><div class="line">	&#125;                  <span class="comment">//i的值即为位数                                         </span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">array</span>[j];</div><div class="line">		<span class="keyword">if</span>(j&gt;<span class="number">0</span>&amp;&amp;j%<span class="number">3</span>==<span class="number">0</span>) </div><div class="line">		  <span class="built_in">cout</span>&lt;&lt;<span class="string">","</span>;</div><div class="line">	 &#125; </div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.patest.cn/contests/pat-a-practise/1001" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).&lt;br&gt;&lt;strong&gt;Input&lt;/strong&gt;&lt;br&gt;Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 &amp;lt;= a, b &amp;lt;= 1000000. The numbers are separated by a space.&lt;br&gt;&lt;strong&gt;Output&lt;/strong&gt;&lt;br&gt;For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.&lt;br&gt;&lt;strong&gt;Sample Input&lt;/strong&gt;&lt;br&gt;-1000000 9&lt;br&gt;&lt;strong&gt;Sample Output&lt;/strong&gt;&lt;br&gt;-999,991&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Advanced Level) Practise" scheme="http://yoursite.com/categories/PAT-Advanced-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Title Case a Sentence</title>
+    <link href="http://yoursite.com/2016/09/05/Title-Case-a-Sentence/"/>
+    <id>http://yoursite.com/2016/09/05/Title-Case-a-Sentence/</id>
+    <published>2016-09-05T12:50:46.000Z</published>
+    <updated>2016-09-06T01:41:15.887Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="标题：Title-Case-a-Sentence"><a href="#标题：Title-Case-a-Sentence" class="headerlink" title="标题：Title Case a Sentence"></a>标题：Title Case a Sentence</h4><p>正文：</p>
+<blockquote>
+<p>确保字符串的每个单词首字母都大写，其余部分小写。<br>像’the’和’of’这样的连接符同理。</p>
+</blockquote>
+<a id="more"></a>
+<p>感觉这题有很多解法，按照思路来吧，慢慢修改</p>
+<p><strong>answerV1.0</strong><br>思路：</p>
+<ol>
+<li>先用split()方法将一段话拆成单个单词。</li>
+<li>用一个for循环，将每个单词进行处理：先用toLowerCase()方法将单词变为全小写，然后用replace()方法将单词的第一个字母变为大写(用到正则表达式，<del>做这题时正则表达式还是没去学，也是现查现用的2333</del>)<br>3.用join()方法组合成新的字符串。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> array = str.split(<span class="string">" "</span>);</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</div><div class="line">     array[i] = array[i].toLowerCase().replace(<span class="regexp">/^\S/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;<span class="keyword">return</span> s.toUpperCase();&#125;);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> array.join(<span class="string">" "</span>);</div><div class="line">&#125;</div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure>
+<p><strong>answerV1.1</strong><br>发现toLowerCase()可以再for循环前使用，减少了时间复杂度，<code>var array = str.toLowerCase().split(&quot; &quot;)</code></p>
+<p><strong>answerV2.0</strong><br>对数组的遍历可以使用map()方法，将正则表达式取第一个字母的方法改为charAt()方法取。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> array = str.toLowerCase().split(<span class="string">" "</span>);</div><div class="line">   <span class="keyword">var</span> answer = array.map(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> val.replace(val.charAt(<span class="number">0</span>),val.charAt(<span class="number">0</span>).toUpperCase());</div><div class="line">  &#125;);</div><div class="line">   <span class="keyword">return</span> answer.join(<span class="string">" "</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>answerV4.0</strong><br>看了网上大牛的解答，可谓终极版,贴代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> str.toLowerCase().replace(<span class="regexp">/( |^)[a-z]/g</span>, (L) =&gt; L.toUpperCase());&#125;</div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure></p>
+<hr>
+<p><a href="https://www.freecodecamp.cn/challenges/title-case-a-sentence" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;标题：Title-Case-a-Sentence&quot;&gt;&lt;a href=&quot;#标题：Title-Case-a-Sentence&quot; class=&quot;headerlink&quot; title=&quot;标题：Title Case a Sentence&quot;&gt;&lt;/a&gt;标题：Title Case a Sentence&lt;/h4&gt;&lt;p&gt;正文：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;确保字符串的每个单词首字母都大写，其余部分小写。&lt;br&gt;像’the’和’of’这样的连接符同理。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="FreeCodeCamp" scheme="http://yoursite.com/categories/FreeCodeCamp/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="FCC" scheme="http://yoursite.com/tags/FCC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Check for Palindromes</title>
+    <link href="http://yoursite.com/2016/09/05/Check-for-Palindromes/"/>
+    <id>http://yoursite.com/2016/09/05/Check-for-Palindromes/</id>
+    <published>2016-09-05T12:35:56.000Z</published>
+    <updated>2016-09-06T01:41:17.799Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="题目：Check-for-Palindromes"><a href="#题目：Check-for-Palindromes" class="headerlink" title="题目：Check for Palindromes"></a>题目：Check for Palindromes</h4><p>正文：</p>
+<blockquote>
+<p>如果给定的字符串是回文，返回true，反之，返回false。<br>如果一个字符串忽略标点符号、大小写和空格，正着读和反着读一模一样，那么这个字符串就是palindrome(回文)。<br>注意你需要去掉字符串多余的标点符号和空格，然后把字符串转化成小写来验证此字符串是否为回文。</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">palindrome</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="comment">// Good luck!</span></div><div class="line">  <span class="keyword">var</span> newStr1 = str.replace(<span class="regexp">/\W/g</span>,<span class="string">""</span>).replace(<span class="regexp">/\_/</span>,<span class="string">""</span>).toLowerCase();</div><div class="line">  <span class="keyword">var</span> newStr2 = newStr1.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</div><div class="line">  <span class="keyword">if</span>(newStr1 == newStr2)</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>; </div><div class="line">&#125;</div><div class="line"></div><div class="line">palindrome(<span class="string">"never odd or even"</span>);</div></pre></td></tr></table></figure></p>
+<p><em>虽然是AC了，但是感觉写的太渣了，性能太差。<br>正则表达式也是现学现用的，不正规范<br>打算这几天先系统性学习下正则表达式，然后再来优化下这题</em></p>
+<hr>
+<p><a href="https://www.freecodecamp.cn/challenges/check-for-palindromes" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;题目：Check-for-Palindromes&quot;&gt;&lt;a href=&quot;#题目：Check-for-Palindromes&quot; class=&quot;headerlink&quot; title=&quot;题目：Check for Palindromes&quot;&gt;&lt;/a&gt;题目：Check for Palindromes&lt;/h4&gt;&lt;p&gt;正文：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果给定的字符串是回文，返回true，反之，返回false。&lt;br&gt;如果一个字符串忽略标点符号、大小写和空格，正着读和反着读一模一样，那么这个字符串就是palindrome(回文)。&lt;br&gt;注意你需要去掉字符串多余的标点符号和空格，然后把字符串转化成小写来验证此字符串是否为回文。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="FreeCodeCamp" scheme="http://yoursite.com/categories/FreeCodeCamp/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="正则表达式" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+      <category term="FCC" scheme="http://yoursite.com/tags/FCC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决JNI相关问题(3)</title>
+    <link href="http://yoursite.com/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/"/>
+    <id>http://yoursite.com/2016/09/04/解决JNI相关问题(3)/</id>
+    <published>2016-09-04T10:17:30.000Z</published>
+    <updated>2016-09-04T10:25:00.110Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="解决问题：Can’t-find-dependent-libraries报错"><a href="#解决问题：Can’t-find-dependent-libraries报错" class="headerlink" title="解决问题：Can’t find dependent libraries报错"></a>解决问题：Can’t find dependent libraries报错</h3><a id="more"></a>
+<p>今天将项目移植到另外一台电脑上，结果JNI又出错了，<del>真是一个柔弱的女子啊</del></p>
+<p>解决思路：无法找到依赖的库,应该是.dll出的问题</p>
+<p>解决方案：将编译方案由Debug改为Release，解决！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;解决问题：Can’t-find-dependent-libraries报错&quot;&gt;&lt;a href=&quot;#解决问题：Can’t-find-dependent-libraries报错&quot; class=&quot;headerlink&quot; title=&quot;解决问题：Can’t find dependent libraries报错&quot;&gt;&lt;/a&gt;解决问题：Can’t find dependent libraries报错&lt;/h3&gt;
+    
+    </summary>
+    
+      <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决JNI相关问题(2)</title>
+    <link href="http://yoursite.com/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/"/>
+    <id>http://yoursite.com/2016/09/04/解决JNI相关问题(2)/</id>
+    <published>2016-09-04T09:20:40.000Z</published>
+    <updated>2016-09-04T10:25:11.222Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="本篇主要讲述JNI中GetStringUTFChars-方法的用法。"><a href="#本篇主要讲述JNI中GetStringUTFChars-方法的用法。" class="headerlink" title="本篇主要讲述JNI中GetStringUTFChars()方法的用法。"></a>本篇主要讲述JNI中GetStringUTFChars()方法的用法。</h3><a id="more"></a>
+<p>Java中有String类型，对应JNI中的JString，而C语言中没有这种类型，GetStringUTFChars()这个方法就是用来将JString转换成C语言中的char *类型的。</p>
+<p>该函数有两种形式：</p>
+<ol>
+<li><strong>C中的形式</strong><br>C代码：<code>const char *str = (*env)-&gt;GetStringUTFChars(env,string,0)</code></li>
+<li><strong>C++中的形式</strong><br>C++代码:<code>const char *str = env-&gt;GetStringUTFChars(string,0)</code></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;本篇主要讲述JNI中GetStringUTFChars-方法的用法。&quot;&gt;&lt;a href=&quot;#本篇主要讲述JNI中GetStringUTFChars-方法的用法。&quot; class=&quot;headerlink&quot; title=&quot;本篇主要讲述JNI中GetStringUTFChars()方法的用法。&quot;&gt;&lt;/a&gt;本篇主要讲述JNI中GetStringUTFChars()方法的用法。&lt;/h3&gt;
+    
+    </summary>
+    
+      <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决JNI相关问题(1)</title>
+    <link href="http://yoursite.com/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(1)/"/>
+    <id>http://yoursite.com/2016/09/04/解决JNI相关问题(1)/</id>
+    <published>2016-09-04T02:54:31.000Z</published>
+    <updated>2016-09-04T13:34:41.183Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="本篇主要讲述："><a href="#本篇主要讲述：" class="headerlink" title="本篇主要讲述："></a>本篇主要讲述：</h2><ul>
+<li>生成.h文件的正确姿势</li>
+<li>生成和使用.dll文件的正确姿势</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>最近着手的项目用到了JNI，照着文档边学边做，遇到了很多坑，我打算一一写出来，来帮助也遇到JNI相关问题的童鞋。<br><del>国内资料实在是太渣了，让我绕了好多弯路</del></p>
+</blockquote>
+<h3 id="如何生成-h文件"><a href="#如何生成-h文件" class="headerlink" title="如何生成.h文件"></a>如何生成.h文件</h3><p>首先编写好Java程序(有关JNI的Java程序写法不详述了)<img src="http://octtw77pk.bkt.clouddn.com/9/4JNI.png" alt="图片">在该文件所在的目录下按<code>shift+右键</code>,打开命令行，输入<code>javac your_file_name.java</code>编译成.class文件。</p>
+<hr>
+<p>上面都是小儿科，关键来了，退出到<strong>该Java文件的包的同一级</strong>，为什么意思呢，拿我这个Java文件来说，它有包名<code>com.jg.model.Image</code>所以应该退出到<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE06.png" alt="图片">这一级，能看到com包，打开命令行输入<code>javah your_file_name</code>来生成.h文件，格式为： javah 包名.文件名，这里有两点要提：1.包名一定要写全 2.文件名后没有后缀!参考我这个写法：<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE07.png" alt="图片">前面都操作正确，就能见到这个.h文件了<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE08.png" alt="图片"></p>
+<hr>
+<h3 id="如何生成和使用-dll文件"><a href="#如何生成和使用-dll文件" class="headerlink" title="如何生成和使用.dll文件"></a>如何生成和使用.dll文件</h3><p>之后就是打开C/C++的IDE来编写C/C++程序，这里我使用的是VS2013。<br>这里我也遇到了好多问题，我来写一下我的解决方案吧。<br>打开VS2013，文件–&gt;新建–&gt;项目–&gt;Win32控制台应用程序（<strong>项目名字要注意，是你在Java程序里写的要加载的库名,即System.loadLibrary(“”)里写的库名</strong>）–&gt;确定–&gt;下一步–&gt;<strong>应用程序类型</strong>选择DLL，点上空项目–&gt;完成–&gt;源程序里创建一个cpp开始编写，之后我不着重讲怎么写C程序)(因为很简单)，而是来讲下你们可能会出现的一些问题：</p>
+<ul>
+<li><strong>头文件引入问题</strong><br>如果头文件引入不当，会出现五花八门的错误，我来讲下我的做法：将上面编译出的.h文件放到和源程序（上一步创建用来编写程序的那个cpp）一起，之后还有两个.h文件，分别是jni.h，位于<code>%HOME%\Java\jdk1.8.0_71\include</code>, jni-md.h，位于<code>%HOME%\Java\jdk1.8.0_71\include\win32</code>，把这两也放到和源程序一起，<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE09.png" alt="图片">然后在VS里点头文件-&gt;添加现有项，将那三个头文件加进去，这时你会发现你自个儿的那个头文件报错了，没事，将<code>#include &lt;jni.h&gt;</code> 改成 <code>#include &quot;jni.h&quot;</code>，现在去看看，应该没有报错了~~</li>
+<li><strong>dll应该放哪儿？</strong><br>好不容易生成了.dll，应该放哪儿了呢？它应该被放在两个地方，一个是项目的根目录，一个是eclipse的根目录(我用的是eclipse，intelliJ不清楚)。<del>可能需要把eclipse重启下</del></li>
+<li><strong>用win32编译问题</strong><br>你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~<br>打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片"><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片">重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code>/项目根目录/x64/debug</code>中）<br>如果出现<code>error LNK1561: 必须定义入口点</code>,那么这样来：右键项目–&gt;属性–&gt;常规–&gt;配置类型–&gt;动态库(.dll) </li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里你应该看到你的JNI跑起来了，尽情去玩耍她吧！！<br><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png" alt="图片"></p>
+<hr>
+<p>最后附上我此前没讲的C++程序的写法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"com_jg_model_Image_TestJNI.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function">JNIEXPORT <span class="keyword">void</span> JNICALL <span class="title">Java_com_jg_model_Image_TestJNI_sayHello</span></span></div><div class="line"><span class="params">(JNIEnv *, jclass)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;本篇主要讲述：&quot;&gt;&lt;a href=&quot;#本篇主要讲述：&quot; class=&quot;headerlink&quot; title=&quot;本篇主要讲述：&quot;&gt;&lt;/a&gt;本篇主要讲述：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;生成.h文件的正确姿势&lt;/li&gt;
+&lt;li&gt;生成和使用.dll文件的正确姿势&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+    
+      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
+    
+      <category term="JAVA" scheme="http://yoursite.com/tags/JAVA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git学习笔记</title>
+    <link href="http://yoursite.com/2016/08/30/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/08/30/Git学习笔记/</id>
+    <published>2016-08-30T12:05:16.000Z</published>
+    <updated>2016-09-04T09:05:07.365Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1><p>1.初始化Git仓库，使用<code>git init</code>命令　　<br>2.添加文件到Git仓库，分两步：<br>　　第一步,使用命令<code>git add &lt;file&gt;</code>，注意，可反复多次使用，添加多个文件<br>　　第二步,使用命令<code>git commit</code>,完成<br>　　//两步合一步，<code>git commit -am &quot;&quot;</code>….. 仅适用于修改文件，如果有新文件添加，还是需要两步<br>3.要随时掌握工作区的状态，使用 <code>git status</code>命令<br><a id="more"></a></p>
+<h1 id="本地仓库管理"><a href="#本地仓库管理" class="headerlink" title="本地仓库管理"></a>本地仓库管理</h1><p>1.如果 <code>git status</code>告诉你有文件被修改过，用<code>git diff</code>可以查看修改内容<br>2.HEAD指向的版本就是当前的版本，因此，Git允许我们在版本的历史之间穿梭，使用命令 <code>git reset --hard commit_id</code><br>        　　git reset –hard HEAD^<br>    　　git reset –hard HEAD^^…<br>    　　git reset –hard HEAD~100<br>3.穿梭前，使用 <code>git log</code>    (git log –pretty=oneline –abbrev-commmit)<br>4.要重返未来，用 <code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本<br>5.工作区(Working Directory)就是在电脑里能看到的目录<br>　　版本库(Repository) 工作区有一个隐藏目录 .git，这就是Git的版本库<br>　　版本库里存了很多东西，其中最重要的就是stage的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针HEAD<br>6.Git跟踪并管理的是修改，而非文件，每次修改，如果不add到暂存区，那就不会加入到commit中<br>7.撤销修改<br>   　　场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- fileName</code><br>   　　场景2：当你不仅改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃，分两步<br>　　　　第一步，用命令<code>git reset HEAD fileName</code>，就回到了场景1<br>　　　　第二步，按场景1操作<br>　　场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退<br>8.对应的，删除文件<br>    　　场景1,仅删除了工作区里的文件,rm fileName,那么用命令 <code>git checkout -- fileName</code>来恢复 (实际就是stage  –&gt; Wording Directory)<br>    　　场景2，删除了文件又提交到了stage, <code>git rm fileName</code>, 那么也是分两步        　　<br>　　　　　第一步，用命令<code>git reset HEAD fileName</code>，回到场景1         　　<br>　　　　　第二步，按场景1操作<br>    　　场景3：已经提交了删除操作到版本库，想要撤销本次删除，参考版本回退</p>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><p>1.github相关,git如何将github作为远程仓库呢<br>　　(1) of course,注册一个Github账号<br>　　(2) 创建SSH Key   中文测试<br>　　<code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br>　　地址：用户主目录, .ssh目录， id_rsa是私钥，id_rsa.pub是公钥<br>　　(3)登录Github，打开 “Account settings”,”SSH Keys”页面，点“Add SSH Key“，<br>　　填上title，在key文本中粘贴id_rssa.pub文件的内容<br>2.要克隆一个仓库，首先必须知道仓库的地址，然后使用 git clone命令克隆<br>　　Git支持多种协议，包括https，但是ssh支持的原生git协议速度最快<br>　　<code>git clone https://github.com/SiriusHsh/gitskills.git</code><br>　　<code>git clone git@github:SiriusHsh/gitskills.git</code></p>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><p>1.分支操作：<br>　　查看分支：<code>git branch</code><br>　　创建分支：<code>git branch branchName</code><br>　　切换分支：<code>git checkout branchName</code>　<br>　　创建+切换分支: <code>git checkout -b branchName</code><br>　　合并某分支到当前分支：<code>git merge branchName</code><br>　　删除分支：<code>git branch -d branchName</code><br>2.当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，在提交，合并完后才能使用 <code>git log --graph --pretty=oneline --abbrev-commit</code>命令可以看到分支合并图<br>3.合并分支时，加上 –no-ff 参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并<br>而fast forward合并就看不出曾经做过合并.<br>      <code>git merge --no-ff -m &quot;XXX&quot;</code><br>4.BUG分支与保存现场<br>　　修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除<br>　　当手头工作没有完成时，先把工作现场 <code>git stash</code>一下，然后去修复bug，修复后，再<code>git stash pop</code>,回到现场<br><code>git stash list</code>，可以查看有哪些工作现场<br>　　修复现场有两种方法<br>　　　　一是用<code>git stash apply</code>修复，但是恢复后，stash内容并不删除，需用<code>git stash drop</code>来删除<br>　　　　二是用<code>git stash pop</code>，恢复的同时把stash的内容也删除了。<br>5.feature分支<br>　　开发一个新feature，最好新建一个分支<br>　　如果要丢弃一个没有被合并过的分支，可以通过<code>git checkout -D branchName</code><br>6.查看远程库信息,使用<code>git remote -v</code><br>7.多人协作的工作模式<br>　　(1)首先，可以试图用<code>git push origin branchName</code>推送自己的修改<br>　　(2)如果推送失败，则因为远程分支比你的本地更新，需要先用<code>git pull</code>试图合并<br>　　(3)如果合并有冲突，则解决冲突，并在本地提交<br>　　(4)没有冲突或者解决掉冲突后，再用 <code>git push origin branchName</code> 推送就能成功！<br>　　如果 <code>git pull</code> 提示“no tracking information“，则说明本地分支和远程分支的链接关系没有创建，<br>　　用命令 <code>git branch --set-upstream branchName origin/branchName</code></p>
+<h1 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h1><p>1.创建标签<br>　　命令<code>git tag tagName</code>用于新建一个标签，默认为HEAD，也可以指定一个commit id<br>　　git tag -a tagName -m “XXXXX”  可以指定标签信息，-a 指定标签签名，-m指定说明文字<br>　　git tag -s tagName -m “XXXXX”  可以用PGP签名标签<br>　　命令git tag可以查看所有标签<br>2.操作标签<br>　　命令<code>git push origin tagName</code> 可以推送一个本地标签<br>　　命令<code>git push origin --tags</code>可以推送全部未推送过的本地标签<br>　　命令<code>git tag -d tagName</code> 可以删除一个本地标签　　<br>　　命令<code>git push origin :refs/tags/tagName</code> 可以删除一个远程标签</p>
+<h1 id="自定义Git"><a href="#自定义Git" class="headerlink" title="自定义Git"></a>自定义Git</h1><p>1.忽略特殊文件<br>　　忽略某些文件时，需要编写.gitignore<br>　　.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理<br>2.配置别名<br><code>git config --global alias.co checkout</code><br><code>git config --global alias.ci commit</code><br><code>git config --global alias.br branch</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;创建版本库&quot;&gt;&lt;a href=&quot;#创建版本库&quot; class=&quot;headerlink&quot; title=&quot;创建版本库&quot;&gt;&lt;/a&gt;创建版本库&lt;/h1&gt;&lt;p&gt;1.初始化Git仓库，使用&lt;code&gt;git init&lt;/code&gt;命令　　&lt;br&gt;2.添加文件到Git仓库，分两步：&lt;br&gt;　　第一步,使用命令&lt;code&gt;git add &amp;lt;file&amp;gt;&lt;/code&gt;，注意，可反复多次使用，添加多个文件&lt;br&gt;　　第二步,使用命令&lt;code&gt;git commit&lt;/code&gt;,完成&lt;br&gt;　　//两步合一步，&lt;code&gt;git commit -am &amp;quot;&amp;quot;&lt;/code&gt;….. 仅适用于修改文件，如果有新文件添加，还是需要两步&lt;br&gt;3.要随时掌握工作区的状态，使用 &lt;code&gt;git status&lt;/code&gt;命令&lt;br&gt;
+    
+    </summary>
+    
+      <category term="学习记录" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="学习笔记" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2016/08/29/hello-world/"/>
+    <id>http://yoursite.com/2016/08/29/hello-world/</id>
+    <published>2016-08-28T16:00:00.000Z</published>
+    <updated>2016-09-03T13:40:22.912Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="博客搭建" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="博客" scheme="http://yoursite.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
