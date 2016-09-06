@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JNI,JAVA," />
+  <meta name="keywords" content="PAT,C++," />
 
 
 
@@ -108,31 +108,22 @@
 
 
 
-<meta name="description" content="本篇主要讲述：
-生成.h文件的正确姿势
-生成和使用.dll文件的正确姿势">
+<meta name="description" content="原题：
+
+Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).InputEach input file contains">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决JNI相关问题(1)">
-<meta property="og:url" content="http://yoursite.com/2016/09/04/解决JNI相关问题(1)/index.html">
+<meta property="og:title" content="1001. A+B Format">
+<meta property="og:url" content="http://yoursite.com/2016/09/06/1001-A-B-Format/index.html">
 <meta property="og:site_name" content="nEver Enough">
-<meta property="og:description" content="本篇主要讲述：
-生成.h文件的正确姿势
-生成和使用.dll文件的正确姿势">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/9/4JNI.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE06.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE07.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE08.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE09.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png">
-<meta property="og:image" content="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png">
-<meta property="og:updated_time" content="2016-09-04T13:34:41.183Z">
+<meta property="og:description" content="原题：
+
+Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).InputEach input file contains">
+<meta property="og:updated_time" content="2016-09-06T05:33:54.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决JNI相关问题(1)">
-<meta name="twitter:description" content="本篇主要讲述：
-生成.h文件的正确姿势
-生成和使用.dll文件的正确姿势">
-<meta name="twitter:image" content="http://octtw77pk.bkt.clouddn.com/9/4JNI.png">
+<meta name="twitter:title" content="1001. A+B Format">
+<meta name="twitter:description" content="原题：
+
+Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).InputEach input file contains">
 
 
 
@@ -153,9 +144,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/04/解决JNI相关问题(1)/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/06/1001-A-B-Format/"/>
 
-  <title> 解决JNI相关问题(1) | nEver Enough </title>
+  <title> 1001. A+B Format | nEver Enough </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -285,7 +276,7 @@
             
             
               
-                解决JNI相关问题(1)
+                1001. A+B Format
               
             
           </h1>
@@ -297,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T10:54:31+08:00" content="2016-09-04">
-              2016-09-04
+            <time itemprop="dateCreated" datetime="2016-09-06T13:15:19+08:00" content="2016-09-06">
+              2016-09-06
             </time>
           </span>
 
@@ -311,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/问题解决/" itemprop="url" rel="index">
-                    <span itemprop="name">问题解决</span>
+                  <a href="/categories/PAT-Advanced-Level-Practise/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT (Advanced Level) Practise</span>
                   </a>
                 </span>
 
@@ -344,27 +335,13 @@
       
 
       
-        <h2 id="本篇主要讲述："><a href="#本篇主要讲述：" class="headerlink" title="本篇主要讲述："></a>本篇主要讲述：</h2><ul>
-<li>生成.h文件的正确姿势</li>
-<li>生成和使用.dll文件的正确姿势</li>
-</ul>
-<a id="more"></a>
+        <p>原题：</p>
 <blockquote>
-<p>最近着手的项目用到了JNI，照着文档边学边做，遇到了很多坑，我打算一一写出来，来帮助也遇到JNI相关问题的童鞋。<br><del>国内资料实在是太渣了，让我绕了好多弯路</del></p>
+<p>Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).<br><strong>Input</strong><br>Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 &lt;= a, b &lt;= 1000000. The numbers are separated by a space.<br><strong>Output</strong><br>For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.<br><strong>Sample Input</strong><br>-1000000 9<br><strong>Sample Output</strong><br>-999,991</p>
 </blockquote>
-<h3 id="如何生成-h文件"><a href="#如何生成-h文件" class="headerlink" title="如何生成.h文件"></a>如何生成.h文件</h3><p>首先编写好Java程序(有关JNI的Java程序写法不详述了)<img src="http://octtw77pk.bkt.clouddn.com/9/4JNI.png" alt="图片">在该文件所在的目录下按<code>shift+右键</code>,打开命令行，输入<code>javac your_file_name.java</code>编译成.class文件。</p>
-<hr>
-<p>上面都是小儿科，关键来了，退出到<strong>该Java文件的包的同一级</strong>，为什么意思呢，拿我这个Java文件来说，它有包名<code>com.jg.model.Image</code>所以应该退出到<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE06.png" alt="图片">这一级，能看到com包，打开命令行输入<code>javah your_file_name</code>来生成.h文件，格式为： javah 包名.文件名，这里有两点要提：1.包名一定要写全 2.文件名后没有后缀!参考我这个写法：<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE07.png" alt="图片">前面都操作正确，就能见到这个.h文件了<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE08.png" alt="图片"></p>
-<hr>
-<h3 id="如何生成和使用-dll文件"><a href="#如何生成和使用-dll文件" class="headerlink" title="如何生成和使用.dll文件"></a>如何生成和使用.dll文件</h3><p>之后就是打开C/C++的IDE来编写C/C++程序，这里我使用的是VS2013。<br>这里我也遇到了好多问题，我来写一下我的解决方案吧。<br>打开VS2013，文件–&gt;新建–&gt;项目–&gt;Win32控制台应用程序（<strong>项目名字要注意，是你在Java程序里写的要加载的库名,即System.loadLibrary(“”)里写的库名</strong>）–&gt;确定–&gt;下一步–&gt;<strong>应用程序类型</strong>选择DLL，点上空项目–&gt;完成–&gt;源程序里创建一个cpp开始编写，之后我不着重讲怎么写C程序)(因为很简单)，而是来讲下你们可能会出现的一些问题：</p>
-<ul>
-<li><strong>头文件引入问题</strong><br>如果头文件引入不当，会出现五花八门的错误，我来讲下我的做法：将上面编译出的.h文件放到和源程序（上一步创建用来编写程序的那个cpp）一起，之后还有两个.h文件，分别是jni.h，位于<code>%HOME%\Java\jdk1.8.0_71\include</code>, jni-md.h，位于<code>%HOME%\Java\jdk1.8.0_71\include\win32</code>，把这两也放到和源程序一起，<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE09.png" alt="图片">然后在VS里点头文件-&gt;添加现有项，将那三个头文件加进去，这时你会发现你自个儿的那个头文件报错了，没事，将<code>#include &lt;jni.h&gt;</code> 改成 <code>#include &quot;jni.h&quot;</code>，现在去看看，应该没有报错了~~</li>
-<li><strong>dll应该放哪儿？</strong><br>好不容易生成了.dll，应该放哪儿了呢？它应该被放在两个地方，一个是项目的根目录，一个是eclipse的根目录(我用的是eclipse，intelliJ不清楚)。<del>可能需要把eclipse重启下</del></li>
-<li><strong>用win32编译问题</strong><br>你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~<br>打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片"><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片">重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code>/项目根目录/x64/debug</code>中）<br>如果出现<code>error LNK1561: 必须定义入口点</code>,那么这样来：右键项目–&gt;属性–&gt;常规–&gt;配置类型–&gt;动态库(.dll) </li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里你应该看到你的JNI跑起来了，尽情去玩耍她吧！！<br><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png" alt="图片"></p>
-<hr>
-<p>最后附上我此前没讲的C++程序的写法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"com_jg_model_Image_TestJNI.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function">JNIEXPORT <span class="keyword">void</span> JNICALL <span class="title">Java_com_jg_model_Image_TestJNI_sayHello</span></span></div><div class="line"><span class="params">(JNIEnv *, jclass)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">long</span> num1,num2;</div><div class="line">	<span class="keyword">long</span> <span class="built_in">array</span>[<span class="number">8</span>];</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num1;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num2;</div><div class="line">	<span class="keyword">long</span> num3=num1+num2;</div><div class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>(num3&lt;<span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"-"</span>;</div><div class="line">		num3=-num3;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(num3 == <span class="number">0</span>)</div><div class="line">	  <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(num3 &gt; <span class="number">0</span>)</div><div class="line">	&#123;   </div><div class="line">		<span class="built_in">array</span>[i]=num3%<span class="number">10</span>;</div><div class="line">		num3=num3/<span class="number">10</span>;</div><div class="line">		i++;  </div><div class="line">	&#125;                  <span class="comment">//i的值即为位数                                         </span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">array</span>[j];</div><div class="line">		<span class="keyword">if</span>(j&gt;<span class="number">0</span>&amp;&amp;j%<span class="number">3</span>==<span class="number">0</span>) </div><div class="line">		  <span class="built_in">cout</span>&lt;&lt;<span class="string">","</span>;</div><div class="line">	 &#125; </div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.patest.cn/contests/pat-a-practise/1001" target="_blank" rel="external">原题链接</a></p>
 
       
     </div>
@@ -387,9 +364,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JNI/" rel="tag">#JNI</a>
+            <a href="/tags/PAT/" rel="tag">#PAT</a>
           
-            <a href="/tags/JAVA/" rel="tag">#JAVA</a>
+            <a href="/tags/C/" rel="tag">#C++</a>
           
         </div>
       
@@ -398,16 +375,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/30/Git学习笔记/" rel="next" title="Git学习笔记">
-                <i class="fa fa-chevron-left"></i> Git学习笔记
+              <a href="/2016/09/05/Title-Case-a-Sentence/" rel="next" title="Title Case a Sentence">
+                <i class="fa fa-chevron-left"></i> Title Case a Sentence
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/04/解决JNI相关问题(2)/" rel="prev" title="解决JNI相关问题(2)">
-                解决JNI相关问题(2) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/06/1002-A-B-for-Polynomials/" rel="prev" title="1002. A+B for Polynomials">
+                1002. A+B for Polynomials <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -551,7 +528,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇主要讲述："><span class="nav-number">1.</span> <span class="nav-text">本篇主要讲述：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成-h文件"><span class="nav-number">1.1.</span> <span class="nav-text">如何生成.h文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成和使用-dll文件"><span class="nav-number">1.2.</span> <span class="nav-text">如何生成和使用.dll文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

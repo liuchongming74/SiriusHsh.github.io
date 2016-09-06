@@ -118,7 +118,7 @@
 <meta property="og:description" content="标题：Title Case a Sentence正文：
 
 确保字符串的每个单词首字母都大写，其余部分小写。像’the’和’of’这样的连接符同理。">
-<meta property="og:updated_time" content="2016-09-05T13:40:10.001Z">
+<meta property="og:updated_time" content="2016-09-06T01:41:15.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Title Case a Sentence">
 <meta name="twitter:description" content="标题：Title Case a Sentence正文：
@@ -350,6 +350,8 @@
 <p><strong>answerV1.1</strong><br>发现toLowerCase()可以再for循环前使用，减少了时间复杂度，<code>var array = str.toLowerCase().split(&quot; &quot;)</code></p>
 <p><strong>answerV2.0</strong><br>对数组的遍历可以使用map()方法，将正则表达式取第一个字母的方法改为charAt()方法取。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> array = str.toLowerCase().split(<span class="string">" "</span>);</div><div class="line">   <span class="keyword">var</span> answer = array.map(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> val.replace(val.charAt(<span class="number">0</span>),val.charAt(<span class="number">0</span>).toUpperCase());</div><div class="line">  &#125;);</div><div class="line">   <span class="keyword">return</span> answer.join(<span class="string">" "</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure></p>
 <p><strong>answerV4.0</strong><br>看了网上大牛的解答，可谓终极版,贴代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> str.toLowerCase().replace(<span class="regexp">/( |^)[a-z]/g</span>, (L) =&gt; L.toUpperCase());&#125;</div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);</div></pre></td></tr></table></figure></p>
+<hr>
+<p><a href="https://www.freecodecamp.cn/challenges/title-case-a-sentence" target="_blank" rel="external">原题链接</a></p>
 
       
     </div>
@@ -390,6 +392,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/06/1001-A-B-Format/" rel="prev" title="1001. A+B Format">
+                1001. A+B Format <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -457,7 +463,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -465,7 +471,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -474,7 +480,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

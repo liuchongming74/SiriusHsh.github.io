@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,正则表达式," />
+  <meta name="keywords" content="JavaScript,正则表达式,FCC," />
 
 
 
@@ -118,7 +118,7 @@
 <meta property="og:description" content="题目：Check for Palindromes正文：
 
 如果给定的字符串是回文，返回true，反之，返回false。如果一个字符串忽略标点符号、大小写和空格，正着读和反着读一模一样，那么这个字符串就是palindrome(回文)。注意你需要去掉字符串多余的标点符号和空格，然后把字符串转化成小写来验证此字符串是否为回文。">
-<meta property="og:updated_time" content="2016-09-05T12:48:37.269Z">
+<meta property="og:updated_time" content="2016-09-06T01:41:17.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Check for Palindromes">
 <meta name="twitter:description" content="题目：Check for Palindromes正文：
@@ -342,6 +342,8 @@
 <a id="more"></a>
 <p>解答：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">palindrome</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="comment">// Good luck!</span></div><div class="line">  <span class="keyword">var</span> newStr1 = str.replace(<span class="regexp">/\W/g</span>,<span class="string">""</span>).replace(<span class="regexp">/\_/</span>,<span class="string">""</span>).toLowerCase();</div><div class="line">  <span class="keyword">var</span> newStr2 = newStr1.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</div><div class="line">  <span class="keyword">if</span>(newStr1 == newStr2)</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>; </div><div class="line">&#125;</div><div class="line"></div><div class="line">palindrome(<span class="string">"never odd or even"</span>);</div></pre></td></tr></table></figure></p>
 <p><em>虽然是AC了，但是感觉写的太渣了，性能太差。<br>正则表达式也是现学现用的，不正规范<br>打算这几天先系统性学习下正则表达式，然后再来优化下这题</em></p>
+<hr>
+<p><a href="https://www.freecodecamp.cn/challenges/check-for-palindromes" target="_blank" rel="external">原题链接</a></p>
 
       
     </div>
@@ -367,6 +369,8 @@
             <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
           
             <a href="/tags/正则表达式/" rel="tag">#正则表达式</a>
+          
+            <a href="/tags/FCC/" rel="tag">#FCC</a>
           
         </div>
       
@@ -453,7 +457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -461,7 +465,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -470,7 +474,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
