@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-06T05:56:11.305Z</updated>
+  <updated>2016-09-07T07:57:54.138Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,261 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows通过cmd查看端口占用杀死进程的命令</title>
+    <link href="http://yoursite.com/2016/09/07/Windows%E9%80%9A%E8%BF%87cmd%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%9D%80%E6%AD%BB%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2016/09/07/Windows通过cmd查看端口占用杀死进程的命令/</id>
+    <published>2016-09-07T07:53:17.000Z</published>
+    <updated>2016-09-07T07:57:54.138Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近运行<code>hexo s</code>的时候有时候会遇到4000端口被占用的情况，记录一下杀死占用4000端口进程的过程。</p>
+<ol>
+<li><code>netstat -ano</code>查看所有进程，<code>netstat -ano|findstr &quot;4000&quot;</code>查看4000端口的情况。</li>
+<li>这时候能获取到进程的PID，打开任务管理器找到该进程杀死即可。(没有显示PID的情况：查看 -&gt; 选择列 -&gt; 勾选PID)</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近运行&lt;code&gt;hexo s&lt;/code&gt;的时候有时候会遇到4000端口被占用的情况，记录一下杀死占用4000端口进程的过程。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;netstat -ano&lt;/code&gt;查看所有进程，&lt;code&gt;netstat -ano|findstr
+    
+    </summary>
+    
+      <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+    
+      <category term="Windows" scheme="http://yoursite.com/tags/Windows/"/>
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1007. 素数对猜想</title>
+    <link href="http://yoursite.com/2016/09/07/1007-%E7%B4%A0%E6%95%B0%E5%AF%B9%E7%8C%9C%E6%83%B3/"/>
+    <id>http://yoursite.com/2016/09/07/1007-素数对猜想/</id>
+    <published>2016-09-07T03:03:45.000Z</published>
+    <updated>2016-09-07T07:50:36.273Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>让我们定义 dn 为：dn = pn+1 - pn，其中 pi 是第i个素数。显然有 d1=1 且对于n&gt;1有 dn<br>是偶数。“素数对猜想”认为“存在无穷多对相邻且差为2的素数”。</p>
+<p>现给定任意正整数N (&lt; 105)，请计算不超过N的满足猜想的素数对的个数。</p>
+<p><strong>输入格式</strong>：每个测试输入包含1个测试用例，给出正整数N。</p>
+<p><strong>输出格式</strong>：每个测试用例的输出占一行，不超过N的满足猜想的素数对的个数。</p>
+<p><strong>输入样例</strong>： 20<br><strong>输出样例</strong>： 4</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span> </span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">int</span> num)</span></span></div><div class="line">&#123;	</div><div class="line">	<span class="keyword">int</span> flag = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= <span class="built_in">sqrt</span>(num);i++)</div><div class="line">		<span class="keyword">if</span>(num % i == <span class="number">0</span>)&#123;</div><div class="line">		flag = <span class="number">1</span>;</div><div class="line">		<span class="keyword">break</span>;	</div><div class="line">		&#125;</div><div class="line">	<span class="keyword">if</span>(flag == <span class="number">0</span>)</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= num;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(isPrime(i) == <span class="literal">true</span> &amp;&amp; i+<span class="number">2</span> &lt;= num &amp;&amp; isPrime(i+<span class="number">1</span>) == <span class="literal">false</span> &amp;&amp; isPrime(i+<span class="number">2</span>) == <span class="literal">true</span>)</div><div class="line">			count++;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;count;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1007" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;让我们定义 dn 为：dn = pn+1 - pn，其中 pi 是第i个素数。显然有 d1=1 且对于n&amp;gt;1有 dn&lt;br&gt;是偶数。“素数对猜想”认为“存在无穷多对相邻且差为2的素数”。&lt;/p&gt;
+&lt;p&gt;现给定任意正整数N (&amp;lt; 105)，请计算不超过N的满足猜想的素数对的个数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例，给出正整数N。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：每个测试用例的输出占一行，不超过N的满足猜想的素数对的个数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入样例&lt;/strong&gt;： 20&lt;br&gt;&lt;strong&gt;输出样例&lt;/strong&gt;： 4&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1006. 换个格式输出整数</title>
+    <link href="http://yoursite.com/2016/09/07/1006-%E6%8D%A2%E4%B8%AA%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA%E6%95%B4%E6%95%B0/"/>
+    <id>http://yoursite.com/2016/09/07/1006-换个格式输出整数/</id>
+    <published>2016-09-07T03:03:25.000Z</published>
+    <updated>2016-09-07T05:45:25.651Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题:</p>
+<blockquote>
+<p>让我们用字母B来表示“百”、字母S表示“十”，用“12…n”来表示个位数字n（&lt;10），换个格式来输出任一个不超过3位的正整数。例如234应该被输出为BBSSS1234，因为它有2个“百”、3个“十”、以及个位的4。</p>
+<p><strong>输入格式</strong>：每个测试输入包含1个测试用例，给出正整数n（&lt;1000）。</p>
+<p><strong>输出格式</strong>：每个测试用例的输出占一行，用规定的格式输出n。</p>
+<p><strong>输入样例1</strong>：<br>234<br><strong>输出样例1</strong>：<br>BBSSS1234<br><strong>输入样例2</strong>：<br>23<br><strong>输出样例2</strong>：<br>SS123</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span> </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> num,a,b,c;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num;</div><div class="line">	a = num % <span class="number">10</span>;</div><div class="line">	num /= <span class="number">10</span>;</div><div class="line">	b = num % <span class="number">10</span>;</div><div class="line">	num /= <span class="number">10</span>;</div><div class="line">	c = num % <span class="number">10</span>;</div><div class="line">	<span class="keyword">while</span>(c--)&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"B"</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(b--)&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"S"</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= a;i++)&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;i;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1006" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;让我们用字母B来表示“百”、字母S表示“十”，用“12…n”来表示个位数字n（&amp;lt;10），换个格式来输出任一个不超过3位的正整数。例如234应该被输出为BBSSS1234，因为它有2个“百”、3个“十”、以及个位的4。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例，给出正整数n（&amp;lt;1000）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：每个测试用例的输出占一行，用规定的格式输出n。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入样例1&lt;/strong&gt;：&lt;br&gt;234&lt;br&gt;&lt;strong&gt;输出样例1&lt;/strong&gt;：&lt;br&gt;BBSSS1234&lt;br&gt;&lt;strong&gt;输入样例2&lt;/strong&gt;：&lt;br&gt;23&lt;br&gt;&lt;strong&gt;输出样例2&lt;/strong&gt;：&lt;br&gt;SS123&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1005. 继续(3n+1)猜想</title>
+    <link href="http://yoursite.com/2016/09/07/1005-%E7%BB%A7%E7%BB%AD-3n-1-%E7%8C%9C%E6%83%B3/"/>
+    <id>http://yoursite.com/2016/09/07/1005-继续-3n-1-猜想/</id>
+    <published>2016-09-07T03:02:25.000Z</published>
+    <updated>2016-09-07T05:41:15.716Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。</p>
+<p>当我们验证卡拉兹猜想的时候，为了避免重复计算，可以记录下递推过程中遇到的每一个数。例如对n=3进行验证的时候，我们需要计算3、5、8、4、2、1，则当我们对n=5、8、4、2进行验证的时候，就可以直接判定卡拉兹猜想的真伪，而不需要重复计算，因为这4个数已经在验证3的时候遇到过了，我们称5、8、4、2是被3“覆盖”的数。我们称一个数列中的某个数n为“关键数”，如果n不能被数列中的其他数字所覆盖。</p>
+<p>现在给定一系列待验证的数字，我们只需要验证其中的几个关键数，就可以不必再重复验证余下的数字。你的任务就是找出这些关键数字，并按从大到小的顺序输出它们。</p>
+<p><strong>输入格式</strong>：每个测试输入包含1个测试用例，第1行给出一个正整数K(&lt;100)，第2行给出K个互不相同的待验证的正整数n(1&lt;n&lt;=100)的值，数字间用空格隔开。</p>
+<p><strong>输出格式</strong>：每个测试用例的输出占一行，按从大到小的顺序输出关键数字。数字间用1个空格隔开，但一行中最后一个数字后没有空格。</p>
+<p><strong>输入样例</strong>：<br>6<br>3 5 6 7 8 11<br><strong>输出样例</strong>：<br>7 6</p>
+</blockquote>
+<a id="more"></a>
+<p>解答:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">101</span>][<span class="number">2000</span>], num, temp;</div><div class="line">	<span class="built_in">memset</span>(<span class="built_in">array</span>, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="built_in">array</span>));</div><div class="line">	<span class="built_in">cin</span> &gt;&gt; num;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)&#123;</div><div class="line">		<span class="built_in">cin</span> &gt;&gt; temp;</div><div class="line">		<span class="built_in">array</span>[temp][<span class="number">0</span>] = temp;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">101</span>; i++)&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="built_in">array</span>[i][<span class="number">0</span>] == <span class="number">0</span>)</div><div class="line">			<span class="keyword">continue</span>;</div><div class="line">		<span class="keyword">else</span></div><div class="line">		&#123;</div><div class="line">			temp = <span class="built_in">array</span>[i][<span class="number">0</span>];</div><div class="line">			<span class="keyword">while</span> (temp &gt; <span class="number">1</span>)&#123;</div><div class="line">				<span class="keyword">if</span> (temp % <span class="number">2</span> == <span class="number">0</span>)&#123;</div><div class="line">					<span class="built_in">array</span>[i][temp] = temp;</div><div class="line">					temp /= <span class="number">2</span>;</div><div class="line"></div><div class="line">				&#125;</div><div class="line">				<span class="keyword">else</span> &#123;</div><div class="line">					<span class="built_in">array</span>[i][temp] = temp;</div><div class="line">					temp = (temp * <span class="number">3</span> + <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">				&#125;</div><div class="line">				<span class="built_in">array</span>[i][temp] = temp;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">101</span>; i++)</div><div class="line">		<span class="keyword">if</span> (<span class="built_in">array</span>[i][<span class="number">0</span>] != <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt; <span class="number">101</span>; a++)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">if</span> (a == i)</div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				<span class="keyword">else</span>&#123;</div><div class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">2000</span>; j++)</div><div class="line">					&#123;</div><div class="line">						<span class="keyword">if</span> (<span class="built_in">array</span>[i][<span class="number">0</span>] == <span class="built_in">array</span>[a][j])</div><div class="line">							<span class="built_in">array</span>[i][<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;vec;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">101</span>; i++)&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="built_in">array</span>[i][<span class="number">0</span>] != <span class="number">0</span>)</div><div class="line">			vec.push_back(i);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = vec.size() - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--)</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; vec[i] &lt;&lt; <span class="string">" "</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; vec[<span class="number">0</span>];</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1005" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。&lt;/p&gt;
+&lt;p&gt;当我们验证卡拉兹猜想的时候，为了避免重复计算，可以记录下递推过程中遇到的每一个数。例如对n=3进行验证的时候，我们需要计算3、5、8、4、2、1，则当我们对n=5、8、4、2进行验证的时候，就可以直接判定卡拉兹猜想的真伪，而不需要重复计算，因为这4个数已经在验证3的时候遇到过了，我们称5、8、4、2是被3“覆盖”的数。我们称一个数列中的某个数n为“关键数”，如果n不能被数列中的其他数字所覆盖。&lt;/p&gt;
+&lt;p&gt;现在给定一系列待验证的数字，我们只需要验证其中的几个关键数，就可以不必再重复验证余下的数字。你的任务就是找出这些关键数字，并按从大到小的顺序输出它们。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例，第1行给出一个正整数K(&amp;lt;100)，第2行给出K个互不相同的待验证的正整数n(1&amp;lt;n&amp;lt;=100)的值，数字间用空格隔开。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：每个测试用例的输出占一行，按从大到小的顺序输出关键数字。数字间用1个空格隔开，但一行中最后一个数字后没有空格。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入样例&lt;/strong&gt;：&lt;br&gt;6&lt;br&gt;3 5 6 7 8 11&lt;br&gt;&lt;strong&gt;输出样例&lt;/strong&gt;：&lt;br&gt;7 6&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1004. 成绩排名</title>
+    <link href="http://yoursite.com/2016/09/07/1004-%E6%88%90%E7%BB%A9%E6%8E%92%E5%90%8D/"/>
+    <id>http://yoursite.com/2016/09/07/1004-成绩排名/</id>
+    <published>2016-09-07T03:02:13.000Z</published>
+    <updated>2016-09-07T05:39:26.649Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>读入n名学生的姓名、学号、成绩，分别输出成绩最高和成绩最低学生的姓名和学号。<br><strong>输入格式</strong>：每个测试输入包含1个测试用例，格式为<br>第1行：正整数n<br> 第3行：第2个学生的姓名 学号 成绩<br> … … …<br>第n+1行：第n个学生的姓名 学号 成绩<br>其中姓名和学号均为不超过10个字符的字符串，成绩为0到100之间的一个整数，这里保证在一组测试用例中没有两个学生的成绩是相同的。<br><strong>输出格式</strong>：对每个测试用例输出2行，第1行是成绩最高学生的姓名和学号，第2行是成绩最低学生的姓名和学号，字符串间有1空格。<br><strong>输入样例</strong>：<br>3<br>Joe Math990112 89<br>Mike CS991301 100<br>Mary EE990830 95<br> <strong>输出样例</strong>：<br>Mike CS991301 Joe Math990112</p>
+</blockquote>
+<a id="more"></a>
+<p>解答：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="built_in">string</span> str;</div><div class="line">	<span class="keyword">int</span> gra;</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;name;</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;number;</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;grade;</div><div class="line">	<span class="built_in">cin</span>&gt;&gt;num;</div><div class="line">	<span class="keyword">while</span>(num--)&#123;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;str;</div><div class="line">		name.push_back(str);</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;str;</div><div class="line">		number.push_back(str);</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;gra;</div><div class="line">		grade.push_back(gra);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> Max=grade[<span class="number">0</span>],Min=grade[<span class="number">0</span>];</div><div class="line">	<span class="keyword">int</span> a=<span class="number">0</span>,b=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; name.size();i++)&#123;</div><div class="line">		<span class="keyword">if</span>(grade[i] &gt; Max)&#123;</div><div class="line">			Max = grade[i];</div><div class="line">			a = i;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(grade[i] &lt; Min)&#123;</div><div class="line">			Min = grade[i];</div><div class="line">			b = i;</div><div class="line">		&#125;</div><div class="line">	&#125; </div><div class="line">	<span class="built_in">cout</span>&lt;&lt;name[a]&lt;&lt;<span class="string">" "</span>&lt;&lt;number[a]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;name[b]&lt;&lt;<span class="string">" "</span>&lt;&lt;number[b];</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://www.patest.cn/contests/pat-b-practise/1004" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;读入n名学生的姓名、学号、成绩，分别输出成绩最高和成绩最低学生的姓名和学号。&lt;br&gt;&lt;strong&gt;输入格式&lt;/strong&gt;：每个测试输入包含1个测试用例，格式为&lt;br&gt;第1行：正整数n&lt;br&gt; 第3行：第2个学生的姓名 学号 成绩&lt;br&gt; … … …&lt;br&gt;第n+1行：第n个学生的姓名 学号 成绩&lt;br&gt;其中姓名和学号均为不超过10个字符的字符串，成绩为0到100之间的一个整数，这里保证在一组测试用例中没有两个学生的成绩是相同的。&lt;br&gt;&lt;strong&gt;输出格式&lt;/strong&gt;：对每个测试用例输出2行，第1行是成绩最高学生的姓名和学号，第2行是成绩最低学生的姓名和学号，字符串间有1空格。&lt;br&gt;&lt;strong&gt;输入样例&lt;/strong&gt;：&lt;br&gt;3&lt;br&gt;Joe Math990112 89&lt;br&gt;Mike CS991301 100&lt;br&gt;Mary EE990830 95&lt;br&gt; &lt;strong&gt;输出样例&lt;/strong&gt;：&lt;br&gt;Mike CS991301 Joe Math990112&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="PAT (Basic Level) Practise" scheme="http://yoursite.com/categories/PAT-Basic-Level-Practise/"/>
+    
+    
+      <category term="PAT" scheme="http://yoursite.com/tags/PAT/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Seek and Destroy</title>
+    <link href="http://yoursite.com/2016/09/07/Seek-and-Destroy/"/>
+    <id>http://yoursite.com/2016/09/07/Seek-and-Destroy/</id>
+    <published>2016-09-07T01:57:21.000Z</published>
+    <updated>2016-09-07T02:02:04.251Z</updated>
+    
+    <content type="html"><![CDATA[<p>原题：</p>
+<blockquote>
+<p>金克斯的迫击炮！</p>
+<p>实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。<br>例如传入参数<code>[1, 2, 3, 1, 2, 3], 2, 3</code> 应该返回<code>[1,1]</code></p>
+</blockquote>
+<a id="more"></a>
+<p>这道题不难，重在对Arguments object的掌握</p>
+<p>解答：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">destroyer</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="comment">// Remove all the values</span></div><div class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>,<span class="number">1</span>);</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.length; i++)&#123;</div><div class="line">    arr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> val != args[i];</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line">destroyer([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p><a href="https://www.freecodecamp.cn/challenges/seek-and-destroy#?solution=function%20destroyer%28arr%29%20%7B%0A%20%20//%20Remove%20all%20the%20values%0A%20%20var%20args%20=%20Array.prototype.slice.call%28arguments,1%29;%0A%20%20for%28var%20i%20=%200;%20i%20%3C%20args.length;%20i%2b%2b%29%7B%0A%20%20%20%20arr%20=%20arr.filter%28function%28val%29%7B%0A%20%20%20%20%20%20return%20val%20!=%20args%5Bi%5D;%0A%20%20%20%20%7D%29;%0A%20%20%7D%0A%20%20return%20arr;%0A%7D%0A%0Adestroyer%28%5B1,%202,%203,%201,%202,%203%5D,%202,%203%29;%0A" target="_blank" rel="external">原题链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;金克斯的迫击炮！&lt;/p&gt;
+&lt;p&gt;实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。&lt;br&gt;例如传入参数&lt;code&gt;[1, 2, 3, 1, 2, 3], 2, 3&lt;/code&gt; 应该返回&lt;code&gt;[1,1]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="FreeCodeCamp" scheme="http://yoursite.com/categories/FreeCodeCamp/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="FCC" scheme="http://yoursite.com/tags/FCC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Powershell无法进入名字中带空格的路径</title>
+    <link href="http://yoursite.com/2016/09/07/%E8%A7%A3%E5%86%B3Powershell%E6%97%A0%E6%B3%95%E8%BF%9B%E5%85%A5%E5%90%8D%E5%AD%97%E4%B8%AD%E5%B8%A6%E7%A9%BA%E6%A0%BC%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
+    <id>http://yoursite.com/2016/09/07/解决Powershell无法进入名字中带空格的路径/</id>
+    <published>2016-09-07T00:55:59.000Z</published>
+    <updated>2016-09-07T01:01:27.929Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE05.png" alt="图片"><br>解决：使用命令<code>Push-Location -Path &quot;Sublime Text 3&quot;</code><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE03.png" alt="图片"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE05.png&quot; alt=&quot;图片&quot;&gt;&lt;br&gt;解决：使用命令&lt;code&gt;Push-Location -Path &amp;quot;Sublime Text 3&amp;q
+    
+    </summary>
+    
+      <category term="问题解决" scheme="http://yoursite.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+    
+      <category term="Sublime Text 3" scheme="http://yoursite.com/tags/Sublime-Text-3/"/>
+    
+  </entry>
   
   <entry>
     <title>1003. 我要通过！</title>
@@ -275,9 +530,9 @@
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
-      <category term="FCC" scheme="http://yoursite.com/tags/FCC/"/>
-    
       <category term="正则表达式" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+      <category term="FCC" scheme="http://yoursite.com/tags/FCC/"/>
     
   </entry>
   
