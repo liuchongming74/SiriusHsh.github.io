@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-02T08:26:03.433Z</updated>
+  <updated>2017-03-21T12:15:15.563Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>从零开始的毕设-准备篇</title>
+    <link href="http://yoursite.com/2017/03/21/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E6%AF%95%E8%AE%BE-%E5%87%86%E5%A4%87%E7%AF%87/"/>
+    <id>http://yoursite.com/2017/03/21/从零开始的毕设-准备篇/</id>
+    <published>2017-03-21T10:28:42.000Z</published>
+    <updated>2017-03-21T12:15:15.563Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>哈哈哈，大四了，即将毕业~~ so，我也迎来了毕业设计的challenge<br>毕业题目：基于深度学习的文字识别系统的设计与实现</p>
+</blockquote>
+<a id="more"></a>
+<p>1.Python<br>  此前在<strong>Learn Python the Hard Way</strong>学习过Python2.7，不过好像tensorflow会用到Python3.5？到时候再学学3.5吧。。</p>
+<p>2.Deep Learning<br>  看博友介绍，打算就这几个教程进行学习：</p>
+<ul>
+<li><a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="external">Neural Networks and Deep Learning</a></li>
+<li><p><a href="http://www.deeplearningbook.org/" target="_blank" rel="external">Deep Learning An MIT Press book</a></p>
+<p>可能还会用到这个：</p>
+</li>
+<li><a href="http://deeplearning.stanford.edu/tutorial/" target="_blank" rel="external">模块介绍</a></li>
+<li><a href="http://colah.github.io/posts/2014-07-Conv-Nets-Modular/" target="_blank" rel="external">讲卷积神经网络的bolg</a></li>
+</ul>
+<p>3.TensorFlow<br>  重头戏，可能会用到的学习资料：</p>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/" target="_blank" rel="external">TensorFlow官方文档中文版</a></li>
+<li><a href="http://jorditorres.org/first-contact-with-tensorflow/" target="_blank" rel="external">一个英文网站</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;哈哈哈，大四了，即将毕业~~ so，我也迎来了毕业设计的challenge&lt;br&gt;毕业题目：基于深度学习的文字识别系统的设计与实现&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="人工智能" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
     <title>正则表达式和RegExp(JS篇)</title>
     <link href="http://yoursite.com/2016/11/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CRegExp/"/>
     <id>http://yoursite.com/2016/11/01/正则表达式和RegExp/</id>
     <published>2016-11-01T02:12:49.000Z</published>
-    <updated>2016-11-02T08:26:03.433Z</updated>
+    <updated>2016-11-07T01:40:28.804Z</updated>
     
     <content type="html"><![CDATA[<h2 id="创建一个正则表达式（regular-expressions）"><a href="#创建一个正则表达式（regular-expressions）" class="headerlink" title="创建一个正则表达式（regular expressions）"></a>创建一个正则表达式（regular expressions）</h2><p>使用正则表达式字面量：<code>var re = /ab+c/;</code><br>使用RegExp对象的构造函数：<code>var re = new RegExp(&quot;ab+c&quot;);</code></p>
 <h2 id="编写一个正则表达式的模式"><a href="#编写一个正则表达式的模式" class="headerlink" title="编写一个正则表达式的模式"></a>编写一个正则表达式的模式</h2><p>简单模式：/abc/<br>特殊字符：类似/ab*c/<br><a id="more"></a></p>
@@ -37,15 +84,14 @@
 <li>字符：<code>\b</code>,<code>\B</code><br><code>\b</code>匹配一个词的边界,<code>\B</code>匹配一个非单词边界</li>
 <li>字符：<code>\d</code>,<code>\D</code><br><code>\d</code>匹配一个数字，等价于[0-9],<code>\D</code>匹配一个非数字字符，等价于[^0-9]</li>
 <li>字符<code>\f</code>, <code>\n</code>, <code>\r</code>, <code>\s\</code>,<code>\S\</code>,<code>\t\</code>, <code>\v\</code><br><code>\f</code>匹配一个换页符，<code>\n</code>匹配一个换行符 , <code>\r</code>匹配一个回车符, <code>\s\</code>匹配一个空白字符,<code>\S</code>匹配一个非空白字符，<code>\t\</code>匹配一个水平制表符 , <code>\v\</code>匹配一个垂直制表符</li>
-<li>字符：<code>\w</code>,<code>\W</code><br><code>\w</code>匹配一个单字字符（字母、数字或者下划线）。等价于[A-Za-z0-9]<br><code>\W</code>匹配一个非单字字符。等价于[^A-Za-z0-9]</li>
+<li>字符：<code>\w</code>,<code>\W</code><br><code>\w</code>匹配一个单字字符（字母、数字或者下划线）。等价于[A-Za-z0-9_]<br><code>\W</code>匹配一个非单字字符。等价于[^A-Za-z0-9]</li>
 <li>字符：<code>\n</code><br>当n是一个正整数，返回与n有关的副字符串</li>
 <li>字符：<code>\0</code><br>匹配NULL字符，<em>不要在后面跟其他数字，会被转义为其他进制</em></li>
-<li>字符<code>\xhh</code>, <code>\uhhhh</code><br><code>\xhh</code>匹配带有两位小数代码 (hh)的字符<br><code>\uhhhh</code>匹配带有思维小数代码(hh)的字符<h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2>正则表达式可以被用于RegExp的exec和test方法以及String的match、replace、search和split方法。<blockquote>
-<p>test方法、search方法：当你想知道在一个字符串中的一个匹配是否被找到时</p>
-</blockquote>
-</li>
+<li>字符<code>\xhh</code>, <code>\uhhhh</code><br><code>\xhh</code>匹配带有两位小数代码 (hh)的字符<br><code>\uhhhh</code>匹配带有思维小数代码(hh)的字符</li>
 </ul>
+<h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><p>正则表达式可以被用于RegExp的exec和test方法以及String的match、replace、search和split方法。</p>
 <blockquote>
+<p>test方法、search方法：当你想知道在一个字符串中的一个匹配是否被找到时</p>
 <p>exec和match方法：想要得到更多的信息，如果匹配成功，那么这些方法将返回一个数组并且更新相关的正则表达式对象和预定义的正则表达式对象；如果匹配失败，返回null</p>
 </blockquote>
 <p><strong>实例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//使用exec方法在一个字符串中查找一个匹配</div><div class="line">var myRe = /d(b+)d/g;</div><div class="line">var myArray = myRe.exec(&quot;cdbbdbsbz&quot;);</div><div class="line">//如果不需要访问正则表达式的属性，通过下面方法来创建myArray</div><div class="line">var myArray = /d(b+)d/g.exec(&quot;cdbbdbsbz&quot;);</div><div class="line">//通过一个字符串构建正则表达式</div><div class="line">var myRe = new RegExp(&quot;d(b+)d&quot;,&quot;g&quot;);</div><div class="line">var myArray = myRe.exec(&quot;cdbbdbsbz&quot;);</div></pre></td></tr></table></figure></p>
