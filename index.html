@@ -297,6 +297,166 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/22/从零开始的毕设-TensorFlow学习篇/" itemprop="url">
+                  从零开始的毕设-TensorFlow
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T19:24:21+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/22/从零开始的毕设-TensorFlow学习篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/从零开始的毕设-TensorFlow学习篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/22/从零开始的毕设-TensorFlow学习篇/" class="leancloud_visitors" data-flag-title="从零开始的毕设-TensorFlow">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1 id="TensorFlow的安装"><a href="#TensorFlow的安装" class="headerlink" title="TensorFlow的安装"></a>TensorFlow的安装</h1><p>哎，头大，在windows上安装TensorFlow我花了两天才搞定。还不是因为TensorFlow只支持Linux和MacOS。<br>先是尝试了Docker，没成功。然后使用了Anaconda，参考<a href="http://www.jianshu.com/p/08d71a327796" target="_blank" rel="external">这个</a>博客，完成了TensorFlow的安装<br>效果图：<br><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE00.png" alt="enter description here"></p>
+<h1 id="TensorFlow学习笔记"><a href="#TensorFlow学习笔记" class="headerlink" title="TensorFlow学习笔记"></a>TensorFlow学习笔记</h1><p>照着极客学院的《TensorFlow官方文档中文版》进行学习~~</p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>TensorFlow基本概念：</p>
+<ul>
+<li>使用图（graph）来表示计算任务</li>
+<li>在被称之为<code>会话（Session）</code>的上下文（context）中执行图。</li>
+<li>使用tensor表示数据</li>
+<li>通过<code>变量（Variable）</code>维护状态</li>
+<li>使用feed和fetch可以为任意的操作赋值或者从其中获取数据</li>
+</ul>
+<p>TensorFlow是一个编程系统，使用图来表示计算任务，节点称为op，一个op获得0个或多个<code>Tensor</code>，执行计算，产生0个或多个<code>Tensor</code>，每个Tensor是一个类型化的多维数组。图必须在<code>会话</code>里被启动，会话将图的op分发到诸如CPU或GPU之类的设备上，同时提供执行op的方法，这些方法执行后，将产生的tensor返回。<strong>在Python语言中，返回的tensor是numpy <code>ndarray</code>对象</strong></p>
+<p><strong>计算图</strong><br>TensorFlow程序通常被组织成一个构建阶段， 在构建阶段，op的执行步骤被描述成一个图，在执行阶段，使用会话执行 执行图中的op<br>例如，通常在构建阶段创建一个图来表示和训练神经网络，然后在执行阶段反复执行图中的训练op</p>
+<p><strong>构造图</strong><br><code>常量 constant</code><br>Python库有一个默认图</p>
+<blockquote>
+<p>构造图<br>import tensorflow as tf<br>matrixl1 = tf.constant([[3., 3.]])<br>matrixl2 = tf.constant([[2.], [2.]])<br>product = tf.matmul(matrixl1, matrixl2)</p>
+<p>在一个会话中启动图<br>构造阶段完成后，才能启动图，启动图的第一步是创建换一个Session对象<br>sess = tf.Session()<br>result = sess.run(product)<br>print(result)<br>sess.close()</p>
+</blockquote>
+<p>Session对象在使用完后需要关闭以释放资源，除了显示调用close外，也可以使用with代码块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">with tf.Session() as sess:</div><div class="line">	result = sess.run(product)</div><div class="line">	print result</div></pre></td></tr></table></figure></p>
+<p><strong>Feed</strong><br>feed机制可以临时代替图中的任意操作中的tensor可以对图中任何操作提交补丁，直接插入一个tensor<br>feed使用一个tensor值临时替换一个操作的输出结果，可以提供feed数据作为run()调用的参数。feed只在调用它的方法内有效，方法结束feed就会消失，最常见的用例是将某些特殊的操作指定为 feed操作，标记的方法是使用tf.placeholder()为这些操作创建占位符</p>
+<h2 id="MNIST机器学习入门"><a href="#MNIST机器学习入门" class="headerlink" title="MNIST机器学习入门"></a>MNIST机器学习入门</h2><p><strong>MNIST数据集</strong><br>MNIST的数据集被分为两部分：60000行的训练数据集（mnist.train）和10000行的测试数据集(mnist.test)<br>每一个MNIST数据单元由两部分主城：一张包含手写数字图片和一个对应的标签，我们把这些图片设为<code>xs</code>，把这些标签设为<code>ys</code><br>训练数据集和测试数据集都包含xs和ys<br>训练数据集的图片是mnist.train.images<br>训练数据集的标签是mnist.train.labels<br>每一张图片包含28<em>28个像素点<br>mnist.train.images是一个形状为[60000,784]的张量<br><img src="http://octtw77pk.bkt.clouddn.com/mnist-train-xs.png" alt="enter description here"><br>mnist.train.labels是一个[60000,10]的数字矩阵<br><img src="http://octtw77pk.bkt.clouddn.com/mnist-train-ys.png" alt="enter description here"><br><em>*Softmax回归</em></em><br>Softmax regression模型可以用来给不同的对象分配概率。<br>softmax回归分两步：第一步<br>为了得到一张给定图片属于某个特定数字类的证据，我们对图片像素值进行加权求和。如何这个像素具有很强的证据说明该图片不属于该类，那么相应的权值为负数，相反如果这个像素拥有有利的证据支持这张图片属于这个类，那么权值是正数。</p>
+<p>我们也需要加入一个额外的偏置量（bias），因为输入往往会带有一些无关的干扰量。</p>
+<p><em>y=softmax(Wx+b)</em></p>
+<p><strong>实现回归模型</strong><br>使用TensorFlow之前，首先导入<br><code>import tensorflow as tf</code><br>我们通过操作符变量来描述这些可交互的操作单元<br><code>x = tf.placeholder(tf.float32,[None,784])</code><br>x不是一个特定的值，而是一个占位符，我们在TensorFlow运行计算时输入这个值。我们希望能够输入任意数量的MNIST图像，每一张图展平成784维的向量。我们用2维的浮点数来表示这些图，这个张量的形状是[None，784]（这里的None表示此张量的第一个维度可以是任意长度的）<br>我们的模型也需要权重值和偏置量，当然我们可以把它们当做另外的输入（使用占位符），但TensorFlow有一个更好的方法来表示：Variable。一个Variable代表一个可修改的张量，存在在TensorFlow的用于描述交互性操作的图中。它们可以用于计算输入值，也可以在计算中被修改。对于各种机器学习应用，一把都会有模型参数，可以用Variable表示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">W = tf.Variable(tf.zeros([784,10]))</div><div class="line">b = tf.Variable(tf.zeros([10]))</div></pre></td></tr></table></figure></p>
+<p>W的维度是[784，10]，因为我们想要用784维的图片向量乘以它以得到一个10维的证据值向量，每一位对应不同数字类。<br>b的形状是[10]<br>现在，我们可以实现我们的模型：<br><code>y = tf.nn.softmax(tf.matmul(x,W) + b)</code><br>首先，我们用tf.matmul(x,W)表示x乘以W，对应之前等式的Wx</p>
+<p><strong>训练模型</strong><br>为了训练我们的模型，我们首先需要定义一个指标来评估这个模型是好的，这个指标称为成本(cost)或损失(loss)，然后尽量最小化这个指标。<br>一个非常常见非常漂亮的成本函数是“交叉熵“<br><img src="http://octtw77pk.bkt.clouddn.com/mnist10.png" alt=""><br>y是我们预计的概率分布，y’是实际分布。<br>为了计算交叉熵，我们首先需要添加一个新的占位符用于输入正确值：<br><code>y_ = tf.placeholder(&quot;float&quot;, [None,10])</code><br>计算交叉熵：<br><code>cross_entropy = -tf.reduce_sum(y_ * tf.log(y))</code><br>这里的交叉熵不仅仅用来衡量单一的一对预测和真实值，而是所有100幅图片的交叉熵的总和。<br>现在我们知道我们需要我们的模型做什么了，用TensorFlow来训练它是十分容易的。因为TensorFlow拥有一张描述你各个计算单元的图，它可以自动地使用<br><a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">反向传播算法</a>来有效地确定你的变量是如何影响你想要最小化的那个成本值。然后，TensorFlow会用你选择的优化算法来不断地修改变量以降低成本。</p>
+<p><code>train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cross_entropy)</code><br>在这里，我们要求TensorFlow用梯度下降算法（gradient descent algorithm）以0.01的学习速率最小化交叉熵。<br>TensorFlow在这里实际上所做的是，他会在后台给描述你的计算的那张图里面增加一系列新的计算操作单元用于实现反向传播算法和梯度下降算法。然后，它返回给你的只是一个单一的操作,当运行这个操作时，他用梯度下降算法训练你的模型，微调你的变量，不断减少成本。</p>
+<p>现在，我们已经设置好了我们的模型，在运行计算之前，我们需要添加一个操作来初始化我们创建的变量：<br><code>init = tf.initialize_all_variables()</code><br>现在我们可以在一个Session里面启动我们的模型，并且初始化变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sess = tf.Session()</div><div class="line">sess.run(init)</div></pre></td></tr></table></figure></p>
+<p>然后开始训练模型，这里我们让模型循环训练1000次!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for i in range(1000):</div><div class="line">	batch_xs, batch_ys = mnist.train.next_batch(100)</div><div class="line">	sess.run(train_step, feed_dict=&#123;x:batch_xs, y_:batch_ys&#125;)</div></pre></td></tr></table></figure></p>
+<p>该循环的每个步骤中，我们都会随机抓取训练数据中的100个批处理数据点，然后我们用这些数据点作为参数替换之前的占位符来运行train_step</p>
+<p>使用一小部分的随机数据来进行训练被称为随机训练（stochastic training）-在这里更准确的说是随机梯度下降训练。</p>
+<p><strong>评估我们的模型</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/21/从零开始的毕设-准备篇/" itemprop="url">
                   从零开始的毕设-准备篇
                 </a>
@@ -801,139 +961,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/Windows通过cmd查看端口占用杀死进程的命令/" itemprop="url">
-                  Windows通过cmd查看端口占用杀死进程的命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T15:53:17+08:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/问题解决/" itemprop="url" rel="index">
-                    <span itemprop="name">问题解决</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/07/Windows通过cmd查看端口占用杀死进程的命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/07/Windows通过cmd查看端口占用杀死进程的命令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/09/07/Windows通过cmd查看端口占用杀死进程的命令/" class="leancloud_visitors" data-flag-title="Windows通过cmd查看端口占用杀死进程的命令">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近运行<code>hexo s</code>的时候有时候会遇到4000端口被占用的情况，记录一下杀死占用4000端口进程的过程。</p>
-<ol>
-<li><code>netstat -ano</code>查看所有进程，<code>netstat -ano|findstr &quot;4000&quot;</code>查看4000端口的情况。</li>
-<li>这时候能获取到进程的PID，打开任务管理器找到该进程杀死即可。(没有显示PID的情况：查看 -&gt; 选择列 -&gt; 勾选PID)</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -979,7 +1006,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -996,7 +1023,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
