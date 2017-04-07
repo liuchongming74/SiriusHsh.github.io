@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-07T12:00:18.711Z</updated>
+  <updated>2017-04-07T12:23:16.262Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://yoursite.com/2017/04/06/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E6%AF%95%E8%AE%BE-%E6%B7%B1%E5%85%A5MNIST/"/>
     <id>http://yoursite.com/2017/04/06/从零开始的毕设-深入MNIST/</id>
     <published>2017-04-06T14:52:20.000Z</published>
-    <updated>2017-04-07T12:00:18.711Z</updated>
+    <updated>2017-04-07T12:23:16.262Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a>
+    <content type="html"><![CDATA[<p><img src="http://octtw77pk.bkt.clouddn.com/daolu.jpg" alt="enter description here"></p>
+<a id="more"></a>
 <blockquote>
 <p>本文要点：我将学习到构建一个TensorFlow模型的基本步骤，并将通过这些为MNIST构建一个深度卷积神经网络。</p>
 </blockquote>
@@ -58,11 +59,7 @@
     
     <summary type="html">
     
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;blockquote&gt;
-&lt;p&gt;本文要点：我将学习到构建一个TensorFlow模型的基本步骤，并将通过这些为MNIST构建一个深度卷积神经网络。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;&lt;br&gt;在创建模
+      &lt;p&gt;&lt;img src=&quot;http://octtw77pk.bkt.clouddn.com/daolu.jpg&quot; alt=&quot;enter description here&quot;&gt;&lt;/p&gt;
     
     </summary>
     
