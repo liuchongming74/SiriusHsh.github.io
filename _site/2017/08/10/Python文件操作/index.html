@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Python文件操作</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/08/10/Python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+    <link rel="alternate" type="application/rss+xml" title="SiriusHsh" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">SiriusHsh</a>
+        <small>记录思考，整理人生</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collection/">
+                        
+                            <i class="fa fa-bookmark"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/demo/">
+                        
+                            <i class="fa fa-play"></i>Demo
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>Python文件操作</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-08-10
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#学习笔记" title="Category: 学习笔记" rel="category">学习笔记</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Python" title="Tag: Python" rel="tag">Python</a-->
+        <a href="/tag/#Python" title="Tag: Python" rel="tag">Python</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#1the-bytesstr-dichotomy" id="markdown-toc-1the-bytesstr-dichotomy">1.the bytes/str dichotomy</a></li>
+  <li><a href="#2使用open进行文件的读写" id="markdown-toc-2使用open进行文件的读写">2.使用open()进行文件的读写</a>    <ul>
+      <li><a href="#文件对象方法" id="markdown-toc-文件对象方法">文件对象方法</a></li>
+    </ul>
+  </li>
+  <li><a href="#3pickle模块" id="markdown-toc-3pickle模块">3.pickle模块</a></li>
+  <li><a href="#4使用codecs进行文件的读写" id="markdown-toc-4使用codecs进行文件的读写">4.使用codecs进行文件的读写</a></li>
+</ul>
+
+<h2 id="1the-bytesstr-dichotomy">1.the bytes/str dichotomy</h2>
+<p>python3相比python2更清晰的区分了文本数据和二进制数据。文本数据用<code class="highlighter-rouge">str</code>类型表示，在内存中以Unicode形式保存；二进制数据用<code class="highlighter-rouge">bytes</code>类型表示。
+strings和bytes可以通过encoded和decoded的方式相互转化，如图：
+![image](<img src="quiver-image-url/42BC5CDCCABBCC9337E38BCDC4C7BB32.png =273x238" alt="py3_string_bytes.png" /></p>
+
+<p>示例1：</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="s">'€20'</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+<span class="n">b</span><span class="s">'</span><span class="se">\xe2\x82\xac</span><span class="s">20'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="s">'</span><span class="se">\xe2\x82\xac</span><span class="s">20'</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+<span class="s">'€20'</span>
+</code></pre>
+</div>
+<p>示例2：</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'€20'</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'iso-8859-15'</span><span class="p">)</span>
+<span class="n">b</span><span class="s">'</span><span class="se">\xa4</span><span class="s">20'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="s">'</span><span class="se">\xa4</span><span class="s">20'</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'iso-8859-15'</span><span class="p">)</span>
+<span class="s">'€20'</span>
+</code></pre>
+</div>
+<h2 id="2使用open进行文件的读写">2.使用open()进行文件的读写</h2>
+<p><code class="highlighter-rouge">open(filename,mode)</code></p>
+<h3 id="文件对象方法">文件对象方法</h3>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#使用f.read(size)进行读取，读取size数量的数据并以字符串的形式返回内容，没有指定size或为负数，则读取整个文件。如何到了文件末尾，f.read()返回一个空字符串</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="s">'This is the entire file.</span><span class="se">\n</span><span class="s">'</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="s">''</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#使用f.readline()读取单独一行，会捕捉换行符'\n'。如果f.readline()返回一个空字符串，则代表到达了文件末尾。</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="s">'This is the first line of the file.</span><span class="se">\n</span><span class="s">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="s">'Second line of the file'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="s">''</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#f.readlines()返回一个列表。其中包含了文件的所有数据行。</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="p">[</span><span class="s">'This is the first line of the file.</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="s">'Second line of the file'</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#f.write(string)方法将string写入文件，并返回写入的字符串的长度。</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'This is a test</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="mi">15</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="err">使用</span> <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span><span class="n">from_what</span><span class="p">)</span><span class="err">。指针在该操作中从指定的引用位置移动</span> <span class="n">offset</span> <span class="err">比特，引用位置由</span> <span class="n">from_what</span> <span class="err">参数指定。</span> <span class="n">from_what</span> <span class="err">值为</span> <span class="mi">0</span> <span class="err">表示自文件起始处开始，</span><span class="mi">1</span> <span class="err">表示自当前文件指针位置开始，</span><span class="mi">2</span> <span class="err">表示自文件末尾开始。</span><span class="n">from_what</span> <span class="err">可以忽略，其默认值为零，此时从文件头开始。</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'1.txt'</span><span class="p">,</span> <span class="s">'rb+'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">b</span><span class="s">'0123456789abcdef'</span><span class="p">)</span>
+<span class="mi">16</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>     <span class="c"># Go to the 6th byte in the file</span>
+<span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="s">'5'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c"># Go to the 3rd byte before the end</span>
+<span class="mi">13</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="s">'d'</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#对文件操作完成后，使用f.close()关闭文件</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+
+<span class="c">#使用with关键词处理文件对象是个好习惯，它会在文件操作完成后自动关闭</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'1.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">read_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h2 id="3pickle模块">3.pickle模块</h2>
+<p>pickle模块能够将任何python对象表达为字符串，这一过程称为封装(pickling)。从字符串中重新构造出对象的过程称为拆封(unpickling)</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#有一个对象x，一个以写模式打开的文件对象f，封装对象的最简单方法只需要一行代码：</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="err">如果</span><span class="n">f</span><span class="err">是一个以读模式打开的文件对象，就可以拆封这个对象</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="4使用codecs进行文件的读写">4.使用codecs进行文件的读写</h2>
+<p>使用指定的编码格式打开文件,<code class="highlighter-rouge">codecs.open(filename, mode='r', encoding=None, errors='strict', buffering=1)</code>
+示例：</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">codecs</span>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s">'text.txt'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+  <span class="o">....</span>
+</code></pre>
+</div>
+
+<p><strong>reference</strong>
+1.https://www.kancloud.cn/thinkphp/python-tutorial/37769
+2.http://eli.thegreenplace.net/2012/01/30/the-bytesstr-dichotomy-in-python-3</p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0Str.format/">格式化字符串函数Str.format
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0Str.format/">格式化字符串函数Str.format</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/08/18/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%80/">Ng机器学习课程笔记（一)</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             本站记录我在学习生活的点点滴滴。 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/SiriusHsh" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:siriushsh@foxmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>   
+            <a href="https://www.zhihu.com/people/SiriusHsh" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>      
+        </p>
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

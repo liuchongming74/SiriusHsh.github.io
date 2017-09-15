@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>解决JNI相关问题(1)</title>
+    <meta name="description" content="  本篇主要讲述：本篇主要讲述：  生成.h文件的正确姿势  生成和使用.dll文件的正确姿势">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(1)/">
+    <link rel="alternate" type="application/rss+xml" title="SiriusHsh" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">SiriusHsh</a>
+        <small>记录思考，整理人生</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collection/">
+                        
+                            <i class="fa fa-bookmark"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/demo/">
+                        
+                            <i class="fa fa-play"></i>Demo
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>解决JNI相关问题(1)</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2016-09-04
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#问题解决" title="Category: 问题解决" rel="category">问题解决</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#JNI" title="Tag: JNI" rel="tag">JNI</a-->
+        <a href="/tag/#JNI" title="Tag: JNI" rel="tag">JNI</a>&nbsp;
+    
+        <!--a href="/tag/#JAVA" title="Tag: JAVA" rel="tag">JAVA</a-->
+        <a href="/tag/#JAVA" title="Tag: JAVA" rel="tag">JAVA</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#本篇主要讲述" id="markdown-toc-本篇主要讲述">本篇主要讲述：</a>    <ul>
+      <li><a href="#如何生成h文件" id="markdown-toc-如何生成h文件">如何生成.h文件</a></li>
+      <li><a href="#如何生成和使用dll文件" id="markdown-toc-如何生成和使用dll文件">如何生成和使用.dll文件</a></li>
+    </ul>
+  </li>
+  <li><a href="#总结" id="markdown-toc-总结">总结</a></li>
+</ul>
+
+<h2 id="本篇主要讲述">本篇主要讲述：</h2>
+<ul>
+  <li>生成.h文件的正确姿势</li>
+  <li>生成和使用.dll文件的正确姿势</li>
+</ul>
+
+<blockquote>
+  <p>最近着手的项目用到了JNI，照着文档边学边做，遇到了很多坑，我打算一一写出来，来帮助也遇到JNI相关问题的童鞋。 
+<del>国内资料实在是太渣了，让我绕了好多弯路</del></p>
+</blockquote>
+
+<h3 id="如何生成h文件">如何生成.h文件</h3>
+<p>首先编写好Java程序(有关JNI的Java程序写法不详述了)<img src="http://octtw77pk.bkt.clouddn.com/9/4JNI.png" alt="图片" />在该文件所在的目录下按<code class="highlighter-rouge">shift+右键</code>,打开命令行，输入<code class="highlighter-rouge">javac your_file_name.java</code>编译成.class文件。</p>
+
+<hr />
+
+<p>上面都是小儿科，关键来了，退出到<strong>该Java文件的包的同一级</strong>，为什么意思呢，拿我这个Java文件来说，它有包名<code class="highlighter-rouge">com.jg.model.Image</code>所以应该退出到<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE06.png" alt="图片" />这一级，能看到com包，打开命令行输入<code class="highlighter-rouge">javah your_file_name</code>来生成.h文件，格式为： javah 包名.文件名，这里有两点要提：1.包名一定要写全 2.文件名后没有后缀!参考我这个写法：<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE07.png" alt="图片" />前面都操作正确，就能见到这个.h文件了<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE08.png" alt="图片" /></p>
+
+<hr />
+<h3 id="如何生成和使用dll文件">如何生成和使用.dll文件</h3>
+<p>之后就是打开C/C++的IDE来编写C/C++程序，这里我使用的是VS2013。
+这里我也遇到了好多问题，我来写一下我的解决方案吧。
+打开VS2013，文件–&gt;新建–&gt;项目–&gt;Win32控制台应用程序（<strong>项目名字要注意，是你在Java程序里写的要加载的库名,即System.loadLibrary(““)里写的库名</strong>）–&gt;确定–&gt;下一步–&gt;<strong>应用程序类型</strong>选择DLL，点上空项目–&gt;完成–&gt;源程序里创建一个cpp开始编写，之后我不着重讲怎么写C程序)(因为很简单)，而是来讲下你们可能会出现的一些问题：</p>
+<ul>
+  <li><strong>头文件引入问题</strong>
+如果头文件引入不当，会出现五花八门的错误，我来讲下我的做法：将上面编译出的.h文件放到和源程序（上一步创建用来编写程序的那个cpp）一起，之后还有两个.h文件，分别是jni.h，位于<code class="highlighter-rouge">%HOME%\Java\jdk1.8.0_71\include</code>, jni-md.h，位于<code class="highlighter-rouge">%HOME%\Java\jdk1.8.0_71\include\win32</code>，把这两也放到和源程序一起，<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE09.png" alt="图片" />然后在VS里点头文件-&gt;添加现有项，将那三个头文件加进去，这时你会发现你自个儿的那个头文件报错了，没事，将<code class="highlighter-rouge">#include &lt;jni.h&gt;</code> 改成 <code class="highlighter-rouge">#include "jni.h"</code>，现在去看看，应该没有报错了~~</li>
+  <li><strong>dll应该放哪儿？</strong>
+好不容易生成了.dll，应该放哪儿了呢？它应该被放在两个地方，一个是项目的根目录，一个是eclipse的根目录(我用的是eclipse，intelliJ不清楚)。<del>可能需要把eclipse重启下</del></li>
+  <li><strong>用win32编译问题</strong>
+你以为这问题结束了？并没有！由于我们大多使用的是64位的jdk，而VS默认使用的win32的解决方案，所以我们好不容易生成的.dll是不起作用的，不过别怕，只要稍作修改就就能解决~~
+打开VS的配置管理器，修改成如下图所示:<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE11.png" alt="图片" /><img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE12.png" alt="图片" />重新生成一下解决方案，用新生成的dll替换之前的那两个dll（新生成的dll在<code class="highlighter-rouge">/项目根目录/x64/debug</code>中）
+如果出现<code class="highlighter-rouge">error LNK1561: 必须定义入口点</code>,那么这样来：右键项目–&gt;属性–&gt;常规–&gt;配置类型–&gt;动态库(.dll)</li>
+</ul>
+
+<h2 id="总结">总结</h2>
+<p>到这里你应该看到你的JNI跑起来了，尽情去玩耍她吧！！
+<img src="http://octtw77pk.bkt.clouddn.com/%E6%88%AA%E5%9B%BE10.png" alt="图片" /></p>
+
+<hr />
+
+<p>最后附上我此前没讲的C++程序的写法</p>
+<pre><code class="language-C++">#include "com_jg_model_Image_TestJNI.h"
+#include&lt;iostream&gt;
+using namespace std;
+JNIEXPORT void JNICALL Java_com_jg_model_Image_TestJNI_sayHello
+(JNIEnv *, jclass)
+{
+	cout &lt;&lt; "Hello World!";
+}
+</code></pre>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/">解决JNI相关问题(3)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/">解决JNI相关问题(2)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2016/08/30/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Git学习笔记</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/">解决JNI相关问题(2)</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             本站记录我在学习生活的点点滴滴。 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/SiriusHsh" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:siriushsh@foxmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>   
+            <a href="https://www.zhihu.com/people/SiriusHsh" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>      
+        </p>
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

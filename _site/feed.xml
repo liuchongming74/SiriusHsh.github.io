@@ -5,45 +5,272 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 15 Sep 2017 17:30:12 +0800</pubDate>
-    <lastBuildDate>Fri, 15 Sep 2017 17:30:12 +0800</lastBuildDate>
+    <pubDate>Fri, 15 Sep 2017 20:24:52 +0800</pubDate>
+    <lastBuildDate>Fri, 15 Sep 2017 20:24:52 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
-        <title>first post</title>
-        <description>
-介绍页显示
+        <title>Ng机器学习课程笔记（三）</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#linear-regression-with-multiple-variables&quot; id=&quot;markdown-toc-linear-regression-with-multiple-variables&quot;&gt;Linear Regression with multiple variables&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1multivariate-linear-regression多元线性回归&quot; id=&quot;markdown-toc-1multivariate-linear-regression多元线性回归&quot;&gt;1.multivariate linear regression（多元线性回归）&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;linear-regression-with-multiple-variables&quot;&gt;Linear Regression with multiple variables&lt;/h1&gt;
+上一节讲了单变量的线性回归问题，这一节针对更复杂的情况。
+
+&lt;h2 id=&quot;1multivariate-linear-regression多元线性回归&quot;&gt;1.multivariate linear regression（多元线性回归）&lt;/h2&gt;
+&lt;img src=&quot;quiver-image-url/5D655C52BD48C39A38DCFE6CAFA77E80.png =490x178&quot; alt=&quot;lesson3-1.png&quot; /&gt;
+&lt;img src=&quot;quiver-image-url/3F9C7127CE7B43D0978F6E7D05AD9758.png =456x117&quot; alt=&quot;lesson3-2.png&quot; /&gt;
+假设函数表示为：$h_θ(x)=θ_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n$
+通产默认x0等于0
+于是
+$x=\begin{bmatrix}
+x_0&lt;br /&gt;
+x_1&lt;br /&gt;
+…&lt;br /&gt;
+x_n
+\end{bmatrix}
+θ=\begin{bmatrix}
+θ_0&lt;br /&gt;
+θ_1&lt;br /&gt;
+…&lt;br /&gt;
+θ_n
+\end{bmatrix}$
+
+$h_θ(x)=θ_0x_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n=θ^Tx$
+
+$J(θ)=\frac{1}{2m}\sum_{i=1}^{m}(h_θ(x^{(i)})-y^{(i)})$
+在进行计算时，善用矩阵运算能够加快运算速度，如损失函数就可以表示为&lt;img src=&quot;quiver-image-url/DC956F5ED9757C2C1C657059925E8E7A.png =753x364&quot; alt=&quot;lesson3-8.png&quot; /&gt;
+结果与上式相同。
 
 </description>
-        <pubDate>Fri, 15 Sep 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/09/15/first-post/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/09/15/first-post/</guid>
+        <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/09/14/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%89/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/09/14/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%89/</guid>
         
-        <category>b</category>
+        <category>机器学习</category>
         
         
-        <category>a</category>
+        <category>学习笔记</category>
         
       </item>
     
       <item>
-        <title>前端如何写一个精确的倒计时</title>
-        <description>
-关于写倒计时大家可能都都比较熟悉，使用 setTimeout 或 setInterval 就可以搞定。几秒钟或者几分钟的倒计时这样写没有问题，但是如果是长时间的倒计时，这样写就会不准确。如果用户修改了他的设备时间，这样的倒计时就没有意义了。今天就说说写一个精确的倒计时的方法。
+        <title>Ng机器学习课程笔记（二）</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#liner-regression-with-one-variable&quot; id=&quot;markdown-toc-liner-regression-with-one-variable&quot;&gt;Liner regression with one variable&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1model-representation&quot; id=&quot;markdown-toc-1model-representation&quot;&gt;1.model representation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;liner-regression-with-one-variable&quot;&gt;Liner regression with one variable&lt;/h1&gt;
+&lt;h2 id=&quot;1model-representation&quot;&gt;1.model representation&lt;/h2&gt;
+首先讲了一个关于房价估计的单变量线性回归问题。
+知识点：
+1.关于训练集中术语的描述
+&lt;ul&gt;
+  &lt;li&gt;m:训练样本的数目&lt;/li&gt;
+  &lt;li&gt;x:输入变量，通常叫做特征量&lt;/li&gt;
+  &lt;li&gt;y:输出变量，或者目标量&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;img src=&quot;https://img.alicdn.com/tfs/TB18QnlOpXXXXcVXpXXXXXXXXXX-388-256.png&quot; alt=&quot;&quot; /&gt;
+2.该问题的逻辑过程 
+如图所示：
+&lt;img src=&quot;quiver-image-url/8E7338A603D2F44F38BA75BEC4311C37.png =366x271&quot; alt=&quot;lesson2-4.png&quot; /&gt;
+训练集作为输入，通过学习算法，输出h, 这里h表示hypothesis(假设)，是一个函数。
+该问题的h函数，输入为房子大小，输出为房子的价格。
+h是一个x到y的映射函数。
+
+3.h的表示
+对于该问题，是一个简单的单变量线性回归问题，所以模型可以表示为:
+$h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数
 
 </description>
-        <pubDate>Fri, 25 Nov 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/11/25/how-to-write-a-count-down/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/11/25/how-to-write-a-count-down/</guid>
+        <pubDate>Tue, 05 Sep 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/09/05/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%BA%8C/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/09/05/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%BA%8C/</guid>
         
-        <category>countdown</category>
+        <category>机器学习</category>
+        
+        
+        <category>学习笔记</category>
+        
+      </item>
+    
+      <item>
+        <title>Ng机器学习课程笔记（一)</title>
+        <description>
+&lt;blockquote&gt;
+  Tom Mitchell试给出机器学习的定义：
+“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”
+三个部分：E，T，P。E为训练，T为任务，P为性能。
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Fri, 18 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/08/18/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%80/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/18/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%80/</guid>
+        
+        <category>机器学习</category>
+        
+        
+        <category>学习笔记</category>
+        
+      </item>
+    
+      <item>
+        <title>Python文件操作</title>
+        <description>
+</description>
+        <pubDate>Thu, 10 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/08/10/Python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/10/Python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+        
+        <category>Python</category>
+        
+        
+        <category>学习笔记</category>
+        
+      </item>
+    
+      <item>
+        <title>格式化字符串函数Str.format</title>
+        <description>
+</description>
+        <pubDate>Mon, 24 Jul 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0Str.format/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0Str.format/</guid>
+        
+        <category>Python</category>
+        
+        
+        <category>学习笔记</category>
+        
+      </item>
+    
+      <item>
+        <title>正则表达式和RegExp(JS篇)</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#创建一个正则表达式regular-expressions&quot; id=&quot;markdown-toc-创建一个正则表达式regular-expressions&quot;&gt;创建一个正则表达式（regular expressions）&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#编写一个正则表达式的模式&quot; id=&quot;markdown-toc-编写一个正则表达式的模式&quot;&gt;编写一个正则表达式的模式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;创建一个正则表达式regular-expressions&quot;&gt;创建一个正则表达式（regular expressions）&lt;/h2&gt;
+使用正则表达式字面量：&lt;code class=&quot;highlighter-rouge&quot;&gt;var re = /ab+c/;&lt;/code&gt;
+使用RegExp对象的构造函数：&lt;code class=&quot;highlighter-rouge&quot;&gt;var re = new RegExp(&quot;ab+c&quot;);&lt;/code&gt;
+&lt;h2 id=&quot;编写一个正则表达式的模式&quot;&gt;编写一个正则表达式的模式&lt;/h2&gt;
+简单模式：/abc/
+特殊字符：类似/ab*c/
+
+</description>
+        <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/11/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CRegExp/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/11/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CRegExp/</guid>
+        
+        <category>学习笔记</category>
+        
+        <category>正则表达式</category>
         
         <category>JavaScript</category>
         
         
-        <category>JavaScript</category>
+        <category>学习笔记</category>
+        
+      </item>
+    
+      <item>
+        <title>谈谈《黑暗之魂1》给我带来的感动</title>
+        <description>
+&lt;img src=&quot;http://octtw77pk.bkt.clouddn.com/b7fd5266d01609241e66b6a0dc0735fae7cd34cd.jpg&quot; alt=&quot;黑暗之魂1&quot; /&gt;
+
+</description>
+        <pubDate>Thu, 29 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/09/29/%E8%B0%88%E8%B0%88%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%821%E7%BB%99%E6%88%91%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%84%9F%E5%8A%A8/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/29/%E8%B0%88%E8%B0%88%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%821%E7%BB%99%E6%88%91%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%84%9F%E5%8A%A8/</guid>
+        
+        <category>随笔</category>
+        
+        <category>游戏</category>
+        
+        
+        <category>随笔</category>
+        
+      </item>
+    
+      <item>
+        <title>解决JNI相关问题(3)</title>
+        <description>&lt;hr /&gt;
+layout: post
+title:  解决JNI相关问题(3)
+categories: 问题解决
+tags: Java JNI
+—
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#解决问题cant-find-dependent-libraries报错&quot; id=&quot;markdown-toc-解决问题cant-find-dependent-libraries报错&quot;&gt;解决问题：Can’t find dependent libraries报错&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;解决问题cant-find-dependent-libraries报错&quot;&gt;解决问题：Can’t find dependent libraries报错&lt;/h3&gt;
+
+</description>
+        <pubDate>Mon, 05 Sep 2016 02:17:30 +0800</pubDate>
+        <link>http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/</guid>
+        
+        <category>Java</category>
+        
+        <category>JNI</category>
+        
+        
+        <category>问题解决</category>
+        
+      </item>
+    
+      <item>
+        <title>解决JNI相关问题(2)</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#本篇主要讲述jni中getstringutfchars方法的用法&quot; id=&quot;markdown-toc-本篇主要讲述jni中getstringutfchars方法的用法&quot;&gt;本篇主要讲述JNI中GetStringUTFChars()方法的用法。&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;本篇主要讲述jni中getstringutfchars方法的用法&quot;&gt;本篇主要讲述JNI中GetStringUTFChars()方法的用法。&lt;/h3&gt;
+
+</description>
+        <pubDate>Sun, 04 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/</guid>
+        
+        <category>Java</category>
+        
+        <category>JNI</category>
+        
+        
+        <category>问题解决</category>
+        
+      </item>
+    
+      <item>
+        <title>解决JNI相关问题(1)</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#本篇主要讲述&quot; id=&quot;markdown-toc-本篇主要讲述&quot;&gt;本篇主要讲述：&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;本篇主要讲述&quot;&gt;本篇主要讲述：&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;生成.h文件的正确姿势&lt;/li&gt;
+  &lt;li&gt;生成和使用.dll文件的正确姿势&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sun, 04 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(1)/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(1)/</guid>
+        
+        <category>JNI</category>
+        
+        <category>JAVA</category>
+        
+        
+        <category>问题解决</category>
         
       </item>
     

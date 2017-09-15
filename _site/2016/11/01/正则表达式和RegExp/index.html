@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>正则表达式和RegExp(JS篇)</title>
+    <meta name="description" content="  创建一个正则表达式（regular expressions）  编写一个正则表达式的模式创建一个正则表达式（regular expressions）使用正则表达式字面量：var re = /ab+c/;使用RegExp对象的构造函数：var re = new RegExp("ab+c");编写一个正则表达式的...">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2016/11/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CRegExp/">
+    <link rel="alternate" type="application/rss+xml" title="SiriusHsh" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">SiriusHsh</a>
+        <small>记录思考，整理人生</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collection/">
+                        
+                            <i class="fa fa-bookmark"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/demo/">
+                        
+                            <i class="fa fa-play"></i>Demo
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>正则表达式和RegExp(JS篇)</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2016-11-01
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#学习笔记" title="Category: 学习笔记" rel="category">学习笔记</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0" title="Tag: 学习笔记" rel="tag">学习笔记</a-->
+        <a href="/tag/#学习笔记" title="Tag: 学习笔记" rel="tag">学习笔记</a>&nbsp;
+    
+        <!--a href="/tag/#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" title="Tag: 正则表达式" rel="tag">正则表达式</a-->
+        <a href="/tag/#正则表达式" title="Tag: 正则表达式" rel="tag">正则表达式</a>&nbsp;
+    
+        <!--a href="/tag/#JavaScript" title="Tag: JavaScript" rel="tag">JavaScript</a-->
+        <a href="/tag/#JavaScript" title="Tag: JavaScript" rel="tag">JavaScript</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#创建一个正则表达式regular-expressions" id="markdown-toc-创建一个正则表达式regular-expressions">创建一个正则表达式（regular expressions）</a></li>
+  <li><a href="#编写一个正则表达式的模式" id="markdown-toc-编写一个正则表达式的模式">编写一个正则表达式的模式</a></li>
+  <li><a href="#使用正则表达式" id="markdown-toc-使用正则表达式">使用正则表达式</a>    <ul>
+      <li><a href="#使用括号的子字符串匹配" id="markdown-toc-使用括号的子字符串匹配">使用括号的子字符串匹配</a></li>
+      <li><a href="#通过标志进行高级搜索" id="markdown-toc-通过标志进行高级搜索">通过标志进行高级搜索</a></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="创建一个正则表达式regular-expressions">创建一个正则表达式（regular expressions）</h2>
+<p>使用正则表达式字面量：<code class="highlighter-rouge">var re = /ab+c/;</code>
+使用RegExp对象的构造函数：<code class="highlighter-rouge">var re = new RegExp("ab+c");</code></p>
+<h2 id="编写一个正则表达式的模式">编写一个正则表达式的模式</h2>
+<p>简单模式：/abc/
+特殊字符：类似/ab*c/</p>
+
+<ul>
+  <li>字符：<code class="highlighter-rouge">\</code>
+ 跟在其后的字符：字面量转义为特殊字符，特殊字符转义为字面量。
+字面量转义为特殊字符，如<code class="highlighter-rouge">/b/</code>意为匹配字符’b’，而<code class="highlighter-rouge">/\b/</code>意为匹配一个字符边界
+特殊字符转为字面量：如<code class="highlighter-rouge">/a*/</code>意为匹配0个或者多个a，而<code class="highlighter-rouge">/a\*/</code>意为匹配’a*‘这样的字符串。
+使用new RegExp(“pattern”)的时候要将\转义，如字面量模式的<code class="highlighter-rouge">/\[bc\]at/</code>等价的字符串为<code class="highlighter-rouge">\\[bc\\]at</code>，字面量模式为<code class="highlighter-rouge">/\w\\hello\\123/</code>等价的字符串为<code class="highlighter-rouge">\\w\\\\hello\\\\123</code></li>
+  <li>字符：<code class="highlighter-rouge">^</code>和<code class="highlighter-rouge">$</code>
+匹配输入的开始和结束，如<code class="highlighter-rouge">/^A/</code> and <code class="highlighter-rouge">/t$/</code></li>
+  <li>字符：<code class="highlighter-rouge">*</code> ， <code class="highlighter-rouge">+</code>，<code class="highlighter-rouge">?</code>
+*匹配前一个表达式的0次或多次，+匹配前一个表达式的1次或多次，？匹配前一个表达式的0次或1次
+<strong>紧跟在任何量词*、+、？的后面，会使量词变得非贪婪（尽可能匹配较少的字符）</strong></li>
+  <li>字符：<code class="highlighter-rouge">.</code>
+匹配除了换行符（\n）之外的任何单个字符</li>
+  <li>字符：<code class="highlighter-rouge">(x)</code>,<code class="highlighter-rouge">(?:x)</code>,<code class="highlighter-rouge">x(?=y)</code>,<code class="highlighter-rouge">x(?!y)</code>
+<code class="highlighter-rouge">(x)</code>匹配’x’并且记住匹配项,<code class="highlighter-rouge">(?:x)</code>匹配’x’但是不记住匹配项,<code class="highlighter-rouge">x(?=y)</code>匹配’x’仅仅当’x’后面跟着’y’，这种叫正向肯定查找，<code class="highlighter-rouge">x(?!y)</code>匹配’x’仅仅当后面不跟着’y’，这种叫做正向否定查找</li>
+  <li>字符：<code class="highlighter-rouge">x|y</code>
+匹配’x’或者’y’</li>
+  <li>字符：<code class="highlighter-rouge"><span class="p">{</span><span class="err">n</span><span class="p">}</span></code>,<code class="highlighter-rouge"><span class="p">{</span><span class="err">n.m</span><span class="p">}</span></code>
+n是一个正整数，匹配了前面一个字符刚好发生了n次。
+n和m都是正整数，匹配前面的字符至少出现n次，至多出现m次，如果n和m的值是0，这个值被忽略</li>
+  <li>字符：<code class="highlighter-rouge">[xyz]</code>,<code class="highlighter-rouge">[^xyz]</code>
+<code class="highlighter-rouge">[xyz]</code>一个字符集合，匹配方括号中的任何字符，<code class="highlighter-rouge">[^xyz]</code>一个反向字符集</li>
+  <li>字符：<code class="highlighter-rouge">[\b]</code>
+匹配一个退格</li>
+  <li>字符：<code class="highlighter-rouge">\b</code>,<code class="highlighter-rouge">\B</code>
+<code class="highlighter-rouge">\b</code>匹配一个词的边界,<code class="highlighter-rouge">\B</code>匹配一个非单词边界</li>
+  <li>字符：<code class="highlighter-rouge">\d</code>,<code class="highlighter-rouge">\D</code>
+<code class="highlighter-rouge">\d</code>匹配一个数字，等价于[0-9],<code class="highlighter-rouge">\D</code>匹配一个非数字字符，等价于[^0-9]</li>
+  <li>字符<code class="highlighter-rouge">\f</code>, <code class="highlighter-rouge">\n</code>, <code class="highlighter-rouge">\r</code>, <code class="highlighter-rouge">\s\</code>,<code class="highlighter-rouge">\S\</code>,<code class="highlighter-rouge">\t\</code>, <code class="highlighter-rouge">\v\</code>
+<code class="highlighter-rouge">\f</code>匹配一个换页符，<code class="highlighter-rouge">\n</code>匹配一个换行符 , <code class="highlighter-rouge">\r</code>匹配一个回车符, <code class="highlighter-rouge">\s\</code>匹配一个空白字符,<code class="highlighter-rouge">\S</code>匹配一个非空白字符，<code class="highlighter-rouge">\t\</code>匹配一个水平制表符 , <code class="highlighter-rouge">\v\</code>匹配一个垂直制表符</li>
+  <li>字符：<code class="highlighter-rouge">\w</code>,<code class="highlighter-rouge">\W</code>
+<code class="highlighter-rouge">\w</code>匹配一个单字字符（字母、数字或者下划线）。等价于[A-Za-z0-9_]
+<code class="highlighter-rouge">\W</code>匹配一个非单字字符。等价于[^A-Za-z0-9]</li>
+  <li>字符：<code class="highlighter-rouge">\n</code>
+当n是一个正整数，返回与n有关的副字符串</li>
+  <li>字符：<code class="highlighter-rouge">\0</code>
+匹配NULL字符，<em>不要在后面跟其他数字，会被转义为其他进制</em></li>
+  <li>字符<code class="highlighter-rouge">\xhh</code>, <code class="highlighter-rouge">\uhhhh</code>
+<code class="highlighter-rouge">\xhh</code>匹配带有两位小数代码 (hh)的字符
+<code class="highlighter-rouge">\uhhhh</code>匹配带有思维小数代码(hh)的字符</li>
+</ul>
+
+<h2 id="使用正则表达式">使用正则表达式</h2>
+<p>正则表达式可以被用于RegExp的exec和test方法以及String的match、replace、search和split方法。</p>
+<blockquote>
+  <p>test方法、search方法：当你想知道在一个字符串中的一个匹配是否被找到时</p>
+</blockquote>
+
+<blockquote>
+  <p>exec和match方法：想要得到更多的信息，如果匹配成功，那么这些方法将返回一个数组并且更新相关的正则表达式对象和预定义的正则表达式对象；如果匹配失败，返回null</p>
+</blockquote>
+
+<p><strong>实例：</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//使用exec方法在一个字符串中查找一个匹配
+var myRe = /d(b+)d/g;
+var myArray = myRe.exec("cdbbdbsbz");
+//如果不需要访问正则表达式的属性，通过下面方法来创建myArray
+var myArray = /d(b+)d/g.exec("cdbbdbsbz");
+//通过一个字符串构建正则表达式
+var myRe = new RegExp("d(b+)d","g");
+var myArray = myRe.exec("cdbbdbsbz");
+</code></pre>
+</div>
+
+<h3 id="使用括号的子字符串匹配">使用括号的子字符串匹配</h3>
+<p>正则表达式使用了括号，相应的子匹配会被记住，回调这些括号中匹配的子串，使用数组元素[1]…[n]，$1,$2</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//使用replace()方法来转换字符串中的单词
+var re = /(w+)\s\(\w+)/;
+var str = "John Smith";
+var newStr = str.replace(re, "$2,$1");
+console.log(newStr);  // =&gt; "Smith,John"
+</code></pre>
+</div>
+<h3 id="通过标志进行高级搜索">通过标志进行高级搜索</h3>
+<p>标志:”g”, “i”, “m”, “y”
+g：全局搜索
+i：不区分大小写搜索
+m：多行搜索
+y：执行“粘性”搜索，匹配从目标字符串的当前位置开始，可以使用y标志</p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2016/08/30/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Git学习笔记
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2016/09/29/%E8%B0%88%E8%B0%88%E9%BB%91%E6%9A%97%E4%B9%8B%E9%AD%821%E7%BB%99%E6%88%91%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%84%9F%E5%8A%A8/">谈谈《黑暗之魂1》给我带来的感动</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2017/07/24/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0Str.format/">格式化字符串函数Str.format</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             本站记录我在学习生活的点点滴滴。 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/SiriusHsh" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:siriushsh@foxmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>   
+            <a href="https://www.zhihu.com/people/SiriusHsh" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>      
+        </p>
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

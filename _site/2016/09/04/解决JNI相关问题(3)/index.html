@@ -1,0 +1,18 @@
+<hr />
+<p>layout: post
+title:  解决JNI相关问题(3)
+categories: 问题解决
+tags: Java JNI
+—</p>
+
+<ul id="markdown-toc">
+  <li><a href="#解决问题cant-find-dependent-libraries报错" id="markdown-toc-解决问题cant-find-dependent-libraries报错">解决问题：Can’t find dependent libraries报错</a></li>
+</ul>
+
+<h3 id="解决问题cant-find-dependent-libraries报错">解决问题：Can’t find dependent libraries报错</h3>
+
+<p>今天将项目移植到另外一台电脑上，结果JNI又出错了，<del>真是一个柔弱的女子啊</del></p>
+
+<p>解决思路：无法找到依赖的库,应该是.dll出的问题</p>
+
+<p>解决方案：将编译方案由Debug改为Release，解决！</p>
