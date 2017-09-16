@@ -56,12 +56,12 @@
                     }
                     a {
                         padding: 0 5px;
-                        background-color: #9e9d9d;
-                        color: #fff;
+                        color: #4d6dad;
                         font-size: 90%;
                         transition: 0.3s ease;
                         &:hover {
-                            background-color: #b6b6b9;
+                            color: #223253;
+                            background-color: #f4efeb;
                         }
                     }
                 }
@@ -70,16 +70,21 @@
                         color: #c6cbe9;
                     }
                     a {
-
+                        /*这里是index页面的标签颜色设置*/
                         // border: 1px solid #aaa;
                         padding: 0 5px;
-                        background-color: #c6cbe9;
+                        /*background-color: #c6cbe9;*/
+                        /*background-color: #9e9d9d;*/
+                        color: #4d6dad;
                         border-radius: 4px;
-                        color: #fff;
+                        /*color: #fff;*/
                         font-size: 90%;
                         transition: 0.3s ease;
                         &:hover {
-                            background-color: #c0ddc7;
+                            /*background-color: #c0ddc7;*/
+                            /*background-color: #b6b6b9;*/
+                            color: #223253;
+                            background-color: #f4efeb;
                         }
                     }
                 }

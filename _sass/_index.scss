@@ -1,6 +1,8 @@
 .page[index] {
     a {
-        color: #4d6dad;
+        /*标题颜色*/
+        /*color: #4d6dad;*/
+        color: black;
         transition: 0.5s ease;
         &:hover {
             color: #223253;
@@ -19,6 +21,11 @@
                     font-size: 27px;
                     margin: 0;
                 }
+                h1 {
+                    font-size: 29px;
+                    border: none;
+                    margin: 0;
+                }
                 .label {
                     margin-bottom: 15px;
                     overflow: hidden;
@@ -28,7 +35,7 @@
                         i {
                             padding-right: 0;
                             margin-right: 3px;
-                            color: #6b6a6a;
+                            color: #6b6a6a;  /*label图标颜色*/
                         }
                     }
                     .categories {

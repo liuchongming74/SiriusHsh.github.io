@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  * variables
  */
@@ -256,6 +257,7 @@ header {
       padding-right: 5px;
       color: #6b6a6a; }
 .page[post] a {
+  /*这里是post页面的标签颜色设置*/
   color: #4d6dad;
   transition: 0.5s ease; }
   .page[post] a:hover {
@@ -328,23 +330,29 @@ header {
           color: #9e9d9d; }
         .page .left ul li .categories a {
           padding: 0 5px;
-          background-color: #9e9d9d;
-          color: #fff;
+          color: #4d6dad;
           font-size: 90%;
           transition: 0.3s ease; }
           .page .left ul li .categories a:hover {
-            background-color: #b6b6b9; }
+            color: #223253;
+            background-color: #f4efeb; }
       .page .left ul li .pageTag i {
         color: #c6cbe9; }
       .page .left ul li .pageTag a {
+        /*这里是index页面的标签颜色设置*/
         padding: 0 5px;
-        background-color: #c6cbe9;
+        /*background-color: #c6cbe9;*/
+        /*background-color: #9e9d9d;*/
+        color: #4d6dad;
         border-radius: 4px;
-        color: #fff;
+        /*color: #fff;*/
         font-size: 90%;
         transition: 0.3s ease; }
         .page .left ul li .pageTag a:hover {
-          background-color: #c0ddc7; }
+          /*background-color: #c0ddc7;*/
+          /*background-color: #b6b6b9;*/
+          color: #223253;
+          background-color: #f4efeb; }
   .page .anchor {
     display: none; }
   .page .right {
@@ -679,7 +687,9 @@ pre {
     color: #a6e22e; }
 
 .page[index] a {
-  color: #4d6dad;
+  /*标题颜色*/
+  /*color: #4d6dad;*/
+  color: black;
   transition: 0.5s ease; }
   .page[index] a:hover {
     color: #223253; }
@@ -693,6 +703,10 @@ pre {
       border: none;
       font-size: 27px;
       margin: 0; }
+    .page[index] .left > ul li h1 {
+      font-size: 29px;
+      border: none;
+      margin: 0; }
     .page[index] .left > ul li .label {
       margin-bottom: 15px;
       overflow: hidden; }
@@ -702,7 +716,8 @@ pre {
         .page[index] .left > ul li .label .label-card i {
           padding-right: 0;
           margin-right: 3px;
-          color: #6b6a6a; }
+          color: #6b6a6a;
+          /*label图标颜色*/ }
       .page[index] .left > ul li .label .categories {
         padding: 0; }
     .page[index] .left > ul li .excerpt h2 {

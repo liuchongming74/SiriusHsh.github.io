@@ -21,6 +21,18 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 
@@ -75,26 +87,6 @@
                     
                     <li>
                         
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/demo/">
-                        
-                            <i class="fa fa-play"></i>Demo
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
                         <a href="/about/">
                         
                             <i class="fa fa-heart"></i>About
@@ -126,6 +118,7 @@
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>HSH
                 
             </div>
 
@@ -182,27 +175,36 @@
 </ul>
 
 <h2 id="1the-bytesstr-dichotomy">1.the bytes/str dichotomy</h2>
-<p>python3相比python2更清晰的区分了文本数据和二进制数据。文本数据用<code class="highlighter-rouge">str</code>类型表示，在内存中以Unicode形式保存；二进制数据用<code class="highlighter-rouge">bytes</code>类型表示。
-strings和bytes可以通过encoded和decoded的方式相互转化，如图：
-![image](<img src="quiver-image-url/42BC5CDCCABBCC9337E38BCDC4C7BB32.png =273x238" alt="py3_string_bytes.png" /></p>
+<p>python3相比python2更清晰的区分了文本数据和二进制数据。<br />
+文本数据用<code class="highlighter-rouge">str</code>类型表示，在内存中以Unicode形式保存；二进制数据用<code class="highlighter-rouge">bytes</code>类型表示。<br />
+strings和bytes可以通过encoded和decoded的方式相互转化，如图：</p>
+
+<p><img src="quiver-image-url/42BC5CDCCABBCC9337E38BCDC4C7BB32.png =273x238" alt="py3_string_bytes.png" /></p>
 
 <p>示例1：</p>
+
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="s">'€20'</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
 <span class="n">b</span><span class="s">'</span><span class="se">\xe2\x82\xac</span><span class="s">20'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="s">'</span><span class="se">\xe2\x82\xac</span><span class="s">20'</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
 <span class="s">'€20'</span>
 </code></pre>
 </div>
+
 <p>示例2：</p>
+
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'€20'</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'iso-8859-15'</span><span class="p">)</span>
 <span class="n">b</span><span class="s">'</span><span class="se">\xa4</span><span class="s">20'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="s">'</span><span class="se">\xa4</span><span class="s">20'</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'iso-8859-15'</span><span class="p">)</span>
 <span class="s">'€20'</span>
 </code></pre>
 </div>
+
 <h2 id="2使用open进行文件的读写">2.使用open()进行文件的读写</h2>
+
 <p><code class="highlighter-rouge">open(filename,mode)</code></p>
+
 <h3 id="文件对象方法">文件对象方法</h3>
+
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#使用f.read(size)进行读取，读取size数量的数据并以字符串的形式返回内容，没有指定size或为负数，则读取整个文件。如何到了文件末尾，f.read()返回一个空字符串</span>
 <span class="o">&gt;&gt;&gt;</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="s">'This is the entire file.</span><span class="se">\n</span><span class="s">'</span>
@@ -233,7 +235,7 @@ strings和bytes可以通过encoded和decoded的方式相互转化，如图：
 </code></pre>
 </div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="err">使用</span> <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span><span class="n">from_what</span><span class="p">)</span><span class="err">。指针在该操作中从指定的引用位置移动</span> <span class="n">offset</span> <span class="err">比特，引用位置由</span> <span class="n">from_what</span> <span class="err">参数指定。</span> <span class="n">from_what</span> <span class="err">值为</span> <span class="mi">0</span> <span class="err">表示自文件起始处开始，</span><span class="mi">1</span> <span class="err">表示自当前文件指针位置开始，</span><span class="mi">2</span> <span class="err">表示自文件末尾开始。</span><span class="n">from_what</span> <span class="err">可以忽略，其默认值为零，此时从文件头开始。</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#使用 f.seek(offset,from_what)。指针在该操作中从指定的引用位置移动 offset 比特，引用位置由 from_what 参数指定。 from_what 值为 0 表示自文件起始处开始，1 表示自当前文件指针位置开始，2 表示自文件末尾开始。from_what 可以忽略，其默认值为零，此时从文件头开始。</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'1.txt'</span><span class="p">,</span> <span class="s">'rb+'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">b</span><span class="s">'0123456789abcdef'</span><span class="p">)</span>
 <span class="mi">16</span>
@@ -259,16 +261,19 @@ strings和bytes可以通过encoded和decoded的方式相互转化，如图：
 
 <h2 id="3pickle模块">3.pickle模块</h2>
 <p>pickle模块能够将任何python对象表达为字符串，这一过程称为封装(pickling)。从字符串中重新构造出对象的过程称为拆封(unpickling)</p>
+
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#有一个对象x，一个以写模式打开的文件对象f，封装对象的最简单方法只需要一行代码：</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-<span class="err">如果</span><span class="n">f</span><span class="err">是一个以读模式打开的文件对象，就可以拆封这个对象</span>
+<span class="c">#如果f是一个以读模式打开的文件对象，就可以拆封这个对象</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </code></pre>
 </div>
 
 <h2 id="4使用codecs进行文件的读写">4.使用codecs进行文件的读写</h2>
-<p>使用指定的编码格式打开文件,<code class="highlighter-rouge">codecs.open(filename, mode='r', encoding=None, errors='strict', buffering=1)</code>
+<p>使用指定的编码格式打开文件,<br />
+<code class="highlighter-rouge">codecs.open(filename, mode='r', encoding=None, errors='strict', buffering=1)</code>
 示例：</p>
+
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">codecs</span>
 <span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s">'text.txt'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
   <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -276,7 +281,7 @@ strings和bytes可以通过encoded和decoded的方式相互转化，如图：
 </code></pre>
 </div>
 
-<p><strong>reference</strong>
+<p><strong>reference</strong><br />
 1.https://www.kancloud.cn/thinkphp/python-tutorial/37769
 2.http://eli.thegreenplace.net/2012/01/30/the-bytesstr-dichotomy-in-python-3</p>
 

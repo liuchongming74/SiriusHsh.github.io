@@ -21,6 +21,18 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 
@@ -75,26 +87,6 @@
                     
                     <li>
                         
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/demo/">
-                        
-                            <i class="fa fa-play"></i>Demo
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
                         <a href="/about/">
                         
                             <i class="fa fa-heart"></i>About
@@ -126,6 +118,7 @@
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>HSH
                 
             </div>
 
@@ -177,23 +170,24 @@
 </ul>
 
 <blockquote>
-  <p>Tom Mitchell试给出机器学习的定义：
-“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”
+  <p>Tom Mitchell试给出机器学习的定义：<br />
+“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”<br />
 三个部分：E，T，P。E为训练，T为任务，P为性能。</p>
 </blockquote>
 
 <h2 id="supervised-learning监督学习">supervised learning（监督学习）</h2>
 <p>监督学习中数据集中的每个数据都有相应的正确答案（训练集），算法基于这些来做预测。</p>
+
 <ul>
-  <li>regression（回归）
+  <li>regression（回归）<br />
 continuous valued output（输出连续的值）</li>
-  <li>classification（分类） 
+  <li>classification（分类） <br />
 discrete valued output（输出离散的值）</li>
 </ul>
 
 <h2 id="unsupervised-learning无监督学习">unsupervised learning（无监督学习）</h2>
-<p>无监督学习是只拥有数据集，但是数据集没有属性标签，让计算机自动的找出数据集中蕴含的类型结构。首先介绍了聚类，聚类是无监督学习的一种。然后讲了鸡尾酒宴会问题，就是把音频里混合的人声（背景音）给分离提取出来。
-Ng强调到你以为实现上述效果需要写很多代码，调用很多库？ 其实，只需要一行代码66666
+<p>无监督学习是只拥有数据集，但是数据集没有属性标签，让计算机自动的找出数据集中蕴含的类型结构。首先介绍了聚类，聚类是无监督学习的一种。然后讲了鸡尾酒宴会问题，就是把音频里混合的人声（背景音）给分离提取出来。<br />
+Ng强调到你以为实现上述效果需要写很多代码，调用很多库？ 其实，只需要一行代码66666<br />
 <img src="quiver-image-url/5B3F6FE253AAB13C6160BB6F80778753.png =864x67" alt="lesson1-1.png" /></p>
 
 

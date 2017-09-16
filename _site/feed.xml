@@ -5,45 +5,18 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 15 Sep 2017 20:24:52 +0800</pubDate>
-    <lastBuildDate>Fri, 15 Sep 2017 20:24:52 +0800</lastBuildDate>
+    <pubDate>Sun, 17 Sep 2017 00:49:25 +0800</pubDate>
+    <lastBuildDate>Sun, 17 Sep 2017 00:49:25 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
         <title>Ng机器学习课程笔记（三）</title>
         <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#linear-regression-with-multiple-variables&quot; id=&quot;markdown-toc-linear-regression-with-multiple-variables&quot;&gt;Linear Regression with multiple variables&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1multivariate-linear-regression多元线性回归&quot; id=&quot;markdown-toc-1multivariate-linear-regression多元线性回归&quot;&gt;1.multivariate linear regression（多元线性回归）&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#linear-regression-with-multiple-variables&quot; id=&quot;markdown-toc-linear-regression-with-multiple-variables&quot;&gt;Linear Regression with multiple variables&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;h1 id=&quot;linear-regression-with-multiple-variables&quot;&gt;Linear Regression with multiple variables&lt;/h1&gt;
 上一节讲了单变量的线性回归问题，这一节针对更复杂的情况。
-
-&lt;h2 id=&quot;1multivariate-linear-regression多元线性回归&quot;&gt;1.multivariate linear regression（多元线性回归）&lt;/h2&gt;
-&lt;img src=&quot;quiver-image-url/5D655C52BD48C39A38DCFE6CAFA77E80.png =490x178&quot; alt=&quot;lesson3-1.png&quot; /&gt;
-&lt;img src=&quot;quiver-image-url/3F9C7127CE7B43D0978F6E7D05AD9758.png =456x117&quot; alt=&quot;lesson3-2.png&quot; /&gt;
-假设函数表示为：$h_θ(x)=θ_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n$
-通产默认x0等于0
-于是
-$x=\begin{bmatrix}
-x_0&lt;br /&gt;
-x_1&lt;br /&gt;
-…&lt;br /&gt;
-x_n
-\end{bmatrix}
-θ=\begin{bmatrix}
-θ_0&lt;br /&gt;
-θ_1&lt;br /&gt;
-…&lt;br /&gt;
-θ_n
-\end{bmatrix}$
-
-$h_θ(x)=θ_0x_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n=θ^Tx$
-
-$J(θ)=\frac{1}{2m}\sum_{i=1}^{m}(h_θ(x^{(i)})-y^{(i)})$
-在进行计算时，善用矩阵运算能够加快运算速度，如损失函数就可以表示为&lt;img src=&quot;quiver-image-url/DC956F5ED9757C2C1C657059925E8E7A.png =753x364&quot; alt=&quot;lesson3-8.png&quot; /&gt;
-结果与上式相同。
 
 </description>
         <pubDate>Thu, 14 Sep 2017 00:00:00 +0800</pubDate>
@@ -65,27 +38,18 @@ $J(θ)=\frac{1}{2m}\sum_{i=1}^{m}(h_θ(x^{(i)})-y^{(i)})$
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;h1 id=&quot;liner-regression-with-one-variable&quot;&gt;Liner regression with one variable&lt;/h1&gt;
 &lt;h2 id=&quot;1model-representation&quot;&gt;1.model representation&lt;/h2&gt;
-首先讲了一个关于房价估计的单变量线性回归问题。
-知识点：
+首先讲了一个关于房价估计的单变量线性回归问题。&lt;br /&gt;
+知识点：&lt;br /&gt;
 1.关于训练集中术语的描述
+
 &lt;ul&gt;
   &lt;li&gt;m:训练样本的数目&lt;/li&gt;
   &lt;li&gt;x:输入变量，通常叫做特征量&lt;/li&gt;
   &lt;li&gt;y:输出变量，或者目标量&lt;/li&gt;
 &lt;/ul&gt;
-
-2.该问题的逻辑过程 
-如图所示：
-&lt;img src=&quot;quiver-image-url/8E7338A603D2F44F38BA75BEC4311C37.png =366x271&quot; alt=&quot;lesson2-4.png&quot; /&gt;
-训练集作为输入，通过学习算法，输出h, 这里h表示hypothesis(假设)，是一个函数。
-该问题的h函数，输入为房子大小，输出为房子的价格。
-h是一个x到y的映射函数。
-
-3.h的表示
-对于该问题，是一个简单的单变量线性回归问题，所以模型可以表示为:
-$h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数
 
 </description>
         <pubDate>Tue, 05 Sep 2017 00:00:00 +0800</pubDate>
@@ -103,8 +67,8 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数
         <title>Ng机器学习课程笔记（一)</title>
         <description>
 &lt;blockquote&gt;
-  Tom Mitchell试给出机器学习的定义：
-“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”
+  Tom Mitchell试给出机器学习的定义：&lt;br /&gt;
+“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”&lt;br /&gt;
 三个部分：E，T，P。E为训练，T为任务，P为性能。
 &lt;/blockquote&gt;
 
@@ -152,17 +116,7 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数
     
       <item>
         <title>正则表达式和RegExp(JS篇)</title>
-        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#创建一个正则表达式regular-expressions&quot; id=&quot;markdown-toc-创建一个正则表达式regular-expressions&quot;&gt;创建一个正则表达式（regular expressions）&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#编写一个正则表达式的模式&quot; id=&quot;markdown-toc-编写一个正则表达式的模式&quot;&gt;编写一个正则表达式的模式&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;创建一个正则表达式regular-expressions&quot;&gt;创建一个正则表达式（regular expressions）&lt;/h2&gt;
-使用正则表达式字面量：&lt;code class=&quot;highlighter-rouge&quot;&gt;var re = /ab+c/;&lt;/code&gt;
-使用RegExp对象的构造函数：&lt;code class=&quot;highlighter-rouge&quot;&gt;var re = new RegExp(&quot;ab+c&quot;);&lt;/code&gt;
-&lt;h2 id=&quot;编写一个正则表达式的模式&quot;&gt;编写一个正则表达式的模式&lt;/h2&gt;
-简单模式：/abc/
-特殊字符：类似/ab*c/
-
+        <description>
 </description>
         <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2016/11/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CRegExp/</link>

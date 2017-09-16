@@ -75,26 +75,6 @@
                     
                     <li>
                         
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/demo/">
-                        
-                            <i class="fa fa-play"></i>Demo
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
                         <a href="/about/">
                         
                             <i class="fa fa-heart"></i>About
@@ -118,8 +98,8 @@
 
         <div class="page clearfix" index>
     <div class="left">
-        <h1>Welcome to HyG's Blog!</h1>
-        <small>这里记录着我的前端学习之路</small>
+        <h1>欢迎来到我的技术博客！</h1>
+        <small>这里记录着我学习生活中的点点滴滴</small>
         <hr>
         <ul>
             
@@ -175,38 +155,11 @@
                 </div>
                 <div class="excerpt">
                     <ul id="markdown-toc">
-  <li><a href="#linear-regression-with-multiple-variables" id="markdown-toc-linear-regression-with-multiple-variables">Linear Regression with multiple variables</a>    <ul>
-      <li><a href="#1multivariate-linear-regression多元线性回归" id="markdown-toc-1multivariate-linear-regression多元线性回归">1.multivariate linear regression（多元线性回归）</a></li>
-    </ul>
-  </li>
+  <li><a href="#linear-regression-with-multiple-variables" id="markdown-toc-linear-regression-with-multiple-variables">Linear Regression with multiple variables</a></li>
 </ul>
+
 <h1 id="linear-regression-with-multiple-variables">Linear Regression with multiple variables</h1>
 <p>上一节讲了单变量的线性回归问题，这一节针对更复杂的情况。</p>
-
-<h2 id="1multivariate-linear-regression多元线性回归">1.multivariate linear regression（多元线性回归）</h2>
-<p><img src="quiver-image-url/5D655C52BD48C39A38DCFE6CAFA77E80.png =490x178" alt="lesson3-1.png" />
-<img src="quiver-image-url/3F9C7127CE7B43D0978F6E7D05AD9758.png =456x117" alt="lesson3-2.png" />
-假设函数表示为：$h_θ(x)=θ_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n$
-通产默认x0等于0
-于是
-$x=\begin{bmatrix}
-x_0<br />
-x_1<br />
-…<br />
-x_n
-\end{bmatrix}
-θ=\begin{bmatrix}
-θ_0<br />
-θ_1<br />
-…<br />
-θ_n
-\end{bmatrix}$</p>
-
-<p>$h_θ(x)=θ_0x_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n=θ^Tx$</p>
-
-<p>$J(θ)=\frac{1}{2m}\sum_{i=1}^{m}(h_θ(x^{(i)})-y^{(i)})$
-在进行计算时，善用矩阵运算能够加快运算速度，如损失函数就可以表示为<img src="quiver-image-url/DC956F5ED9757C2C1C657059925E8E7A.png =753x364" alt="lesson3-8.png" />
-结果与上式相同。</p>
 
 
                 </div>
@@ -273,27 +226,18 @@ x_n
     </ul>
   </li>
 </ul>
+
 <h1 id="liner-regression-with-one-variable">Liner regression with one variable</h1>
 <h2 id="1model-representation">1.model representation</h2>
-<p>首先讲了一个关于房价估计的单变量线性回归问题。
-知识点：
+<p>首先讲了一个关于房价估计的单变量线性回归问题。<br />
+知识点：<br />
 1.关于训练集中术语的描述</p>
+
 <ul>
   <li>m:训练样本的数目</li>
   <li>x:输入变量，通常叫做特征量</li>
   <li>y:输出变量，或者目标量</li>
 </ul>
-
-<p>2.该问题的逻辑过程 
-如图所示：
-<img src="quiver-image-url/8E7338A603D2F44F38BA75BEC4311C37.png =366x271" alt="lesson2-4.png" />
-训练集作为输入，通过学习算法，输出h, 这里h表示hypothesis(假设)，是一个函数。
-该问题的h函数，输入为房子大小，输出为房子的价格。
-h是一个x到y的映射函数。</p>
-
-<p>3.h的表示
-对于该问题，是一个简单的单变量线性回归问题，所以模型可以表示为:
-$h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
 
 
                 </div>
@@ -312,6 +256,7 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
                         <i class="fa fa-calendar"></i>2017-08-18
                     </div>
                     <div class="label-card">
+                        <i class="fa fa-user"></i>HSH
                         
                     </div>
                     <div class="label-card">
@@ -355,8 +300,8 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
                 <div class="excerpt">
                     
 <blockquote>
-  <p>Tom Mitchell试给出机器学习的定义：
-“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”
+  <p>Tom Mitchell试给出机器学习的定义：<br />
+“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.”<br />
 三个部分：E，T，P。E为训练，T为任务，P为性能。</p>
 </blockquote>
 
@@ -377,6 +322,7 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
                         <i class="fa fa-calendar"></i>2017-08-10
                     </div>
                     <div class="label-card">
+                        <i class="fa fa-user"></i>HSH
                         
                     </div>
                     <div class="label-card">
@@ -436,6 +382,7 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
                         <i class="fa fa-calendar"></i>2017-07-24
                     </div>
                     <div class="label-card">
+                        <i class="fa fa-user"></i>HSH
                         
                     </div>
                     <div class="label-card">
@@ -495,6 +442,7 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
                         <i class="fa fa-calendar"></i>2016-11-01
                     </div>
                     <div class="label-card">
+                        <i class="fa fa-user"></i>HSH
                         
                     </div>
                     <div class="label-card">
@@ -540,17 +488,7 @@ $h_θ(x) = θ_0 + θ_1(x)$， $θ_i$为模型参数</p>
                     </div>
                 </div>
                 <div class="excerpt">
-                    <ul id="markdown-toc">
-  <li><a href="#创建一个正则表达式regular-expressions" id="markdown-toc-创建一个正则表达式regular-expressions">创建一个正则表达式（regular expressions）</a></li>
-  <li><a href="#编写一个正则表达式的模式" id="markdown-toc-编写一个正则表达式的模式">编写一个正则表达式的模式</a></li>
-</ul>
-<h2 id="创建一个正则表达式regular-expressions">创建一个正则表达式（regular expressions）</h2>
-<p>使用正则表达式字面量：<code class="highlighter-rouge">var re = /ab+c/;</code>
-使用RegExp对象的构造函数：<code class="highlighter-rouge">var re = new RegExp("ab+c");</code></p>
-<h2 id="编写一个正则表达式的模式">编写一个正则表达式的模式</h2>
-<p>简单模式：/abc/
-特殊字符：类似/ab*c/</p>
-
+                    
 
                 </div>
                 <div class="read-all">

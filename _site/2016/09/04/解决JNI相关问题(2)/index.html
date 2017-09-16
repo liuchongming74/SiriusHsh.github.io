@@ -21,6 +21,18 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 
@@ -75,26 +87,6 @@
                     
                     <li>
                         
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/demo/">
-                        
-                            <i class="fa fa-play"></i>Demo
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
                         <a href="/about/">
                         
                             <i class="fa fa-heart"></i>About
@@ -126,6 +118,7 @@
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>HSH
                 
             </div>
 
@@ -183,9 +176,9 @@
 
 <p>该函数有两种形式：</p>
 <ol>
-  <li><strong>C中的形式</strong>
+  <li><strong>C中的形式</strong><br />
 C代码：<code class="highlighter-rouge">const char *str = (*env)-&gt;GetStringUTFChars(env,string,0)</code></li>
-  <li><strong>C++中的形式</strong>
+  <li><strong>C++中的形式</strong><br />
 C++代码:<code class="highlighter-rouge">const char *str = env-&gt;GetStringUTFChars(string,0)</code></li>
 </ol>
 

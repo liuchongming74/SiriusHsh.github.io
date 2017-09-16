@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>正则表达式和RegExp(JS篇)</title>
-    <meta name="description" content="  创建一个正则表达式（regular expressions）  编写一个正则表达式的模式创建一个正则表达式（regular expressions）使用正则表达式字面量：var re = /ab+c/;使用RegExp对象的构造函数：var re = new RegExp("ab+c");编写一个正则表达式的...">
+    <meta name="description" content="">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
@@ -20,6 +20,18 @@
 
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 </head>
 
@@ -75,26 +87,6 @@
                     
                     <li>
                         
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/demo/">
-                        
-                            <i class="fa fa-play"></i>Demo
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
                         <a href="/about/">
                         
                             <i class="fa fa-heart"></i>About
@@ -126,6 +118,7 @@
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>HSH
                 
             </div>
 
@@ -186,18 +179,19 @@
     </ul>
   </li>
 </ul>
+
 <h2 id="创建一个正则表达式regular-expressions">创建一个正则表达式（regular expressions）</h2>
-<p>使用正则表达式字面量：<code class="highlighter-rouge">var re = /ab+c/;</code>
+<p>使用正则表达式字面量：<code class="highlighter-rouge">var re = /ab+c/;</code><br />
 使用RegExp对象的构造函数：<code class="highlighter-rouge">var re = new RegExp("ab+c");</code></p>
 <h2 id="编写一个正则表达式的模式">编写一个正则表达式的模式</h2>
-<p>简单模式：/abc/
+<p>简单模式：/abc/<br />
 特殊字符：类似/ab*c/</p>
 
 <ul>
   <li>字符：<code class="highlighter-rouge">\</code>
  跟在其后的字符：字面量转义为特殊字符，特殊字符转义为字面量。
-字面量转义为特殊字符，如<code class="highlighter-rouge">/b/</code>意为匹配字符’b’，而<code class="highlighter-rouge">/\b/</code>意为匹配一个字符边界
-特殊字符转为字面量：如<code class="highlighter-rouge">/a*/</code>意为匹配0个或者多个a，而<code class="highlighter-rouge">/a\*/</code>意为匹配’a*‘这样的字符串。
+字面量转义为特殊字符，如<code class="highlighter-rouge">/b/</code>意为匹配字符’b’，而<code class="highlighter-rouge">/\b/</code>意为匹配一个字符边界<br />
+特殊字符转为字面量：如<code class="highlighter-rouge">/a*/</code>意为匹配0个或者多个a，而<code class="highlighter-rouge">/a\*/</code>意为匹配’a*‘这样的字符串。<br />
 使用new RegExp(“pattern”)的时候要将\转义，如字面量模式的<code class="highlighter-rouge">/\[bc\]at/</code>等价的字符串为<code class="highlighter-rouge">\\[bc\\]at</code>，字面量模式为<code class="highlighter-rouge">/\w\\hello\\123/</code>等价的字符串为<code class="highlighter-rouge">\\w\\\\hello\\\\123</code></li>
   <li>字符：<code class="highlighter-rouge">^</code>和<code class="highlighter-rouge">$</code>
 匹配输入的开始和结束，如<code class="highlighter-rouge">/^A/</code> and <code class="highlighter-rouge">/t$/</code></li>
@@ -246,6 +240,7 @@ n和m都是正整数，匹配前面的字符至少出现n次，至多出现m次�
 </blockquote>
 
 <p><strong>实例：</strong></p>
+
 <div class="highlighter-rouge"><pre class="highlight"><code>//使用exec方法在一个字符串中查找一个匹配
 var myRe = /d(b+)d/g;
 var myArray = myRe.exec("cdbbdbsbz");
@@ -259,6 +254,7 @@ var myArray = myRe.exec("cdbbdbsbz");
 
 <h3 id="使用括号的子字符串匹配">使用括号的子字符串匹配</h3>
 <p>正则表达式使用了括号，相应的子匹配会被记住，回调这些括号中匹配的子串，使用数组元素[1]…[n]，$1,$2</p>
+
 <div class="highlighter-rouge"><pre class="highlight"><code>//使用replace()方法来转换字符串中的单词
 var re = /(w+)\s\(\w+)/;
 var str = "John Smith";
@@ -266,11 +262,12 @@ var newStr = str.replace(re, "$2,$1");
 console.log(newStr);  // =&gt; "Smith,John"
 </code></pre>
 </div>
+
 <h3 id="通过标志进行高级搜索">通过标志进行高级搜索</h3>
-<p>标志:”g”, “i”, “m”, “y”
-g：全局搜索
-i：不区分大小写搜索
-m：多行搜索
+<p>标志:”g”, “i”, “m”, “y”<br />
+g：全局搜索<br />
+i：不区分大小写搜索<br />
+m：多行搜索<br />
 y：执行“粘性”搜索，匹配从目标字符串的当前位置开始，可以使用y标志</p>
 
 

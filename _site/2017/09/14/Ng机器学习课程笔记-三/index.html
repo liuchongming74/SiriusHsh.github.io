@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Ng机器学习课程笔记（三）</title>
-    <meta name="description" content="  Linear Regression with multiple variables          1.multivariate linear regression（多元线性回归）      Linear Regression with multiple variables上一节讲了单变量的线性回归问题，这...">
+    <meta name="description" content="  Linear Regression with multiple variablesLinear Regression with multiple variables上一节讲了单变量的线性回归问题，这一节针对更复杂的情况。">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
@@ -80,26 +80,6 @@
                         <a href="/tag/">
                         
                             <i class="fa fa-tags"></i>Tags
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/demo/">
-                        
-                            <i class="fa fa-play"></i>Demo
                         </a>
                     </li>
                     
@@ -195,15 +175,16 @@
     </ul>
   </li>
 </ul>
+
 <h1 id="linear-regression-with-multiple-variables">Linear Regression with multiple variables</h1>
 <p>上一节讲了单变量的线性回归问题，这一节针对更复杂的情况。</p>
 
 <h2 id="1multivariate-linear-regression多元线性回归">1.multivariate linear regression（多元线性回归）</h2>
-<p><img src="quiver-image-url/5D655C52BD48C39A38DCFE6CAFA77E80.png =490x178" alt="lesson3-1.png" />
-<img src="quiver-image-url/3F9C7127CE7B43D0978F6E7D05AD9758.png =456x117" alt="lesson3-2.png" />
-假设函数表示为：$h_θ(x)=θ_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n$
-通产默认x0等于0
-于是
+<p><img src="quiver-image-url/5D655C52BD48C39A38DCFE6CAFA77E80.png =490x178" alt="lesson3-1.png" /><br />
+<img src="quiver-image-url/3F9C7127CE7B43D0978F6E7D05AD9758.png =456x117" alt="lesson3-2.png" /><br />
+假设函数表示为：$h_θ(x)=θ_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n$<br />
+通产默认x0等于0<br />
+于是<br />
 $x=\begin{bmatrix}
 x_0<br />
 x_1<br />
@@ -219,44 +200,45 @@ x_n
 
 <p>$h_θ(x)=θ_0x_0+θ_1x_1+θ_2x_2+θ_3x_3+…+θ_nx_n=θ^Tx$</p>
 
-<p>$J(θ)=\frac{1}{2m}\sum_{i=1}^{m}(h_θ(x^{(i)})-y^{(i)})$
-在进行计算时，善用矩阵运算能够加快运算速度，如损失函数就可以表示为<img src="quiver-image-url/DC956F5ED9757C2C1C657059925E8E7A.png =753x364" alt="lesson3-8.png" />
+<p>$J(θ)=\frac{1}{2m}\sum_{i=1}^{m}(h_θ(x^{(i)})-y^{(i)})$ <br />
+在进行计算时，善用矩阵运算能够加快运算速度，如损失函数就可以表示为<br />
+<img src="quiver-image-url/DC956F5ED9757C2C1C657059925E8E7A.png =753x364" alt="lesson3-8.png" /><br />
 结果与上式相同。</p>
 
 <h2 id="2gradient-descent">2.Gradient Descent</h2>
-<p>上一节学到了单元线性回归问题的梯度下降算法，如图：
-<img src="quiver-image-url/45C5079C89EABD625D5D234D973E37C4.png =509x174" alt="lesson2-11.png" />
-多元回归问题的梯度下降算法与之类似，
-<img src="quiver-image-url/D678326C1F47AB3468588810DB172F03.png =350x233" alt="lesson3-3.png" />
-可以简写为：
+<p>上一节学到了单元线性回归问题的梯度下降算法，如图：<br />
+<img src="quiver-image-url/45C5079C89EABD625D5D234D973E37C4.png =509x174" alt="lesson2-11.png" /><br />
+多元回归问题的梯度下降算法与之类似，<br />
+<img src="quiver-image-url/D678326C1F47AB3468588810DB172F03.png =350x233" alt="lesson3-3.png" /><br />
+可以简写为：<br />
 <img src="quiver-image-url/6349CD3AC1ABCDFE71A23455AE7ACA31.png =467x113" alt="lesson3-4.png" /></p>
 
 <h2 id="3feature-scaling特征缩放">3.feature scaling（特征缩放）</h2>
-<p>通过特征缩放能够使得梯度下降算法获得更好的效果，梯度下降的较快，特征缩放没有严格的要求，通常只要在相似的范围内就行。
-如−1 ≤ x(i) ≤ 1或者 −0.5 ≤ x(i) ≤ 0.5。Ng提出他认为−3 ≤ x(i) ≤ 3是一个可接受的范围。
-<strong>mean normalization</strong>均值标准化
-$x_i:=\frac{x_i−μ_i}{s_i}$
-μi表示i特征的平均值
+<p>通过特征缩放能够使得梯度下降算法获得更好的效果，梯度下降的较快，特征缩放没有严格的要求，通常只要在相似的范围内就行。<br />
+如−1 ≤ x(i) ≤ 1或者 −0.5 ≤ x(i) ≤ 0.5。Ng提出他认为−3 ≤ x(i) ≤ 3是一个可接受的范围。<br />
+<strong>mean normalization</strong>均值标准化<br />
+$x_i:=\frac{x_i−μ_i}{s_i}$<br />
+μi表示i特征的平均值<br />
 si表示i特征取值的最大值减去最小值,values(max-min)</p>
 
 <p><strong>在做实验的时候注意到，在对数据集做特征缩放的时候，需要将μi和si值保存下来。处理新数据时，使用同样的μi和si值进行缩放</strong></p>
 <h2 id="4学习率α">4.学习率α</h2>
-<p><img src="quiver-image-url/CC184C529EECCE8A71799F0D601DD30D.png =921x331" alt="lesson3-5.png" />
+<p><img src="quiver-image-url/CC184C529EECCE8A71799F0D601DD30D.png =921x331" alt="lesson3-5.png" />  <br />
 如果代价函数变化趋势如这些图所示，应该采用更小的α取值</p>
 
 <h2 id="5features-and-polynomial-regression-特征选择与多项式回归">5.features and polynomial regression 特征选择与多项式回归</h2>
-<p>假设函数为$h_θ(x)=θ_0+θ_1x_1+θ_2x_2$,
-用该式子去代表$h_θ(x)=θ_0+θ_1(size)+θ_2(size)^2$
+<p>假设函数为$h_θ(x)=θ_0+θ_1x_1+θ_2x_2$,<br />
+用该式子去代表$h_θ(x)=θ_0+θ_1(size)+θ_2(size)^2$<br />
 size返回0~1000，于是需要使用特征缩放，使得x1,x2在相同的范围内。</p>
 
 <h2 id="6normal-equation正规方程">6.normal equation（正规方程）</h2>
-<p>相比梯度下降求解θ值的方法，这里介绍第二种方法：normal equation，正规方程法。
-对于数据集<img src="quiver-image-url/27D022A50298134DF14B24E0478AA04D.png =812x229" alt="lesson3-6.png" />
-设X，y为：
-<img src="quiver-image-url/27D022A50298134DF14B24E0478AA04D.png =812x229" alt="lesson3-6.png" />
-则，通过正则方程，得到θ值：
-$θ=(X^TX)^{-1}X^Ty$
-<strong>证明：待补充</strong>
+<p>相比梯度下降求解θ值的方法，这里介绍第二种方法：normal equation，正规方程法。<br />
+对于数据集<img src="quiver-image-url/27D022A50298134DF14B24E0478AA04D.png =812x229" alt="lesson3-6.png" /><br />
+设X，y为：<br />
+<img src="quiver-image-url/27D022A50298134DF14B24E0478AA04D.png =812x229" alt="lesson3-6.png" /><br />
+则，通过正则方程，得到θ值：<br />
+$θ=(X^TX)^{-1}X^Ty$<br />
+<strong>证明：待补充</strong><br />
 正则方程法不需要使用特征缩放</p>
 
         </article>
