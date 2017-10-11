@@ -5,9 +5,26 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 10 Oct 2017 22:23:56 +0800</pubDate>
-    <lastBuildDate>Tue, 10 Oct 2017 22:23:56 +0800</lastBuildDate>
+    <pubDate>Wed, 11 Oct 2017 19:45:28 +0800</pubDate>
+    <lastBuildDate>Wed, 11 Oct 2017 19:45:28 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
+    
+      <item>
+        <title>Ng机器学习课程笔记（四）</title>
+        <description>
+这一节开始讲分类问题，首先对分类问题的假设函数$h_\theta(x)$进行了定义，当仍然使用线性回归（linear regression）时，随着新样本的引入（即使该样本显而易见的属于某一分类），会对原假设函数产生影响（导致直线斜率改变）。随之引入了逻辑回归的概念。
+
+</description>
+        <pubDate>Wed, 11 Oct 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/10/11/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%9B%9B/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/10/11/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%9B%9B/</guid>
+        
+        <category>机器学习</category>
+        
+        
+        <category>学习笔记</category>
+        
+      </item>
     
       <item>
         <title>Python爬虫（一）</title>
@@ -192,27 +209,6 @@ tags: Java JNI
         <pubDate>Mon, 05 Sep 2016 02:17:30 +0800</pubDate>
         <link>http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/</link>
         <guid isPermaLink="true">http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/</guid>
-        
-        <category>Java</category>
-        
-        <category>JNI</category>
-        
-        
-        <category>问题解决</category>
-        
-      </item>
-    
-      <item>
-        <title>解决JNI相关问题(2)</title>
-        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#本篇主要讲述jni中getstringutfchars方法的用法&quot; id=&quot;markdown-toc-本篇主要讲述jni中getstringutfchars方法的用法&quot;&gt;本篇主要讲述JNI中GetStringUTFChars()方法的用法。&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;本篇主要讲述jni中getstringutfchars方法的用法&quot;&gt;本篇主要讲述JNI中GetStringUTFChars()方法的用法。&lt;/h3&gt;
-
-</description>
-        <pubDate>Sun, 04 Sep 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(2)/</guid>
         
         <category>Java</category>
         

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ng机器学习课程笔记（四）</title>
+    <meta name="description" content="这一节开始讲分类问题，首先对分类问题的假设函数$h_\theta(x)$进行了定义，当仍然使用线性回归（linear regression）时，随着新样本的引入（即使该样本显而易见的属于某一分类），会对原假设函数产生影响（导致直线斜率改变）。随之引入了逻辑回归的概念。">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/10/11/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%9B%9B/">
+    <link rel="alternate" type="application/rss+xml" title="SiriusHsh" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11d0a7524a357b826a143e592f616077;";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">SiriusHsh</a>
+        <small>记录思考，整理人生</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>Ng机器学习课程笔记（四）</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-10-11
+            </div>
+
+            <div class="label-card">
+                <i class="fa fa-user"></i>HSH
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#学习笔记" title="Category: 学习笔记" rel="category">学习笔记</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" title="Tag: 机器学习" rel="tag">机器学习</a-->
+        <a href="/tag/#机器学习" title="Tag: 机器学习" rel="tag">机器学习</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#1logistic-regression逻辑回归" id="markdown-toc-1logistic-regression逻辑回归">1.Logistic Regression（逻辑回归）</a></li>
+  <li><a href="#2decision-boundary-决策边界" id="markdown-toc-2decision-boundary-决策边界">2.Decision boundary 决策边界</a></li>
+  <li><a href="#3cost-function损失函数" id="markdown-toc-3cost-function损失函数">3.Cost function（损失函数）</a></li>
+  <li><a href="#4gradient-descent梯度下降" id="markdown-toc-4gradient-descent梯度下降">4.Gradient Descent（梯度下降）</a></li>
+  <li><a href="#5optimization-algorithm优化算法" id="markdown-toc-5optimization-algorithm优化算法">5.Optimization algorithm（优化算法）</a></li>
+  <li><a href="#6multiclass-classificationone-vs-all一对多分类算法" id="markdown-toc-6multiclass-classificationone-vs-all一对多分类算法">6.Multiclass Classification：one-vs-all（一对多分类算法）</a></li>
+  <li><a href="#7over-fitting" id="markdown-toc-7over-fitting">7.over-fitting</a></li>
+  <li><a href="#8regularization" id="markdown-toc-8regularization">8.regularization</a>    <ul>
+      <li><a href="#regularized-linear-regression" id="markdown-toc-regularized-linear-regression">Regularized Linear Regression</a></li>
+      <li><a href="#regularized-logistic-regression" id="markdown-toc-regularized-logistic-regression">Regularized Logistic Regression</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>这一节开始讲分类问题，首先对分类问题的假设函数$h_\theta(x)$进行了定义，当仍然使用线性回归（linear regression）时，随着新样本的引入（即使该样本显而易见的属于某一分类），会对原假设函数产生影响（导致直线斜率改变）。随之引入了逻辑回归的概念。</p>
+
+<h2 id="1logistic-regression逻辑回归">1.Logistic Regression（逻辑回归）</h2>
+<p>逻辑函数借助了一种称为Sigmoid function 或 Logistic function的函数，对线性回归的假设函数稍作修改，逻辑函数的假设函数表示为：$h_\theta(x)=g(\theta^Tx)$，其中$g(z)=\frac{1}{1+e^{-z}}$。<br />
+g(z)的函数曲线如图所示：<br />
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-1.png" alt="lesson4-1.png" /><br />
+可以看到sigmoid函数具有很明显的特点，当z&gt;=0时，g(z)&gt;=0;当z&lt;0时，g(z)&lt;0。很适合分类问题，无论样本取值是多少，最后假设函数h的范围都在0~1之间。<br />
+总结逻辑回归的假设函数设定如下：</p>
+
+<ul>
+  <li>当$\theta^Tx \geq 0，也就是 h_\theta(x) \geq 0.5$时，此时 y=1 （二分类问题，y=0或y=1）</li>
+  <li>当$\theta^Tx &lt; 0，也就是 h_\theta(x) &lt; 0.5$时，此时 y=0</li>
+</ul>
+
+<p>$h_\theta(x)=P(y=1|x,\theta)$</p>
+<h2 id="2decision-boundary-决策边界">2.Decision boundary 决策边界</h2>
+<p>Ng多次强调：决策边界不是数据集的特征，而是假设函数的一个属性，数据集对假设函数的$\theta$值做出引导，导出最终的$\theta$值，从而生成决策边界。<br />
+决策边界说白了就是将数据集分为两部分的那个分类线（二分类问题）。<br />
+决策边界的求法很简单，就是利用sigmoid函数的特性，令$\theta^Tx=0$，通过一些方法（目前还没讲到）求解出$\theta$的值，得到的函数就是决策边界。</p>
+
+<h2 id="3cost-function损失函数">3.Cost function（损失函数）</h2>
+<p>损失函数:</p>
+
+<blockquote>
+  <p>$J(\theta)=\frac{1}{2m} \displaystyle \sum_{i=1}^{m}Cost(h_\theta(x^{(i)}),y^{(i)})$<br />
+$Cost(h_\theta(x),y)=-log(h_\theta(x))$  if y = 1<br />
+$Cost(h_\theta(x),y)=-log(1-h_\theta(x))$  if y = 0<br />
+两个式子可以合并为一个：$Cost(h_\theta(x),y)=-ylog(h_\theta(x))-(1-y)log(1-h_\theta(x))$</p>
+</blockquote>
+
+<p><strong>重点：向量表示形式</strong></p>
+
+<p>$h=g(X\theta)$<br />
+$J(\theta)=-\frac {1}{m}(y^Tlog(h)+(1-y)^Tlog(1-h))$</p>
+
+<p>$J(\theta)和h_\theta(x)的曲线图如下所示：$<br />
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-2.png" alt="lesson4-2.png" /></p>
+<h2 id="4gradient-descent梯度下降">4.Gradient Descent（梯度下降）</h2>
+<p>逻辑回归的梯度下降算法
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-3.png" alt="lesson4-3.png" />
+向量表示形式：<br />
+$\theta := \theta - \frac {\alpha}{m}X^T(g(X\theta)-y)$</p>
+
+<h2 id="5optimization-algorithm优化算法">5.Optimization algorithm（优化算法）</h2>
+<p>这里讲了高级优化算法，如“BFGS”，“L-GFGS”等，与梯度下降算法相比它们的计算速度更快。<br />
+然后Ng介绍了如何在octave中调用这些库函数。<br />
+首先定义一个函数，它能返回$J(\theta)和\frac {∂}{∂\theta_j}J(\theta)$<br />
+格式如下：</p>
+<div class="language-matlab highlighter-rouge"><pre class="highlight"><code><span class="k">function</span> <span class="p">[</span><span class="n">jVal</span><span class="p">,</span> <span class="nb">gradient</span><span class="p">]</span> <span class="o">=</span> <span class="n">costFunction</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+  <span class="n">jVal</span> <span class="o">=</span> <span class="p">[</span><span class="k">...</span><span class="c">code to compute J(theta)...];</span>
+  <span class="nb">gradient</span> <span class="o">=</span> <span class="p">[</span><span class="k">...</span><span class="c">code to compute derivative of J(theta)...];</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>然后使用octave提供的fminunc优化算法。</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>options = optimset('GradObj', 'on', 'MaxIter', 100); 
+initialTheta = zeros(2,1);
+   [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+</code></pre>
+</div>
+<p><em>需要注意的是代码里各种index都是从1开始，octave的规范，和python从0开始的不一样</em></p>
+<h2 id="6multiclass-classificationone-vs-all一对多分类算法">6.Multiclass Classification：one-vs-all（一对多分类算法）</h2>
+<p><strong>利用逻辑回归解决多分类别分类问题</strong>
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-4.png" alt="lesson4-4.png" /><br />
+如将邮件类型分为:
+work(y=0)<br />
+friend(y=1)<br />
+family(y=2)<br />
+设计三个分类器，[(y=0),(y=1,y=2)],[(y=1),(y=0,y=2)],[(y=2),(y=0,y=1)]
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-5.png" alt="lesson4-5.png" /></p>
+
+<p>如图，对于K分类问题，就是设计K个假设函数，得出该类别的概率，概率最大的就是结果。</p>
+
+<h2 id="7over-fitting">7.over-fitting</h2>
+<p>如图，左边为欠拟合（underfitting）也称为高偏差（high bias），中间是对的，左边为过拟合（overfitting）也称为高方差（high variance）<br />
+解决过拟合的方法：<br />
+1.减少特征的数量<br />
+2.正则化<br />
+什么是正则化，怎么使用在后面讲</p>
+
+<h2 id="8regularization">8.regularization</h2>
+<p>从损失函数入手，设假设函数为为$θ_0+θ_1x+θ_2x_2+θ_3x_3+θ_4x_4$，损失函数为$min_\theta \frac{1}{2m} \displaystyle \sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^2$。<br />
+通过在损失函数加上$1000⋅θ_3^2+1000⋅θ_4^2$两项，就能减少$\theta_3和\theta_4$的权重，由于$\lambda$设置的比较大，1000已经能使得$\theta_3和\theta_4$值趋近于0。于是就起到了减少特征数的作用，使得原来过拟合的曲线变得更加顺滑。<br />
+一种通用的方法是正则化所有的参数：<br />
+$min_\theta \frac{1}{2m} [\displaystyle \sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda \displaystyle \sum_{j=1}^{n}\theta_j^2]$<br />
+这里有两个注意点：<br />
+1.附加项中j是从1开始，这意味着$\theta_0$是不受影响的。<br />
+2.$\lambda$取值太大会造成欠拟合。</p>
+
+<p>$\theta$称为惩罚参数</p>
+
+<h3 id="regularized-linear-regression">Regularized Linear Regression</h3>
+<p>$J(\theta) =  \frac{1}{2m} [\displaystyle \sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda \displaystyle \sum_{j=1}^{n}\theta_j^2]$   <br />
+$min_\thetaJ(\theta)$</p>
+
+<ol>
+  <li>梯度下降算法
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-6.png" alt="lesson4-6.png" /><br />
+第二项可以变形为：$\theta_j := \theta_j(1-\alpha \frac{\lambda}{m}) - \alpha \frac{1}{m} \displaystyle \sum_{i=1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2$<br />
+$1-\alpha \frac{\lambda}{m}$是一个小于1的数，也就是相当于在每次减小了点惩罚参数。</li>
+  <li>正规方程
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-7.png" alt="lesson4-7.png" /></li>
+</ol>
+
+<h3 id="regularized-logistic-regression">Regularized Logistic Regression</h3>
+<p>损失函数：<br />
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-8.png" alt="lesson4-8.png" /><br />
+正则化后：<br />
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-9.png" alt="lesson4-9.png" /><br />
+加上了$\frac {\lambda}{2m} \displaystyle \sum_{j=1}^{n}\theta_j^2$</p>
+
+<ol>
+  <li>梯度下降算法
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-6.png" alt="lesson4-6.png" /><br />
+梯度下降算法与线性回归是类似的，区别仅在于假设函数$h(\theta)$</li>
+  <li>advanced optimization
+<img src="http://octtw77pk.bkt.clouddn.com//public/upload/lesson4-10.png" alt="lesson4-10.png" /></li>
+</ol>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/09/14/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%89/">Ng机器学习课程笔记（三）
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/09/05/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%BA%8C/">Ng机器学习课程笔记（二）
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/08/18/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%B8%80/">Ng机器学习课程笔记（一)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/10/10/python%E7%88%AC%E8%99%AB-%E4%B8%80/">Python爬虫（一）</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             本站记录我在学习生活的点点滴滴。 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/SiriusHsh" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:siriushsh@foxmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>   
+            <a href="https://www.zhihu.com/people/SiriusHsh" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>      
+        </p>
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>
