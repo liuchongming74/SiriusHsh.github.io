@@ -5,9 +5,38 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 11 Oct 2017 19:45:28 +0800</pubDate>
-    <lastBuildDate>Wed, 11 Oct 2017 19:45:28 +0800</lastBuildDate>
+    <pubDate>Sat, 21 Oct 2017 16:25:32 +0800</pubDate>
+    <lastBuildDate>Sat, 21 Oct 2017 16:25:32 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
+    
+      <item>
+        <title>Ng机器学习课程笔记（五）</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#神经网络&quot; id=&quot;markdown-toc-神经网络&quot;&gt;神经网络&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;神经网络&quot;&gt;神经网络&lt;/h2&gt;
+神经网络模型如图所示：&lt;br /&gt;
+&lt;img src=&quot;http://octtw77pk.bkt.clouddn.com//public/upload/lesson5-1.png&quot; alt=&quot;lesson5-1.png&quot; /&gt; &lt;br /&gt;
+一些基础知识：
+&lt;ol&gt;
+  &lt;li&gt;输入层，输出层，隐含层&lt;/li&gt;
+  &lt;li&gt;观察到，每一层都会再加一项，这一项称为偏置项（bias unit），值为1&lt;/li&gt;
+  &lt;li&gt;在神经网络最后我们仍旧使用逻辑函数（logistic function），但是在这里我们通常称为 sigmoid (logistic) activation function，sigmoid激活函数&lt;/li&gt;
+  &lt;li&gt;参数$\theta$称为权重（weights）&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Sat, 21 Oct 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/10/21/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%BA%94/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/10/21/Ng%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E4%BA%94/</guid>
+        
+        <category>机器学习</category>
+        
+        
+        <category>学习笔记</category>
+        
+      </item>
     
       <item>
         <title>Ng机器学习课程笔记（四）</title>
@@ -187,35 +216,6 @@
         
         
         <category>随笔</category>
-        
-      </item>
-    
-      <item>
-        <title>解决JNI相关问题(3)</title>
-        <description>&lt;hr /&gt;
-layout: post
-title:  解决JNI相关问题(3)
-categories: 问题解决
-tags: Java JNI
-—
-
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#解决问题cant-find-dependent-libraries报错&quot; id=&quot;markdown-toc-解决问题cant-find-dependent-libraries报错&quot;&gt;解决问题：Can’t find dependent libraries报错&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;解决问题cant-find-dependent-libraries报错&quot;&gt;解决问题：Can’t find dependent libraries报错&lt;/h3&gt;
-
-</description>
-        <pubDate>Mon, 05 Sep 2016 02:17:30 +0800</pubDate>
-        <link>http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/09/04/%E8%A7%A3%E5%86%B3JNI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98(3)/</guid>
-        
-        <category>Java</category>
-        
-        <category>JNI</category>
-        
-        
-        <category>问题解决</category>
         
       </item>
     
